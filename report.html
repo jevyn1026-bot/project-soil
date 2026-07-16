@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ProjectSUN - Soil Reporting</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<link rel="stylesheet"
+href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4f6f9;
+}
+
+header{
+background:#2e7d32;
+color:white;
+padding:18px 30px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo{
+font-size:28px;
+font-weight:bold;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+font-weight:bold;
+}
+
+nav a:hover{
+text-decoration:underline;
+}
+
+.container{
+width:95%;
+max-width:900px;
+margin:30px auto;
+background:white;
+padding:25px;
+border-radius:12px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+h2{
+color:#2e7d32;
+margin-bottom:20px;
+}
+
+label{
+display:block;
+margin-top:15px;
+margin-bottom:8px;
+font-weight:bold;
+}
+
+input,
+textarea,
+select{
+width:100%;
+padding:12px;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:16px;
+}
+
+textarea{
+resize:vertical;
+min-height:120px;
+}
+
+#trigger-gps-btn{
+margin-top:15px;
+padding:12px;
+width:100%;
+border:none;
+background:#1976d2;
+color:white;
+font-size:16px;
+border-radius:8px;
+cursor:pointer;
+}
+
+#gps-status{
+margin-top:12px;
+font-weight:bold;
+}
+
+#report-mini-map{
+height:300px;
+margin-top:15px;
+border-radius:10px;
+border:1px solid #ccc;
+}
+
+.location-row{
+display:flex;
+gap:15px;
+margin-top:15px;
+}
+
+.location-row div{
+flex:1;
+}
+
+#submit-btn{
+margin-top:25px;
+width:100%;
+padding:15px;
+background:#2e7d32;
+color:white;
+border:none;
+border-radius:8px;
+font-size:18px;
+cursor:pointer;
+}
+
+#status-message{
+margin-top:20px;
+font-weight:bold;
+text-align:center;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+🌱 ProjectSUN
+</div>
+
+<nav>
+
+<a href="Soil.html">Home</a>
+
+<a href="map.html">Map</a>
+
+<a href="dashboard.html">Dashboard</a>
+
+<a href="report.html">Report</a>
+
+</nav>
+
+</header>
+
+<div class="container">
+
+<h2>Soil Pollution Report</h2>
+<form id="pollution-report-form">
+
+<label>Pollution Type</label>
+
+<select id="report-type" required>
+
+<option value="">Select Pollution Type</option>
+
+<option value="Chemical Spill">Chemical Spill</option>
+
+<option value="Illegal Waste">Illegal Waste Dumping</option>
+
+<option value="Industrial Runoff">Industrial Runoff</option>
+
+<option value="Contaminated Soil">Contaminated Soil</option>
+
+</select>
+
+<label>Barangay</label>
+
+<select id="report-barangay" required>
+
+<option value="">Select Barangay</option>
+
+<option>Bagong Ilog</option>
+<option>Bambang</option>
+<option>Buting</option>
+<option>Caniogan</option>
+<option>Kalawaan</option>
+<option>Kapasigan</option>
+<option>Kapitolyo</option>
+<option>Malinao</option>
+<option>Manggahan</option>
+<option>Maybunga</option>
+<option>Oranbo</option>
+<option>Palatiw</option>
+<option>Pinagbuhatan</option>
+<option>Rosario</option>
+<option>Sagad</option>
+<option>San Antonio</option>
+<option>San Joaquin</option>
+<option>San Jose</option>
+<option>San Miguel</option>
+<option>San Nicolas</option>
+<option>Santa Cruz</option>
+<option>Santa Lucia</option>
+<option>Santa Rosa</option>
+<option>Santo Tomas</option>
+<option>Sumilang</option>
+<option>Ugong</option>
+
+</select>
+<label>Description</label>
+
+<textarea
+id="report-desc"
+placeholder="Describe the pollution..."
+required></textarea>
+
+<label><strong>Photo Evidence *</strong></label>
+
+<div class="photo-buttons">
+
+    <label class="photo-btn">
+        📸 Take Photo
+        <input
+            type="file"
+            id="cameraInput"
+            accept="image/*"
+            capture="environment"
+            hidden>
+    </label>
+
+    <label class="photo-btn">
+        🖼 Upload From Gallery
+        <input
+            type="file"
+            id="galleryInput"
+            accept="image/*"
+            hidden>
+    </label>
+
+</div>
+
+<div class="preview-container">
+
+    <img
+        id="previewImage"
+        src=""
+        style="display:none;max-width:100%;border-radius:10px;">
+
+    <p id="photoStatus">
+        No photo selected.
+    </p>
+
+</div>
+
+<label>GPS Location</label>
+
+<button
+type="button"
+id="trigger-gps-btn">
+
+📍 Refresh My GPS Location
+
+</button>
+
+<div id="gps-status">
+
+Initializing GPS...
+
+</div>
+
+<div id="report-mini-map"></div>
+
+<div class="location-row">
+
+<div>
+
+<label>Latitude</label>
+
+<input
+type="text"
+id="report-lat"
+readonly>
+
+</div>
+
+<div>
+
+<label>Longitude</label>
+
+<input
+type="text"
+id="report-lng"
+readonly>
+
+</div>
+
+</div>
+
+<button
+type="submit"
+id="submit-btn">
+
+Submit Report
+
+</button>
+
+<div id="status-message"></div>
+
+</form>
+
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+let imageData = "";
+
+const miniMap = L.map("report-mini-map").setView([14.5764,121.0851],13);
+
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{
+    attribution:"© OpenStreetMap contributors"
+}).addTo(miniMap);
+
+let gpsMarker = null;
+
+function acquireLiveLocation(){
+
+    const gpsStatus =
+        document.getElementById("gps-status");
+
+    gpsStatus.textContent =
+        "📡 Getting GPS location...";
+
+    gpsStatus.style.color = "#e67e22";
+
+    if(!navigator.geolocation){
+
+        gpsStatus.textContent =
+            "❌ Geolocation is not supported.";
+
+        gpsStatus.style.color = "red";
+
+        return;
+
+    }
+
+    navigator.geolocation.getCurrentPosition(
+
+        function(position){
+
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+
+            document.getElementById("report-lat").value =
+                lat.toFixed(6);
+
+            document.getElementById("report-lng").value =
+                lng.toFixed(6);
+
+            miniMap.setView([lat,lng],17);
+
+            if(gpsMarker){
+
+                gpsMarker.setLatLng([lat,lng]);
+
+            }else{
+
+                gpsMarker =
+                    L.marker([lat,lng]).addTo(miniMap);
+
+            }
+
+            gpsStatus.textContent =
+                "✅ GPS Location Acquired";
+
+            gpsStatus.style.color = "green";
+
+        },
+
+        function(error){
+
+            switch(error.code){
+
+                case error.PERMISSION_DENIED:
+                    gpsStatus.textContent =
+                        "❌ Permission denied.";
+                    break;
+
+                case error.POSITION_UNAVAILABLE:
+                    gpsStatus.textContent =
+                        "❌ Position unavailable.";
+                    break;
+
+                case error.TIMEOUT:
+                    gpsStatus.textContent =
+                        "❌ GPS request timed out.";
+                    break;
+
+                default:
+                    gpsStatus.textContent =
+                        "❌ Unknown GPS error.";
+
+            }
+
+            gpsStatus.style.color = "red";
+
+        },
+
+        {
+            enableHighAccuracy:true,
+            timeout:15000,
+            maximumAge:0
+        }
+
+    );
+
+}
+
+acquireLiveLocation();
+
+document
+.getElementById("trigger-gps-btn")
+.addEventListener("click", acquireLiveLocation);
+
+function loadPhoto(file){
+
+    if(!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = function(e){
+
+        imageData = e.target.result;
+
+        document.getElementById("previewImage").src =
+            imageData;
+
+        document.getElementById("previewImage").style.display =
+            "block";
+
+        document.getElementById("photoStatus").textContent =
+            "✅ Photo selected";
+
+    };
+
+    reader.readAsDataURL(file);
+
+}
+
+document.getElementById("cameraInput")
+.addEventListener("change", function(){
+
+    loadPhoto(this.files[0]);
+
+});
+
+document.getElementById("galleryInput")
+.addEventListener("change", function(){
+
+    loadPhoto(this.files[0]);
+
+});
+document
+.getElementById("pollution-report-form")
+.addEventListener("submit", async function(e){
+
+    e.preventDefault();
+
+    const submitBtn =
+        document.getElementById("submit-btn");
+
+    const status =
+        document.getElementById("status-message");
+
+    submitBtn.disabled = true;
+    submitBtn.innerText = "Submitting...";
+
+if(imageData === ""){
+
+    status.style.color = "red";
+
+    status.textContent =
+        "Please take or upload a photo first.";
+
+    submitBtn.disabled = false;
+    submitBtn.innerText = "Submit Report";
+
+    return;
+
+}
+    const report = {
+
+        barangay: document.getElementById("report-barangay").value,
+
+        type: document.getElementById("report-type").value,
+
+        description: document.getElementById("report-desc").value,
+
+        latitude: parseFloat(
+            document.getElementById("report-lat").value
+        ),
+
+        longitude: parseFloat(
+            document.getElementById("report-lng").value
+        ),
+
+        photo: imageData,
+
+        status: "Pending",
+
+        timestamp: new Date()
+
+    };
+
+    try{
+
+        const response = await fetch("/reports",{
+
+            method:"POST",
+
+            headers:{
+                "Content-Type":"application/json"
+            },
+
+            body:JSON.stringify(report)
+
+        });
+
+        if(response.ok){
+
+            status.style.color = "green";
+
+            status.textContent =
+                "✅ Report submitted successfully!";
+
+            document
+            .getElementById("pollution-report-form")
+            .reset();
+
+            document.getElementById("report-lat").value = "";
+            document.getElementById("report-lng").value = "";
+
+            imageData = "";
+
+document.getElementById("previewImage").style.display = "none";
+document.getElementById("previewImage").src = "";
+document.getElementById("photoStatus").textContent =
+    "No photo selected.";
+
+            if(gpsMarker){
+
+                miniMap.removeLayer(gpsMarker);
+
+                gpsMarker = null;
+
+            }
+
+            acquireLiveLocation();
+
+        }else{
+
+            status.style.color = "red";
+
+            status.textContent =
+                "❌ Failed to submit report.";
+
+        }
+
+    }catch(err){
+
+        console.error(err);
+
+        status.style.color = "red";
+
+        status.textContent =
+            "❌ Cannot connect to the server.";
+
+    }
+
+    submitBtn.disabled = false;
+
+    submitBtn.innerText = "Submit Report";
+
+});
+
+});
+</script>
+
+</body>
+</html>

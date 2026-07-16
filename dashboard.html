@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ProjectSUN Analytics Dashboard</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<link rel="stylesheet" href="public/css/dashboard.css">
+</head>
+
+<body>
+
+<header>
+    🌱 ProjectSUN Analytics Dashboard
+</header>
+
+<div class="container">
+
+    <div class="buttons">
+        <button id="pdfBtn">Download PDF</button>
+        <button id="excelBtn">Download Excel</button>
+    </div>
+
+    <div class="stats">
+
+        <div class="card">
+            <h2 id="totalReports">0</h2>
+            <p>Total Reports</p>
+        </div>
+
+        <div class="card">
+            <h2 id="pollutionReports">0</h2>
+            <p>Pollution Reports</p>
+        </div>
+
+        <div class="card">
+            <h2 id="hazardReports">0</h2>
+            <p>Hazard Reports</p>
+        </div>
+
+        <div class="card">
+            <h2 id="resolvedReports">0</h2>
+            <p>Resolved Reports</p>
+        </div>
+
+        <div class="card">
+            <h2 id="pendingReports">0</h2>
+            <p>Pending Reports</p>
+        </div>
+
+    </div>
+
+       <h3>Report Summary</h3>
+       <canvas id="summaryChart"></canvas>
+
+<h3>Reports per Barangay</h3>
+<canvas id="barangayChart"></canvas>
+
+    <div class="chart-box">
+    <h3>Reports per Barangay</h3>
+    <canvas id="barangayChart"></canvas>
+</div>
+
+</div>
+
+<script src="public/js/dashboard.js"></script>
+
+</body>
+</html>

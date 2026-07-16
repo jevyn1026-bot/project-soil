@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Pollution Map - EcoPasig</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <style>
+        :root { --white: #ffffff; --primary-green: #2e7d32; --dark-neutral: #2c3e50; --box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        body { margin: 0; font-family: 'Segoe UI', system-ui, sans-serif; background-color: #f4f7f6; display: flex; flex-direction: column; height: 100vh; }
+        
+        .navbar { background-color: var(--white); box-shadow: 0 2px 5px rgba(0,0,0,0.05); padding: 1rem 2rem; z-index: 1000; }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; }
+        .logo { font-size: 1.4rem; font-weight: bold; color: var(--primary-green); text-decoration: none; }
+        .nav-menu a { color: var(--dark-neutral); text-decoration: none; margin-left: 1.5rem; font-weight: 500; }
+        .nav-menu a.active { color: var(--primary-green); border-bottom: 2px solid var(--primary-green); }
+        
+        #main-map { flex: 1; width: 100%; z-index: 1; }
+
+        /* Popup styling */
+        .popup-container { max-width: 220px; font-family: 'Segoe UI', sans-serif; }
+        .popup-title { font-weight: bold; color: #b71c1c; margin-bottom: 5px; font-size: 1.05rem; }
+        .popup-date { font-size: 0.8rem; color: #7f8c8d; margin-bottom: 8px; }
+        .popup-desc { font-size: 0.9rem; color: var(--dark-neutral); margin-bottom: 10px; }
+        .popup-img { width: 100%; border-radius: 6px; margin-top: 5px; max-height: 150px; object-fit: cover; border: 1px solid #ddd; }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="Soil.html" class="logo"><i class="fa-solid fa-leaf"></i> EcoPasig</a>
+            <nav class="nav-menu">
+                <a href="Soil.html">Home</a>
+                <a href="map.html" class="active">Interactive Map</a>
+                <a href="report.html">Soil Reporting</a>
+            </nav>
+        </div>
+    </header>
+
+    <div id="main-map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            // 1. Initialize Map centered on Pasig City
+            const pasigBounds = L.latLngBounds([14.5300, 121.0500], [14.6100, 121.1200]);
+            const map = L.map('main-map', {
+                center: [14.5594, 121.0805], 
+                zoom: 13, 
+                maxBounds: pasigBounds, 
+                maxBoundsViscosity: 1.0
+            });
+
+            // Load Map Tiles
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap contributors'
+            }).addTo(map);
+
+            // 2. Fetch live reports from your local backend
+            try {
+                const response = await fetch('http://localhost:3000/reports');
+                if (!response.ok) throw new Error("Failed to fetch reports");
+                
+                const reports = await response.json();
+
+                // 3. Loop through reports and plot markers
+                reports.forEach(report => {
+                    if (!report.latitude || !report.longitude) return; // Skip invalid entries
+
+                    // Setup custom dynamic popup contents
+                    let popupHTML = `
+                        <div class="popup-container">
+                            <div class="popup-title"><i class="fa-solid fa-triangle-exclamation"></i> ${report.type}</div>
+                            <div class="popup-date">Reported: ${report.date || 'Unknown Date'}</div>
+                            <div class="popup-desc">${report.description}</div>
+                    `;
+
+                    // If a Base64 image is attached, embed it directly into the marker popup
+                    if (report.photo) {
+                        popupHTML += `<img src="${report.photo}" class="popup-img" alt="Pollution Evidence" />`;
+                    }
+
+                    popupHTML += `</div>`;
+
+                    // Create the marker and add it to the map layout
+                    L.marker([report.latitude, report.longitude])
+                        .addTo(map)
+                        .bindPopup(popupHTML);
+                });
+
+            } catch (error) {
+                console.error("Error loading map points:", error);
+                alert("Could not load reporting markers. Make sure your backend server is running in Termux!");
+            }
+        });
+    </script>
+</body>
+</html>

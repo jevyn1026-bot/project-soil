@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hazard Reporting - EcoPasig</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <style>
+        :root { --white: #ffffff; --primary-green: #2e7d32; --dark-neutral: #2c3e50; --box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        body { margin: 0; font-family: 'Segoe UI', system-ui, sans-serif; background-color: #f4f7f6; }
+        .navbar { background-color: var(--white); box-shadow: 0 2px 5px rgba(0,0,0,0.05); padding: 1rem 2rem; }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; }
+        .logo { font-size: 1.4rem; font-weight: bold; color: var(--primary-green); text-decoration: none; }
+        .nav-menu a { color: var(--dark-neutral); text-decoration: none; margin-left: 1.5rem; font-weight: 500; }
+        .nav-menu a.active { color: var(--primary-green); border-bottom: 2px solid var(--primary-green); }
+        
+        .report-main { display: flex; justify-content: center; align-items: center; padding: 3rem 1.5rem; }
+        .report-container { background-color: var(--white); width: 100%; max-width: 600px; padding: 2.5rem; border-radius: 12px; box-shadow: var(--box-shadow); border-top: 5px solid #d32f2f; }
+        .report-header h2 { color: var(--dark-neutral); margin: 0 0 0.5rem 0; }
+        .report-header p { color: #7f8c8d; font-size: 0.95rem; margin: 0 0 2rem 0; }
+        
+        .input-group { margin-bottom: 1.25rem; }
+        .input-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--dark-neutral); }
+        .report-form select, .report-form textarea, .report-form input[type="text"], .report-form input[type="file"] { width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.95rem; box-sizing: border-box; }
+        
+        .location-fields-row { display: flex; gap: 1rem; }
+        .location-fields-row .input-group { flex: 1; }
+        .readonly-input { background-color: #f1f5f9; color: #64748b; cursor: not-allowed; }
+        
+        .btn-block { width: 100%; padding: 1rem; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; background-color: #d32f2f; color: white; margin-top: 1rem; font-size: 1rem; }
+        
+        #hazard-mini-map { height: 250px; width: 100%; border-radius: 8px; border: 1px solid #cbd5e1; z-index: 1; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo"><i class="fa-solid fa-leaf"></i> EcoPasig</a>
+            <nav class="nav-menu">
+                <a href="index.html">Home</a>
+                <a href="map.html">Interactive Map</a>
+                <a href="soil-report.html">Soil Reporting</a>
+                <a href="hazard-report.html" class="active">Hazard Reporting</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="report-main">
+        <div class="report-container">
+            <div class="report-header">
+                <h2><i class="fa-solid fa-triangle-exclamation"></i> Disaster Hazard Report</h2>
+                <p>Report physical dangers, structural cracks, or emergency risk factors.</p>
+            </div>
+
+            <form id="hazard-report-form" class="report-form">
+                <div class="input-group">
+                    <label>Hazard Category</label>
+                    <select id="hazard-type" required>
+                        <option value="" disabled selected>-- Select Type --</option>
+                        <option value="Flooding">Flooding</option>
+                        <option value="Road cracks">Road cracks</option>
+                        <option value="Building cracks">Building cracks</option>
+                        <option value="Landslide">Landslide</option>
+                        <option value="Sinkhole">Sinkhole</option>
+                        <option value="Fallen trees">Fallen trees</option>
+                        <option value="Damaged drainage">Damaged drainage</option>
+                        <option value="Blocked waterways">Blocked waterways</option>
+                        <option value="Illegal dumping causing floods">Illegal dumping causing floods</option>
+                        <option value="Other hazards">Other hazards</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Incident Description</label>
+                    <textarea id="hazard-desc" rows="3" required placeholder="Describe severity and safety risks..."></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label>Upload Photo</label>
+                    <input type="file" id="hazard-photo" accept="image/*" required>
+                </div>
+
+                <div class="input-group">
+                    <label><i class="fa-solid fa-map-pin"></i> Pinpoint Location</label>
+                    <p style="font-size: 0.85rem; color: #7f8c8d; margin-top: 0;">Tap on the map to set the exact location.</p>
+                    <div id="hazard-mini-map"></div>
+                </div>
+
+                <div class="location-fields-row">
+                    <div class="input-group"><label>Latitude</label><input type="text" id="hazard-lat" readonly class="readonly-input"></div>
+                    <div class="input-group"><label>Longitude</label><input type="text" id="hazard-lng" readonly class="readonly-input"></div>
+                </div>
+
+                <button type="submit" class="btn-block">File Hazard Report</button>
+            </form>
+        </div>
+    </main>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const pasigBounds = L.latLngBounds([14.5300, 121.0500], [14.6100, 121.1200]);
+            const miniMap = L.map('hazard-mini-map', {
+                center: [14.5594, 121.0805], zoom: 13, maxBounds: pasigBounds, maxBoundsViscosity: 1.0
+            });
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(miniMap);
+
+            let manualMarker;
+
+            miniMap.on('click', function(e) {
+                const lat = e.latlng.lat.toFixed(6);
+                const lng = e.latlng.lng.toFixed(6);
+                document.getElementById('hazard-lat').value = lat;
+                document.getElementById('hazard-lng').value = lng;
+                
+                if (manualMarker) { manualMarker.setLatLng(e.latlng); } 
+                else { manualMarker = L.marker(e.latlng).addTo(miniMap); }
+            });
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((pos) => {
+                    const lat = pos.coords.latitude.toFixed(6);
+                    const lng = pos.coords.longitude.toFixed(6);
+                    document.getElementById('hazard-lat').value = lat;
+                    document.getElementById('hazard-lng').value = lng;
+
+                    const userLatLng = [lat, lng];
+                    miniMap.setView(userLatLng, 15);
+                    if (!manualMarker) { manualMarker = L.marker(userLatLng).addTo(miniMap); } 
+                    else { manualMarker.setLatLng(userLatLng); }
+                });
+            }
+
+            let imageData = "";
+            document.getElementById('hazard-photo').addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = ev => imageData = ev.target.result;
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            document.getElementById('hazard-report-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const lat = document.getElementById('hazard-lat').value;
+                const lng = document.getElementById('hazard-lng').value;
+
+                if (!lat || !lng) { alert("Please click on the map to set a location!"); return; }
+
+                const report = {
+                    id: Date.now(),
+                    type: document.getElementById('hazard-type').value,
+                    description: document.getElementById('hazard-desc').value,
+                    photo: imageData,
+                    latitude: parseFloat(lat),
+                    longitude: parseFloat(lng),
+                    date: new Date().toLocaleDateString()
+                };
+
+                const db = JSON.parse(localStorage.getItem('eco_hazards')) || [];
+                db.push(report);
+                localStorage.setItem('eco_hazards', JSON.stringify(db));
+
+                alert("Hazard successfully pinned to the map!");
+                window.location.href = "map.html";
+            });
+        });
+    </script>
+</body>
+</html>

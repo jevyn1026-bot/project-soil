@@ -1,0 +1,21 @@
+{
+  "name": "downloads",
+  "version": "1.0.0",
+  "description": "EcoPasig Central Map & Reporting Engine Backend",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chart.js": "^4.5.1",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^4.22.2",
+    "nedb-promises": "^6.2.3",
+    "pdfkit": "^0.19.1",
+    "xlsx": "^0.18.5"
+  }
+}

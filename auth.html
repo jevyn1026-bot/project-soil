@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citizen Portal - ProjectSUN</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo"><i class="fa-solid fa-leaf"></i> ProjectSUN</a>
+            <button class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <nav class="nav-menu" id="nav-menu">
+                <a href="Soil.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="report.html" class="nav-link">Report Pollution</a>
+                <a href="map.html" class="nav-link">Interactive Map</a>
+                <a href="rewards.html" class="nav-link">Rewards</a>
+                <a href="auth.html" class="nav-link active">Citizen Log In</a>
+                <a href="admin.html" class="nav-link activr">Admin Dashboard</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="auth-main">
+        <div class="auth-container">
+            
+            <div id="auth-forms-box" class="auth-box">
+                <div class="auth-toggle-tabs">
+                    <button id="tab-login" class="tab-btn active">Login</button>
+                    <button id="tab-register" class="tab-btn">Register</button>
+                </div>
+
+                <form id="login-form" class="auth-form">
+                    <h3>Welcome Back, Pasigueño</h3>
+                    <div class="input-group">
+                        <label for="login-email">Email Address</label>
+                        <input type="email" id="login-email" required placeholder="name@email.com">
+                    </div>
+                    <div class="input-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" required placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                </form>
+
+                <form id="register-form" class="auth-form hidden">
+                    <h3>Join the Eco-Movement</h3>
+                    <div class="input-group">
+                        <label for="reg-name">Full Name</label>
+                        <input type="text" id="reg-name" required placeholder="Juan Dela Cruz">
+                    </div>
+                    <div class="input-group">
+                        <label for="reg-email">Email Address</label>
+                        <input type="email" id="reg-email" required placeholder="name@email.com">
+                    </div>
+                    <div class="input-group">
+                        <label for="reg-password">Password (Min 6 characters)</label>
+                        <input type="password" id="reg-password" required placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+                </form>
+                <p id="auth-error-msg" class="error-text"></p>
+            </div>
+
+            <div id="user-profile-box" class="profile-box hidden">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <i class="fa-solid fa-user-shield"></i>
+                    </div>
+                    <h2 id="profile-display-name">Citizen Eco-Warrior</h2>
+                    <p id="profile-display-email">citizen@pasig.gov</p>
+                </div>
+                
+                <div class="profile-stats-card">
+                    <div class="p-stat">
+                        <span class="p-num" id="profile-points">0</span>
+                        <span class="p-label">Eco-Points</span>
+                    </div>
+                    <div class="p-stat">
+                        <span class="p-num" id="profile-reports">0</span>
+                        <span class="p-label">Reports Submitted</span>
+                    </div>
+                </div>
+
+                <button id="logout-btn" class="btn btn-secondary btn-block">
+                    <i class="fa-solid fa-right-from-bracket"></i> Log Out
+                </button>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
+
