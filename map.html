@@ -61,11 +61,11 @@
                 attribution: '&copy; OpenStreetMap contributors'
             }).addTo(map);
 
-            // 2. Fetch live reports from your local backend
-            try {
-                const response = await fetch('http://localhost:3000/reports');
-                if (!response.ok) throw new Error("Failed to fetch reports");
-                
+// Fetch live reports from the deployed backend
+try {
+    const response = await fetch('/reports');
+
+    if (!response.ok) throw new Error("Failed to fetch reports");                
                 const reports = await response.json();
 
                 // 3. Loop through reports and plot markers
