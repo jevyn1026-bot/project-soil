@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ProjectSUN Government Command Center</title>
+
+<link rel="stylesheet"
+href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#eef2f3;
+}
+
+header{
+height:70px;
+background:#1b5e20;
+color:white;
+display:flex;
+align-items:center;
+padding:0 25px;
+font-size:28px;
+font-weight:bold;
+box-shadow:0 3px 10px rgba(0,0,0,.2);
+}
+
+.container{
+display:flex;
+height:calc(100vh - 70px);
+}
+
+#commandMap{
+flex:3;
+}
+
+.sidebar{
+flex:1;
+overflow-y:auto;
+background:white;
+padding:20px;
+border-left:1px solid #ccc;
+}
+
+.sidebar h2{
+margin-bottom:20px;
+color:#1b5e20;
+}
+
+.report-card{
+background:white;
+border-radius:12px;
+padding:15px;
+margin-bottom:20px;
+box-shadow:0 3px 12px rgba(0,0,0,.12);
+}
+
+.report-image{
+width:100%;
+height:180px;
+object-fit:cover;
+border-radius:10px;
+margin-bottom:12px;
+}
+
+.no-photo{
+height:180px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#ddd;
+border-radius:10px;
+margin-bottom:12px;
+}
+
+button,
+select{
+width:100%;
+padding:10px;
+margin-top:10px;
+border:none;
+border-radius:8px;
+font-size:15px;
+cursor:pointer;
+}
+
+.viewBtn{
+background:#1976d2;
+color:white;
+}
+
+.assignBtn{
+background:#f57c00;
+color:white;
+}
+
+.deleteBtn{
+background:#c62828;
+color:white;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+🌱 ProjectSUN Government Command Center
+
+</header>
+
+<div class="container">
+
+<div id="commandMap"></div>
+
+<div class="sidebar">
+
+<h2>Incoming Reports</h2>
+
+<div id="reportList"></div>
+
+</div>
+
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+
+const map=L.map("commandMap").setView([14.5764,121.0851],13);
+
+L.tileLayer(
+"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+{
+attribution:"© OpenStreetMap contributors"
+}).addTo(map);
+
+let markersLayer=L.layerGroup().addTo(map);
+async function loadReports(){
+
+    markersLayer.clearLayers();
+
+    const response = await fetch("/reports");
+    const reports = await response.json();
+
+    const reportList =
+        document.getElementById("reportList");
+
+    reportList.innerHTML = "";
+
+    reports.forEach(report=>{
+
+        // Hide resolved reports
+        if(report.status==="Resolved") return;
+
+        if(!report.latitude || !report.longitude) return;
+
+        const marker =
+            L.marker([
+                report.latitude,
+                report.longitude
+            ]).addTo(markersLayer);
+
+        marker.bindPopup(`
+            <b>${report.type}</b><br>
+            ${report.description}<br>
+            <b>Status:</b> ${report.status}
+        `);
+
+        const card =
+            document.createElement("div");
+
+        card.className="report-card";
+
+        card.innerHTML=`
+
+        ${
+            report.photo
+            ? `<img src="${report.photo}" class="report-image">`
+            : `<div class="no-photo">No Photo Uploaded</div>`
+        }
+
+        <h3>${report.type}</h3>
+
+        <p>${report.description}</p>
+
+        <p><b>Status:</b> ${report.status}</p>
+
+        <p>
+        <b>Latitude:</b>
+        ${report.latitude}
+        </p>
+
+        <p>
+        <b>Longitude:</b>
+        ${report.longitude}
+        </p>
+
+        <button
+        class="viewBtn"
+        onclick="viewLocation(${report.latitude},${report.longitude})">
+
+        📍 View on Map
+
+        </button>
+
+        <select
+            onchange="changeStatus('${report._id}', this.value)">
+            <option value="Pending"
+            ${report.status==="Pending"?"selected":""}>
+
+            Pending
+            </option>
+
+            <option value="In Progress"
+            ${report.status==="In Progress"?"selected":""}>
+            In Progress
+            </option>
+
+            <option value="Resolved"
+            ${report.status==="Resolved"?"selected":""}>
+            Resolved
+            </option>
+
+        </select>
+
+        <button
+        class="assignBtn">
+
+        👷 Assign Team
+
+<button
+class="deleteBtn"
+onclick="deleteReport('${report._id}')">
+
+🗑 Delete Report
+
+</button>
+        `;
+
+        card.onclick=()=>{
+
+            map.setView(
+                [report.latitude,report.longitude],
+                18
+            );
+
+            marker.openPopup();
+
+        };
+
+        reportList.appendChild(card);
+
+    });
+
+}
+
+function viewLocation(lat,lng){
+
+    map.setView([lat,lng],18);
+
+}
+
+async function changeStatus(id,status){
+
+    try{
+
+        const response = await fetch("/reports/"+id,{
+
+            method:"PUT",
+
+            headers:{
+                "Content-Type":"application/json"
+            },
+
+            body:JSON.stringify({
+                status:status
+            })
+
+        });
+
+        if(response.ok){
+
+            loadReports();
+
+        }else{
+
+            alert("Unable to update report.");
+
+        }
+
+    }catch(err){
+
+        console.error(err);
+
+        alert("Server connection failed.");
+
+    }
+
+}
+
+// Load reports immediately
+loadReports();
+
+// Refresh every 5 seconds
+setInterval(loadReports,5000);
+
+</script>
+
+</body>
+</html>
