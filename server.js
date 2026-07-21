@@ -44,6 +44,17 @@ app.get('/admin-dashboard.html', (req, res) => {
 app.use('/reports', reportRoutes);
 app.use('/api/analytics', analyticsRoutes);
 
+app.get("/reset-database", async (req, res) => {
+    try {
+        const { db } = require("./database");
+        await db.remove({}, { multi: true });
+
+        res.send("✅ Database reset successfully.");
+    } catch (err) {
+        res.status(500).send(err.message);
+    }
+});
+
 app.listen(PORT, () => {
     console.log(`🚀 Project Sun server perfectly connected on port ${PORT}`);
 });
