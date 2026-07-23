@@ -8,56 +8,131 @@
 
 <style>
 
-<style>
-.footer {
-    background: #1b5e20;
-    color: white;
-    padding: 30px 20px;
-    text-align: center;
-    margin-top: 40px;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
 }
 
-.footer h3 {
-    font-size: 24px;
-    margin-bottom: 10px;
+body{
+    background:#f1f8e9;
+    color:#333;
+    line-height:1.6;
 }
 
-.footer p {
-    max-width: 700px;
-    margin: 10px auto;
-    line-height: 1.6;
+/* Navigation */
+nav{
+    background:#1b5e20;
+    padding:15px 30px;
 }
 
-.footer-links {
-    margin: 20px 0;
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-right:20px;
+    font-weight:bold;
 }
 
-.footer-links a {
-    color: white;
-    text-decoration: none;
-    margin: 0 10px;
+nav a:hover{
+    color:#c8e6c9;
 }
 
-.footer-links a:hover {
-    text-decoration: underline;
+/* Header */
+.about-header{
+    background:#2e7d32;
+    color:white;
+    padding:50px 20px;
+    text-align:center;
 }
 
-.footer-contact {
-    font-size: 14px;
+.about-header h1{
+    font-size:40px;
+    margin-bottom:10px;
 }
 
-.copyright {
-    margin-top: 20px;
-    font-size: 13px;
-    opacity: 0.8;
+.about-header p{
+    font-size:18px;
 }
 
-.support-contact {
-    padding: 30px;
-    line-height: 1.6;
+/* Sections */
+.about-section{
+    max-width:1000px;
+    margin:40px auto;
+    padding:20px;
 }
 
-</style>
+.about-section h2{
+    color:#1b5e20;
+    margin-bottom:15px;
+    font-size:30px;
+}
+
+/* Feature Cards */
+.feature-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.feature-card{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+.feature-card h3{
+    color:#2e7d32;
+    margin-bottom:10px;
+}
+
+/* Pollution Classification */
+.classification-card{
+    background:white;
+    padding:25px;
+    margin:20px 0;
+    border-left:6px solid #2e7d32;
+    border-radius:10px;
+    box-shadow:0 3px 8px rgba(0,0,0,0.1);
+}
+
+.classification-card h3{
+    color:#1b5e20;
+    margin-bottom:10px;
+}
+
+.classification-card ul{
+    margin-left:25px;
+}
+
+/* How to Submit */
+.steps{
+    background:white;
+    padding:25px;
+    border-radius:10px;
+}
+
+.steps li{
+    margin-bottom:10px;
+}
+
+/* Footer */
+.footer{
+    background:#1b5e20;
+    color:white;
+    text-align:center;
+    padding:30px 20px;
+    margin-top:40px;
+}
+
+.footer h3{
+    margin-bottom:10px;
+}
+
+.footer p{
+    font-size:15px;
+}
 
 </style>
 
