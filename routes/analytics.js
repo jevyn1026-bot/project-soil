@@ -1,34 +1,64 @@
 const express = require("express");
 const router = express.Router();
+
 const { db } = require("../database");
 
 router.get("/summary", async (req, res) => {
+
     try {
-        const reports = await db.find({}).toArray();
 
-        const barangays = {};
+        const reports = await db.find({});
+const barangays = {};
 
-        reports.forEach(report => {
-            if (report.barangay) {
-                barangays[report.barangay] =
-                    (barangays[report.barangay] || 0) + 1;
-            }
-        });
+reports.forEach(report => {
+
+    if(report.barangay){
+
+        barangays[report.barangay] =
+            (barangays[report.barangay] || 0) + 1;
+
+    }
+
+});
+
+        const totalReports = reports.length;
+
+        const pollutionReports = reports.filter(r =>
+            r.type &&
+            r.type !== "Hazard"
+        ).length;
+
+        const hazardReports = reports.filter(r =>
+            r.type === "Hazard"
+        ).length;
+
+        const resolvedReports = reports.filter(r =>
+            r.status === "Resolved"
+        ).length;
+
+        const pendingReports = reports.filter(r =>
+            r.status !== "Resolved"
+        ).length;
 
         res.json({
-            totalReports: reports.length,
-            pollutionReports: reports.filter(r => r.type && r.type !== "Hazard").length,
-            hazardReports: reports.filter(r => r.type === "Hazard").length,
-            resolvedReports: reports.filter(r => r.status === "Resolved").length,
-            pendingReports: reports.filter(r => r.status !== "Resolved").length,
-            barangays
-        });
+
+    totalReports,
+    pollutionReports,
+    hazardReports,
+    resolvedReports,
+    pendingReports,
+    barangays
+
+});
 
     } catch (err) {
+
         res.status(500).json({
             error: err.message
         });
+
     }
+
 });
 
 module.exports = router;

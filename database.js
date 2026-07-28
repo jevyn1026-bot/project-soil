@@ -1,24 +1,14 @@
-const { MongoClient } = require("mongodb");
+const Datastore = require('nedb-promises');
+const path = require('path');
 
-const uri = process.env.MONGODB_URI;
-
-const client = new MongoClient(uri);
-
-let db;
+// Creates a pure local data file inside your Project Soil folder automatically
+const db = Datastore.create({
+    filename: path.join(__dirname, 'soil_database.db'),
+    autoload: true
+});
 
 async function connectDB() {
-    try {
-        await client.connect();
-        db = client.db("projectsoil");
-        console.log("✅ Connected to MongoDB Atlas");
-    } catch (err) {
-        console.error("❌ MongoDB connection failed:", err);
-    }
+    console.log("📂 Local Pure-JS Database cleanly synchronized!");
 }
 
-module.exports = {
-    connectDB,
-    get db() {
-        return db.collection("reports");
-    }
-};
+module.exports = { connectDB, db };
