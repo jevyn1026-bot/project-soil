@@ -2,125 +2,73 @@ const express = require("express");
 const router = express.Router();
 const { db } = require("../database");
 
-// ===========================
-// GET ALL REPORTS
-// ===========================
+// GET all reports
 router.get("/", async (req, res) => {
-
     try {
-
-        const reports = await db.find({});
-
+        const reports = await db.find({}).toArray();
         res.json(reports);
-
     } catch (err) {
-
-        res.status(500).json({
-            error: err.message
-        });
-
+        res.status(500).json({ error: err.message });
     }
-
 });
 
-// ===========================
-// CREATE REPORT
-// ===========================
+// CREATE report
 router.post("/", async (req, res) => {
-
     try {
-
         const report = {
-
+            barangay: req.body.barangay || "",
             type: req.body.type,
             description: req.body.description,
-            barangay: req.body.barangay || "",
             latitude: req.body.latitude,
             longitude: req.body.longitude,
             photo: req.body.photo || "",
             status: "Pending",
             timestamp: new Date()
-
         };
 
-        const saved = await db.insert(report);
+        const result = await db.insertOne(report);
 
-        res.status(201).json(saved);
+        res.status(201).json({
+            _id: result.insertedId,
+            ...report
+        });
 
     } catch (err) {
-
-        res.status(500).json({
-            error: err.message
-        });
-
+        res.status(500).json({ error: err.message });
     }
-
 });
 
-// ===========================
-// UPDATE REPORT STATUS
-// ===========================
+// UPDATE report status
 router.put("/:id", async (req, res) => {
-
     try {
+        const { ObjectId } = require("mongodb");
 
-        const report = await db.findOne({
-            _id: req.params.id
-        });
-
-        if (!report) {
-
-            return res.status(404).json({
-                error: "Report not found"
-            });
-
-        }
-
-        report.status = req.body.status;
-
-        await db.update(
-            { _id: req.params.id },
-            report
+        await db.updateOne(
+            { _id: new ObjectId(req.params.id) },
+            { $set: { status: req.body.status } }
         );
 
-        res.json({
-            success: true,
-            report
-        });
+        res.json({ success: true });
 
     } catch (err) {
-
-        res.status(500).json({
-            error: err.message
-        });
-
+        res.status(500).json({ error: err.message });
     }
-
 });
 
-// ===========================
-// DELETE REPORT
-// ===========================
+// DELETE report
 router.delete("/:id", async (req, res) => {
-
     try {
+        const { ObjectId } = require("mongodb");
 
-        await db.remove({
-            _id: req.params.id
+        await db.deleteOne({
+            _id: new ObjectId(req.params.id)
         });
 
-        res.json({
-            success: true
-        });
+        res.json({ success: true });
 
     } catch (err) {
-
-        res.status(500).json({
-            error: err.message
-        });
-
+        res.status(500).json({ error: err.message });
     }
-
 });
 
 module.exports = router;
