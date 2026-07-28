@@ -1,126 +1,57 @@
 const express = require("express");
 const router = express.Router();
-const { db } = require("../database");
+const { Types } = require("mongoose");
+const Report = require("../models/Report");
 
-// ===========================
-// GET ALL REPORTS
-// ===========================
+// Get all reports
 router.get("/", async (req, res) => {
-
     try {
-
-        const reports = await db.find({});
-
+        const reports = await Report.find().sort({ timestamp: -1 });
         res.json(reports);
-
     } catch (err) {
-
-        res.status(500).json({
-            error: err.message
-        });
-
+        res.status(500).json({ error: err.message });
     }
-
 });
 
-// ===========================
-// CREATE REPORT
-// ===========================
+// Submit a report
 router.post("/", async (req, res) => {
-
     try {
+        const report = new Report(req.body);
+        report.status = "Pending";
 
-        const report = {
+        await report.save();
 
-            type: req.body.type,
-            description: req.body.description,
-            barangay: req.body.barangay || "",
-            latitude: req.body.latitude,
-            longitude: req.body.longitude,
-            photo: req.body.photo || "",
-            status: "Pending",
-            timestamp: new Date()
-
-        };
-
-        const saved = await db.insert(report);
-
-        res.status(201).json(saved);
-
+        res.status(201).json(report);
     } catch (err) {
-
-        res.status(500).json({
-            error: err.message
-        });
-
+        res.status(500).json({ error: err.message });
     }
-
 });
 
-// ===========================
-// UPDATE REPORT STATUS
-// ===========================
+// Update report status
 router.put("/:id", async (req, res) => {
-
     try {
-
-        const report = await db.findOne({
-            _id: req.params.id
-        });
-
-        if (!report) {
-
-            return res.status(404).json({
-                error: "Report not found"
-            });
-
-        }
-
-        report.status = req.body.status;
-
-        await db.update(
-            { _id: req.params.id },
-            report
+        await Report.findByIdAndUpdate(
+            req.params.id,
+            { status: req.body.status }
         );
 
-        res.json({
-            success: true,
-            report
-        });
+        res.json({ success: true });
 
     } catch (err) {
-
-        res.status(500).json({
-            error: err.message
-        });
-
+        res.status(500).json({ error: err.message });
     }
-
 });
 
-// ===========================
-// DELETE REPORT
-// ===========================
+// Delete report
 router.delete("/:id", async (req, res) => {
-
     try {
+        await Report.findByIdAndDelete(req.params.id);
 
-        await db.remove({
-            _id: req.params.id
-        });
-
-        res.json({
-            success: true
-        });
+        res.json({ success: true });
 
     } catch (err) {
-
-        res.status(500).json({
-            error: err.message
-        });
-
+        res.status(500).json({ error: err.message });
     }
-
 });
 
 module.exports = router;
