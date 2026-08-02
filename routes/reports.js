@@ -6,7 +6,10 @@ const Report = require("../models/Report");
 // Get all reports
 router.get("/", async (req, res) => {
     try {
-        const reports = await Report.find().sort({ timestamp: -1 });
+        const reports = await Report.find()
+            .sort({ timestamp: -1 })
+            .limit(100);
+
         res.json(reports);
     } catch (err) {
         res.status(500).json({ error: err.message });

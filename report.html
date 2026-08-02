@@ -137,7 +137,23 @@ cursor:pointer;
 #status-message{
 margin-top:20px;
 font-weight:bold;
-text-align:center;
+text-align:left;
+line-height: 1.6;
+padding: 15px;
+border-radius: 8px;
+display: none;
+}
+
+.success-box {
+background-color: #e8f5e9;
+border: 1px solid #a5d6a7;
+color: #1b5e20;
+}
+
+.error-box {
+background-color: #ffebee;
+border: 1px solid #ef9a9a;
+color: #c62828;
 }
 
 </style>
@@ -253,6 +269,7 @@ text-align:center;
 <option>Napindan</option>
 
 </select>
+
 <label>Description</label>
 
 <textarea
@@ -291,8 +308,7 @@ required></textarea>
         id="previewImage"
         src=""
         style="display:none;max-width:100%;border-radius:10px;">
-
-    <p id="photoStatus">
+<p id="photoStatus">
         No photo selected.
     </p>
 
@@ -309,8 +325,7 @@ id="trigger-gps-btn">
 </button>
 
 <div id="gps-status">
-
-Initializing GPS...
+        Initializing GPS...
 
 </div>
 
@@ -506,6 +521,7 @@ document.getElementById("galleryInput")
     loadPhoto(this.files[0]);
 
 });
+
 document
 .getElementById("pollution-report-form")
 .addEventListener("submit", async function(e){
@@ -523,10 +539,11 @@ document
 
 if(imageData === ""){
 
-    status.style.color = "red";
+    status.style.display = "block";
+    status.className = "error-box";
 
     status.textContent =
-        "Please take or upload a photo first.";
+        "⚠️ Please take or upload a photo first.";
 
     submitBtn.disabled = false;
     submitBtn.innerText = "Submit Report";
@@ -534,10 +551,13 @@ if(imageData === ""){
     return;
 
 }
+
+    const submissionTime = new Date();
+
     const report = {
 
         barangay: document.getElementById("report-barangay").value,
- 
+
         type: document.getElementById("type").value,
 
         description: document.getElementById("report-desc").value,
@@ -554,15 +574,14 @@ if(imageData === ""){
 
         status: "Pending",
 
-        timestamp: new Date()
+        timestamp: submissionTime
 
     };
 
     try{
 
         const response = await fetch("/reports",{
-
-            method:"POST",
+method:"POST",
 
             headers:{
                 "Content-Type":"application/json"
@@ -572,15 +591,31 @@ if(imageData === ""){
 
         });
 
-const result = await response.json();
-console.log(result);
+        const result = await response.json();
 
-if (response.ok) {
+        if (response.ok) {
 
-            status.style.color = "green";
+const hours = String(submissionTime.getHours()).padStart(2, "0");
+const minutes = String(submissionTime.getMinutes()).padStart(2, "0");
+const seconds = String(submissionTime.getSeconds()).padStart(2, "0");
+const milliseconds = String(submissionTime.getMilliseconds()).padStart(3, "0");
 
-            status.textContent =
-                "✅ Report submitted successfully!";
+// Two extra decimal digits (00-99)
+const decimal = String(Math.floor(Math.random() * 100)).padStart(2, "0");
+
+const formattedTime =
+    `${hours}:${minutes}:${seconds}.${milliseconds}.${decimal}`;            
+            const formattedDate = submissionTime.toLocaleDateString();
+
+            status.style.display = "block";
+            status.className = "success-box";
+            
+            status.innerHTML = `
+                🎉 <strong>You successfully reported!</strong><br><br>
+                📅 <strong>Date:</strong> ${formattedDate}<br>
+                📍 <strong>Location:</strong> Brgy. ${report.barangay} (${report.latitude}, ${report.longitude})<br>
+                ⏰ <strong>Timestamp:</strong> ${formattedTime}
+            `;
 
             document
             .getElementById("pollution-report-form")
@@ -591,10 +626,10 @@ if (response.ok) {
 
             imageData = "";
 
-document.getElementById("previewImage").style.display = "none";
-document.getElementById("previewImage").src = "";
-document.getElementById("photoStatus").textContent =
-    "No photo selected.";
+            document.getElementById("previewImage").style.display = "none";
+            document.getElementById("previewImage").src = "";
+            document.getElementById("photoStatus").textContent =
+                "No photo selected.";
 
             if(gpsMarker){
 
@@ -608,7 +643,8 @@ document.getElementById("photoStatus").textContent =
 
         }else{
 
-            status.style.color = "red";
+            status.style.display = "block";
+            status.className = "error-box";
 
             status.textContent =
                 "❌ Failed to submit report.";
@@ -619,7 +655,8 @@ document.getElementById("photoStatus").textContent =
 
         console.error(err);
 
-        status.style.color = "red";
+        status.style.display = "block";
+        status.className = "error-box";
 
         status.textContent =
             "❌ Cannot connect to the server.";
@@ -637,3 +674,4 @@ document.getElementById("photoStatus").textContent =
 
 </body>
 </html>
+

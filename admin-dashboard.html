@@ -209,6 +209,25 @@ async function loadReports(){
         ${report.longitude}
         </p>
 
+<p>
+<b>Date:</b>
+${new Date(report.timestamp).toLocaleDateString()}
+</p>
+
+<p>
+<b>Time:</b>
+${(() => {
+    const d = new Date(report.timestamp);
+
+    const hours = String(d.getHours()).padStart(2, "0");
+    const minutes = String(d.getMinutes()).padStart(2, "0");
+    const seconds = String(d.getSeconds()).padStart(2, "0");
+    const milliseconds = String(d.getMilliseconds()).padStart(3, "0");
+
+    return `${hours}:${minutes}:${seconds}.${milliseconds}`;
+})()}
+</p>
+
         <button
         class="viewBtn"
         onclick="viewLocation(${report.latitude},${report.longitude})">
@@ -237,17 +256,16 @@ async function loadReports(){
 
         </select>
 
-        <button
-        class="assignBtn">
-
-        👷 Assign Team
+<button
+class="assignBtn"
+onclick="event.stopPropagation(); assignTeam('${report._id}')">
+👷 Assign Team
+</button>
 
 <button
 class="deleteBtn"
-onclick="deleteReport('${report._id}')">
-
+onclick="event.stopPropagation(); deleteReport('${report._id}')">
 🗑 Delete Report
-
 </button>
         `;
 
@@ -306,6 +324,73 @@ async function changeStatus(id,status){
 
         console.error(err);
 
+        alert("Server connection failed.");
+
+    }
+
+}
+
+async function deleteReport(id) {
+
+    if (!confirm("Delete this report?")) return;
+
+    try {
+
+        const response = await fetch("/reports/" + id, {
+            method: "DELETE"
+        });
+
+        if (response.ok) {
+
+            loadReports();
+
+        } else {
+
+            alert("Unable to delete report.");
+
+        }
+
+    } catch (err) {
+
+        console.error(err);
+        alert("Server connection failed.");
+
+    }
+
+}
+
+async function assignTeam(id) {
+
+    try {
+
+        const response = await fetch("/reports/" + id, {
+
+            method: "PUT",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                status: "In Progress"
+            })
+
+        });
+
+        if (response.ok) {
+
+            alert("Team assigned successfully!");
+            loadReports();
+
+        } else {
+
+            alert("Unable to assign team.");
+
+        }
+
+    } catch (err) {
+
+        console.error(err);
         alert("Server connection failed.");
 
     }
