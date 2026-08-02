@@ -236,39 +236,12 @@ color: #c62828;
 
 <label>Barangay</label>
 
-<select id="report-barangay" required>
-
-<option value="">Select Barangay</option>
-
-<option>Bagong Ilog</option>
-<option>Bambang</option>
-<option>Buting</option>
-<option>Caniogan</option>
-<option>Kalawaan</option>
-<option>Kapasigan</option>
-<option>Kapitolyo</option>
-<option>Malinao</option>
-<option>Manggahan</option>
-<option>Maybunga</option>
-<option>Oranbo</option>
-<option>Palatiw</option>
-<option>Pinagbuhatan</option>
-<option>Rosario</option>
-<option>Sagad</option>
-<option>San Antonio</option>
-<option>San Joaquin</option>
-<option>San Jose</option>
-<option>San Miguel</option>
-<option>San Nicolas</option>
-<option>Santa Cruz</option>
-<option>Santa Lucia</option>
-<option>Santa Rosa</option>
-<option>Santo Tomas</option>
-<option>Sumilang</option>
-<option>Ugong</option>
-<option>Napindan</option>
-
-</select>
+<input
+    type="text"
+    id="report-barangay"
+    placeholder="Detecting barangay..."
+    readonly
+>
 
 <label>Description</label>
 
@@ -411,8 +384,11 @@ function acquireLiveLocation(){
 
         function(position){
 
-            const lat = position.coords.latitude;
-            const lng = position.coords.longitude;
+const lat = position.coords.latitude;
+const lng = position.coords.longitude;
+
+document.getElementById("report-barangay").value =
+    "Detecting...";
 
             document.getElementById("report-lat").value =
                 lat.toFixed(6);
@@ -556,8 +532,6 @@ if(imageData === ""){
 
     const report = {
 
-        barangay: document.getElementById("report-barangay").value,
-
         type: document.getElementById("type").value,
 
         description: document.getElementById("report-desc").value,
@@ -670,6 +644,36 @@ const formattedTime =
 });
 
 });
+
+async function detectBarangay(lat, lng) {
+
+    try {
+
+        const response = await fetch(
+            `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`
+        );
+
+        const data = await response.json();
+
+        const barangay =
+            data.address.suburb ||
+            data.address.neighbourhood ||
+            data.address.village ||
+            "";
+
+        document.getElementById("report-barangay").value = barangay;
+
+    } catch (err) {
+
+        console.error(err);
+
+        document.getElementById("report-barangay").value =
+            "Unknown";
+
+    }
+
+}
+
 </script>
 
 </body>

@@ -174,11 +174,12 @@ async function loadReports(){
                 report.longitude
             ]).addTo(markersLayer);
 
-        marker.bindPopup(`
-            <b>${report.type}</b><br>
-            ${report.description}<br>
-            <b>Status:</b> ${report.status}
-        `);
+marker.bindPopup(`
+    <b>${report.type}</b><br>
+    ${report.description}<br>
+    <b>Barangay:</b> ${report.barangay || "Unknown"}<br>
+    <b>Status:</b> ${report.status}
+`);
 
 const appearedAt = new Date(report.appearedAt);
 
@@ -210,6 +211,10 @@ const responseTime = report.responseTime;
         <p>${report.description}</p>
 
         <p><b>Status:</b> ${report.status}</p>
+
+<p>
+<b>Barangay:</b> ${report.barangay || "Unknown"}
+</p>
 
         <p>
         <b>Latitude:</b>

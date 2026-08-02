@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { Types } = require("mongoose");
 const Report = require("../models/Report");
+const detectBarangay = require("../utils/barangayDetector");
 
 // Get all reports
 router.get("/", async (req, res) => {
@@ -37,9 +38,18 @@ res.json(reports);
 // Submit a report
 router.post("/", async (req, res) => {
     try {
-        const report = new Report(req.body);
-        report.status = "Pending";
+const detectedBarangay = detectBarangay(
+    req.body.latitude,
+    req.body.longitude
+);
 
+console.log("Detected barangay:", detectedBarangay);
+
+const report = new Report({
+    ...req.body,
+    barangay: detectedBarangay,
+    status: "Pending"
+});
         await report.save();
 
         res.status(201).json(report);
@@ -76,3 +86,4 @@ router.delete("/:id", async (req, res) => {
 });
 
 module.exports = router;
+

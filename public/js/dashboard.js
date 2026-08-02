@@ -116,3 +116,29 @@ new Chart(barangayCtx,{
 }
 
 loadStatistics();
+
+async function loadReports() {
+    try {
+        const response = await fetch("/reports");
+        const reports = await response.json();
+
+        const table = document.getElementById("reportsTable");
+        table.innerHTML = "";
+
+        reports.forEach(report => {
+            table.innerHTML += `
+                <tr>
+                    <td>${report.barangay || "Unknown"}</td>
+                    <td>${report.type}</td>
+                    <td>${report.status}</td>
+                    <td>${new Date(report.timestamp).toLocaleString()}</td>
+                </tr>
+            `;
+        });
+
+    } catch (err) {
+        console.error("Report Error:", err);
+    }
+}
+
+loadReports();
