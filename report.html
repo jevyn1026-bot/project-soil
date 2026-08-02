@@ -655,13 +655,21 @@ async function detectBarangay(lat, lng) {
 
         const data = await response.json();
 
-        const barangay =
-            data.address.suburb ||
-            data.address.neighbourhood ||
-            data.address.village ||
-            "";
+console.log(data.address);
 
-        document.getElementById("report-barangay").value = barangay;
+const address = data.address || {};
+
+const barangay =
+    address.suburb ||
+    address.neighbourhood ||
+    address.village ||
+    address.quarter ||
+    address.hamlet ||
+    address.city_district ||
+    address.residential ||
+    "Unknown";
+
+document.getElementById("report-barangay").value = barangay;
 
     } catch (err) {
 
