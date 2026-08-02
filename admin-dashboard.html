@@ -180,6 +180,18 @@ async function loadReports(){
             <b>Status:</b> ${report.status}
         `);
 
+const appearedAt = new Date(report.appearedAt);
+
+const appearedHours = String(appearedAt.getHours()).padStart(2, "0");
+const appearedMinutes = String(appearedAt.getMinutes()).padStart(2, "0");
+const appearedSeconds = String(appearedAt.getSeconds()).padStart(2, "0");
+const appearedMilliseconds = String(appearedAt.getMilliseconds()).padStart(3, "0");
+
+const appearedTime =
+`${appearedHours}:${appearedMinutes}:${appearedSeconds}.${appearedMilliseconds}`;
+
+const responseTime = report.responseTime;
+
         const card =
             document.createElement("div");
 
@@ -226,6 +238,16 @@ ${(() => {
 
     return `${hours}:${minutes}:${seconds}.${milliseconds}`;
 })()}
+</p>
+
+<p>
+<b>Appeared in Command Center:</b>
+${appearedTime}
+</p>
+
+<p>
+<b>System Response Time:</b>
+${responseTime} ms
 </p>
 
         <button

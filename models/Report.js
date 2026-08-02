@@ -7,13 +7,25 @@ const ReportSchema = new mongoose.Schema({
     latitude: Number,
     longitude: Number,
     photo: String,
+
     status: {
         type: String,
         default: "Pending"
     },
+
     timestamp: {
         type: Date,
         default: Date.now
+    },
+
+    appearedAt: {
+        type: Date,
+        default: null
+    },
+
+    responseTime: {
+        type: Number,
+        default: null
     }
 });
 

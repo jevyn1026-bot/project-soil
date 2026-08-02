@@ -6,11 +6,29 @@ const Report = require("../models/Report");
 // Get all reports
 router.get("/", async (req, res) => {
     try {
-        const reports = await Report.find()
-            .sort({ timestamp: -1 })
-            .limit(100);
 
-        res.json(reports);
+const reports = await Report.find()
+    .sort({ timestamp: -1 })
+    .limit(100);
+
+for (const report of reports) {
+
+    if (!report.appearedAt) {
+
+        report.appearedAt = new Date();
+
+        report.responseTime =
+            report.appearedAt.getTime() -
+            new Date(report.timestamp).getTime();
+
+        await report.save();
+    }
+
+}
+
+console.log(reports);
+res.json(reports);
+
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
