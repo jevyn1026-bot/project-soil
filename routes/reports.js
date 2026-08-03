@@ -50,9 +50,13 @@ const report = new Report({
     barangay: detectedBarangay,
     status: "Pending"
 });
-        await report.save();
 
-        res.status(201).json(report);
+await report.save();
+
+res.status(201).json({
+    success: true,
+    report
+});
     } catch (err) {
         res.status(500).json({ error: err.message });
     }

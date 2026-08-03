@@ -42,6 +42,9 @@ app.get("/dashboard.html", (req, res) => {
 });
 
 app.use("/reports", reportRoutes);
+const barangayRoute = require("./routes/barangay");
+
+app.use("/api/barangay", barangayRoute);
 app.use("/api/analytics", analyticsRoutes);
 
 async function startServer() {

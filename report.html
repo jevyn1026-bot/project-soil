@@ -585,6 +585,8 @@ method:"POST",
 
         const result = await response.json();
 
+const detectedBarangay = result.report.barangay;
+
         if (response.ok) {
 
 const hours = String(submissionTime.getHours()).padStart(2, "0");
@@ -602,13 +604,12 @@ const formattedTime =
             status.style.display = "block";
             status.className = "success-box";
             
-            status.innerHTML = `
-                🎉 <strong>You successfully reported!</strong><br><br>
-                📅 <strong>Date:</strong> ${formattedDate}<br>
-                📍 <strong>Location:</strong> Brgy. ${report.barangay} (${report.latitude}, ${report.longitude})<br>
-                ⏰ <strong>Timestamp:</strong> ${formattedTime}
-            `;
-
+status.innerHTML = `
+🎉 <strong>You successfully reported!</strong><br><br>
+📅 <strong>Date:</strong> ${formattedDate}<br>
+📍 <strong>Location:</strong> Brgy. ${detectedBarangay} (${report.latitude}, ${report.longitude})<br>
+⏰ <strong>Timestamp:</strong> ${formattedTime}
+`;
             document
             .getElementById("pollution-report-form")
             .reset();
@@ -668,30 +669,19 @@ async function detectBarangay(lat, lng) {
     try {
 
         const response = await fetch(
-            `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`
+            `/api/barangay?lat=${lat}&lng=${lng}`
         );
 
         const data = await response.json();
 
-console.log(data.address);
+        console.log("Detected barangay:", data.barangay);
 
-const address = data.address || {};
-
-const barangay =
-    address.suburb ||
-    address.neighbourhood ||
-    address.village ||
-    address.quarter ||
-    address.hamlet ||
-    address.city_district ||
-    address.residential ||
-    "Unknown";
-
-document.getElementById("report-barangay").value = barangay;
+        document.getElementById("report-barangay").value =
+            data.barangay || "Unknown";
 
     } catch (err) {
 
-        console.error(err);
+        console.error("Barangay detection failed:", err);
 
         document.getElementById("report-barangay").value =
             "Unknown";
