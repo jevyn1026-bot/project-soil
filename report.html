@@ -390,6 +390,8 @@ const lng = position.coords.longitude;
 document.getElementById("report-barangay").value =
     "Detecting...";
 
+detectBarangay(lat, lng);
+
             document.getElementById("report-lat").value =
                 lat.toFixed(6);
 
@@ -504,6 +506,20 @@ document
 
     e.preventDefault();
 
+const barangay =
+    document.getElementById("report-barangay").value;
+
+if (
+    barangay === "Detecting..." ||
+    barangay === "Unknown" ||
+    barangay === ""
+) {
+
+    alert("Please wait until your barangay has been detected before submitting.");
+
+    return;
+}
+
     const submitBtn =
         document.getElementById("submit-btn");
 
@@ -533,6 +549,8 @@ if(imageData === ""){
     const report = {
 
         type: document.getElementById("type").value,
+
+        barangay: barangay,
 
         description: document.getElementById("report-desc").value,
 

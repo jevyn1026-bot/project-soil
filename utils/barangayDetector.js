@@ -10,14 +10,11 @@ const barangays = JSON.parse(
 );
 
 function detectBarangay(latitude, longitude) {
-    const point = turf.point([
-        longitude,
-        latitude
-    ]);
+    const point = turf.point([longitude, latitude]);
 
     for (const barangay of barangays.features) {
         if (turf.booleanPointInPolygon(point, barangay)) {
-return barangay.properties.BARANGAY;
+            return barangay.properties.ADM4_EN;
         }
     }
 
