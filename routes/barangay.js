@@ -1,54 +1,24 @@
 const express = require("express");
 const router = express.Router();
+const detectBarangay = require("../utils/barangayDetector");
 
-router.get("/", async (req, res) => {
+router.get("/", (req, res) => {
+    const lat = Number(req.query.lat);
+    const lng = Number(req.query.lng);
 
-    const { lat, lng } = req.query;
-
-    if (!lat || !lng) {
+    if (isNaN(lat) || isNaN(lng)) {
         return res.status(400).json({
-            error: "Missing coordinates"
+            error: "Missing or invalid coordinates"
         });
     }
 
-    try {
+    const barangay = detectBarangay(lat, lng);
 
-        const response = await fetch(
-            `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`,
-            {
-                headers: {
-                    "User-Agent": "ProjectSUN/1.0"
-                }
-            }
-        );
+    console.log("Latitude:", lat);
+    console.log("Longitude:", lng);
+    console.log("Detected:", barangay);
 
-const data = await response.json();
-
-console.log(data.address);
-
-const address = data.address || {};
-
-        const barangay =
-            address.suburb ||
-            address.village ||
-            address.neighbourhood ||
-            address.quarter ||
-            "Unknown";
-
-        res.json({
-            barangay
-        });
-
-    } catch (err) {
-
-        console.error(err);
-
-        res.status(500).json({
-            barangay: "Unknown"
-        });
-
-    }
-
+    res.json({ barangay });
 });
 
 module.exports = router;

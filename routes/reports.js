@@ -43,7 +43,10 @@ router.post("/", auth, async (req, res) => {
 
     try {
 
-const detectedBarangay = req.body.barangay;
+const detectedBarangay = detectBarangay(
+    Number(req.body.latitude),
+    Number(req.body.longitude)
+);
 
 console.log("Detected barangay:", detectedBarangay);
 
