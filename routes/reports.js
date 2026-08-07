@@ -43,10 +43,7 @@ router.post("/", auth, async (req, res) => {
 
     try {
 
-const detectedBarangay = detectBarangay(
-    req.body.latitude,
-    req.body.longitude
-);
+const detectedBarangay = req.body.barangay;
 
 console.log("Detected barangay:", detectedBarangay);
 
@@ -82,7 +79,8 @@ res.status(201).json({
 
 });
 
-// Update report status
+// Award points only the first time a report is resolved
+
 router.put("/:id", async (req, res) => {
     try {
         const report = await Report.findById(req.params.id);
@@ -91,80 +89,67 @@ router.put("/:id", async (req, res) => {
             return res.status(404).json({ error: "Report not found." });
         }
 
-// Award points only the first time a report is resolved
-if (report.status !== "Resolved" && req.body.status === "Resolved") {
+        if (report.status !== "Resolved" && req.body.status === "Resolved") {
 
-    const user = await User.findById(report.userId);
+            console.log("=== REPORT RESOLVED ===");
+            console.log("Report ID:", report._id);
+            console.log("Report userId:", report.userId);
 
-    if (user) {
+            const user = await User.findById(report.userId);
 
-        user.points += 10;
-        user.verifiedReports += 1;
-// Level System
-if (user.points >= 1000) {
-    user.level = 6;
-}
-else if (user.points >= 500) {
-    user.level = 5;
-}
-else if (user.points >= 300) {
-    user.level = 4;
-}
-else if (user.points >= 150) {
-    user.level = 3;
-}
-else if (user.points >= 50) {
-    user.level = 2;
-}
-else {
-    user.level = 1;
-}
+            console.log("User found:", !!user);
 
-        // Badge / Title System
-        const reports = user.verifiedReports;
+            if (user) {
+                console.log("Points before:", user.points);
 
-        if (reports >= 1000 && !user.badges.includes("Entity of the Philippines")) {
-            user.badges.push("Entity of the Philippines");
-        }
-        else if (reports >= 500 && !user.badges.includes("Mythical Contributor")) {
-            user.badges.push("Mythical Contributor");
-        }
-        else if (reports >= 300 && !user.badges.includes("Ancient Savior")) {
-            user.badges.push("Ancient Savior");
-        }
-        else if (reports >= 100 && !user.badges.includes("Earth's Right Hand")) {
-            user.badges.push("Earth's Right Hand");
-        }
-        else if (reports >= 50 && !user.badges.includes("Heaven's Helper")) {
-            user.badges.push("Heaven's Helper");
-        }
-        else if (reports >= 25 && !user.badges.includes("Planet Avenger")) {
-            user.badges.push("Planet Avenger");
-        }
-        else if (reports >= 10 && !user.badges.includes("Protector of Earth")) {
-            user.badges.push("Protector of Earth");
-        }
-        else if (reports >= 5 && !user.badges.includes("Mother Nature's Guardian")) {
-            user.badges.push("Mother Nature's Guardian");
-        }
-        else if (reports >= 1 && !user.badges.includes("Earth's New Ally")) {
-            user.badges.push("Earth's New Ally");
+                user.points += 20;
+                user.verifiedReports += 1;
+
+                // Level System
+                if (user.points >= 1000) user.level = 6;
+                else if (user.points >= 500) user.level = 5;
+                else if (user.points >= 300) user.level = 4;
+                else if (user.points >= 150) user.level = 3;
+                else if (user.points >= 50) user.level = 2;
+                else user.level = 1;
+
+                // Badge System
+                const reports = user.verifiedReports;
+
+                if (reports >= 1000 && !user.badges.includes("Entity of the Philippines"))
+                    user.badges.push("Entity of the Philippines");
+                else if (reports >= 500 && !user.badges.includes("Mythical Contributor"))
+                    user.badges.push("Mythical Contributor");
+                else if (reports >= 300 && !user.badges.includes("Ancient Savior"))
+                    user.badges.push("Ancient Savior");
+                else if (reports >= 100 && !user.badges.includes("Earth's Right Hand"))
+                    user.badges.push("Earth's Right Hand");
+                else if (reports >= 50 && !user.badges.includes("Heaven's Helper"))
+                    user.badges.push("Heaven's Helper");
+                else if (reports >= 25 && !user.badges.includes("Planet Avenger"))
+                    user.badges.push("Planet Avenger");
+                else if (reports >= 10 && !user.badges.includes("Protector of Earth"))
+                    user.badges.push("Protector of Earth");
+                else if (reports >= 5 && !user.badges.includes("Mother Nature's Guardian"))
+                    user.badges.push("Mother Nature's Guardian");
+                else if (reports >= 1 && !user.badges.includes("Earth's New Ally"))
+                    user.badges.push("Earth's New Ally");
+
+                console.log("Points after:", user.points);
+
+                await user.save();
+            }
         }
 
-        await user.save();
+        report.status = req.body.status;
+        await report.save();
+
+        res.json({ success: true });
+
+    } catch (err) {
+        res.status(500).json({ error: err.message });
     }
-}
-
-report.status = req.body.status;
-await report.save();
-
-res.json({ success: true });
-
-} catch (err) {
-    res.status(500).json({ error: err.message });
-}
 });
-
 
 // Delete report
 router.delete("/:id", async (req, res) => {

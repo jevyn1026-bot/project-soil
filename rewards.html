@@ -75,20 +75,140 @@ button{
 button:hover{
     opacity:.9;
 }
+
+#redeemMessage{
+    display:none;
+    margin-top:15px;
+    padding:12px;
+    border-radius:8px;
+    background:#ffebee;
+    color:#c62828;
+    font-size:16px;
+}
+
+.simple-navbar{
+    background:#2e7d32;
+    padding:18px 20px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:25px;
+    flex-wrap:wrap;
+    box-shadow:0 3px 10px rgba(0,0,0,0.15);
+}
+
+.simple-navbar a{
+    color:white;
+    text-decoration:none;
+    font-size:16px;
+    font-weight:bold;
+    padding:8px 14px;
+    border-radius:8px;
+    transition:0.3s;
+}
+
+.simple-navbar a:hover{
+    background:rgba(255,255,255,0.2);
+    transform:translateY(-2px);
+}
+
+.simple-navbar a:first-child{
+    background:rgba(255,255,255,0.15);
+}
+
+.reward-navbar{
+    background:linear-gradient(135deg,#1b5e20,#2e7d32);
+    padding:18px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    box-shadow:0 4px 12px rgba(0,0,0,0.15);
+}
+
+.reward-logo{
+    color:white;
+    font-size:24px;
+    font-weight:bold;
+}
+
+.reward-links{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.reward-links a{
+    color:white;
+    text-decoration:none;
+    padding:8px 15px;
+    border-radius:20px;
+    transition:0.3s;
+}
+
+.reward-links a:hover,
+.reward-links .active{
+    background:white;
+    color:#2e7d32;
+}
+
+nav a{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:10px 18px;
+    border-radius:10px;
+    color:white;
+    text-decoration:none;
+    font-weight:600;
+    transition:.3s;
+}
+
+nav a:hover{
+    background:rgba(255,255,255,.18);
+    transform:translateY(-2px);
+}
+
+nav a.active{
+    background:white;
+    color:#2E7D32;
+}
+
 </style>
 
 </head>
+
 <body>
 
+<nav class="simple-navbar">
+    <a href="Soil.html">🏠 Home</a>
+    <a href="map.html">🗺️ Map</a>
+    <a href="report.html">📝 Report</a>
+    <a href="dashboard.html">🌍 Dashboard</a>
+    <a href="citizen-dashboard.html">👤 My Account</a>
+    <a href="rewards.html">🎁 Rewards</a>
+</nav>
+
 <header>
-
-<h1>🎁 ProjectSUN Rewards Center</h1>
-
-<p>Redeem your EcoPoints for exclusive rewards while helping build a greener Pasig City.</p>
-
-<h2>Your EcoPoints: <span id="points">Loading...</span></h2>
-
+    <h1>🎁 ProjectSUN Rewards Center</h1>
+    <p>Redeem your EcoPoints for environmental rewards</p>
 </header>
+
+<div class="container">
+
+    <div style="background:#fff;padding:18px;border-radius:12px;
+    box-shadow:0 3px 10px rgba(0,0,0,.1);margin-bottom:25px;text-align:center;">
+
+        <h2>Your EcoPoints</h2>
+
+        <div id="points"
+        style="font-size:32px;font-weight:bold;color:#2e7d32;">
+            0
+        </div>
+
+        <div id="redeemMessage"></div>
+
+    </div>
 
 <div class="container">
 
@@ -102,15 +222,16 @@ button:hover{
 <h3>🌲 Forest Theme</h3>
 <p>Unlock a beautiful forest profile theme.</p>
 <div class="cost">200 EcoPoints</div>
-<button onclick="applyThemeReward('Forest Theme')">
-    Redeem/button>
+<button onclick="redeemReward(this)">
+    Redeem
+</button>
 </div>
 
 <div class="reward-card">
 <h3>🌊 Ocean Theme</h3>
 <p>Unlock a refreshing ocean-inspired theme.</p>
 <div class="cost">250 EcoPoints</div>
-<button onclick="applyThemeReward('Ocean Theme')">
+<button onclick="redeemReward(this)">
     Redeem
 </button>
 </div>
@@ -119,7 +240,9 @@ button:hover{
 <h3>🌅 Sunset Theme</h3>
 <p>Decorate your profile with warm sunset colors.</p>
 <div class="cost">300 EcoPoints</div>
-<button onclick="applyThemeReward('Sunset Theme')">
+<button onclick="redeemReward(this)">
+    Redeem
+</button>
     Redeem
 </button>
 </div>
@@ -128,14 +251,18 @@ button:hover{
 <h3>🟢 Emerald Profile Frame</h3>
 <p>Exclusive emerald border for your profile.</p>
 <div class="cost">400 EcoPoints</div>
-<button>Redeem</button>
+<button onclick="redeemReward(this)">
+    Redeem
+</button>
 </div>
 
 <div class="reward-card">
 <h3>👑 Golden Profile Frame</h3>
 <p>Premium golden frame for top contributors.</p>
 <div class="cost">600 EcoPoints</div>
-<button>Redeem</button>
+<button onclick="redeemReward(this)">
+    Redeem
+</button>
 </div>
 
 </div>
@@ -152,28 +279,34 @@ button:hover{
 <h3>🌳 Plant a Tree</h3>
 <p>Use EcoPoints to sponsor a tree-planting activity.</p>
 <div class="cost">500 EcoPoints</div>
-<button>Redeem</button>
+<button onclick="redeemReward(this)">
+    Redeem
+</button>
 </div>
 
 <div class="reward-card">
 <h3>♻️ Community Clean-up</h3>
 <p>Support local clean-up drives.</p>
 <div class="cost">800 EcoPoints</div>
-<button>Redeem</button>
+<button onclick="redeemReward(this)">
+    Redeem
+</button>
 </div>
 
 <div class="reward-card">
 <h3>🌼 Adopt a Park</h3>
 <p>Contribute to improving local parks.</p>
 <div class="cost">1200 EcoPoints</div>
-<button>Redeem</button>
+
 </div>
 
 <div class="reward-card">
 <h3>🌊 River Rehabilitation</h3>
 <p>Support Pasig River restoration projects.</p>
 <div class="cost">1500 EcoPoints</div>
-<button>Redeem</button>
+<button onclick="redeemReward(this)">
+    Redeem
+</button>
 </div>
 
 </div>
@@ -190,21 +323,27 @@ button:hover{
 <h3>☕ Coffee Voucher</h3>
 <p>Redeem partner café discounts.</p>
 <div class="cost">700 EcoPoints</div>
-<button>Redeem</button>
+<button onclick="redeemReward(this)">
+    Redeem
+</button>
 </div>
 
 <div class="reward-card">
 <h3>🎟 Museum Pass</h3>
 <p>Free environmental museum admission.</p>
 <div class="cost">900 EcoPoints</div>
-<button>Redeem</button>
+<button onclick="redeemReward(this)">
+    Redeem
+</button>
 </div>
 
 <div class="reward-card">
 <h3>🚲 Bike Rental</h3>
 <p>Redeem free eco-friendly transportation.</p>
 <div class="cost">1000 EcoPoints</div>
-<button>Redeem</button>
+<button onclick="redeemReward(this)">
+    Redeem
+</button>
 </div>
 
 </div>
@@ -221,21 +360,27 @@ button:hover{
 <h3>📅 7-Day Streak Boost</h3>
 <p>Celebrate seven consecutive active days.</p>
 <div class="cost">100 EcoPoints</div>
-<button>Redeem</button>
+<button onclick="redeemReward(this)">
+    Redeem
+</button>
 </div>
 
 <div class="reward-card">
 <h3>⭐ Featured Citizen</h3>
 <p>Appear on the community spotlight.</p>
 <div class="cost">1500 EcoPoints</div>
-<button>Redeem</button>
+<button onclick="redeemReward(this)">
+    Redeem
+</button>
 </div>
 
 <div class="reward-card">
 <h3>🎖 Exclusive Profile Banner</h3>
 <p>Unlock an exclusive ProjectSUN banner.</p>
 <div class="cost">800 EcoPoints</div>
-<button>Redeem</button>
+<button onclick="redeemReward(this)">
+    Redeem
+</button>
 </div>
 
 </div>
@@ -249,41 +394,70 @@ const user = JSON.parse(localStorage.getItem("user"));
 const token = localStorage.getItem("token");
 const pointsElement = document.getElementById("points");
 
+
+
 if (!token || !user) {
+
     pointsElement.innerHTML =
-        "🚫 You do not have an account yet.<br>Create an account or log in to start earning EcoPoints.";
+        "🚫 No account detected.<br>Please create an account or log in to start earning EcoPoints.";
+
 } else {
-    pointsElement.textContent = user.points;
+
+    pointsElement.textContent = user.points || 0;
+
 }
 
 async function applyThemeReward(theme){
 
-    if(!token){
-        alert("Please log in first.");
+function redeemReward(button){
+
+    alert("This reward will be available in a future update.");
+
+}
+
+    if(!token || !user){
+
+        const message = document.getElementById("redeemMessage");
+
+        message.textContent =
+            "Please log in before redeeming rewards.";
+
+        message.style.display = "block";
         return;
     }
 
-    const response = await fetch("/rewards/theme",{
-        method:"POST",
-        headers:{
-            "Content-Type":"application/json",
-            Authorization:`Bearer ${token}`
-        },
-        body:JSON.stringify({
-            theme
-        })
-    });
+    try{
 
-    const data = await response.json();
+        const response = await fetch("/rewards/theme",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json",
+                Authorization:`Bearer ${token}`
+            },
+            body:JSON.stringify({theme})
+        });
 
-    if(data.success){
-        alert("✅ Theme unlocked and applied!");
-        location.reload();
-    }else{
-        alert(data.error || "Unable to redeem theme.");
+        const data = await response.json();
+
+        if(data.success){
+
+            alert("🎉 Reward redeemed successfully!");
+            location.reload();
+
+        }else{
+
+            alert(data.error || "Unable to redeem this reward.");
+
+        }
+
+    }catch{
+
+        alert("Server connection failed. Please try again.");
+
     }
 
 }
+
 </script>
 
 </body>

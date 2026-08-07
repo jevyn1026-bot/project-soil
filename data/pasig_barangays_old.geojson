@@ -1,0 +1,1659 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "ADM4_EN": "Bagong Ilog",
+        "ADM4_PCODE": "PH1307403001",
+        "ADM4_REF": null,
+        "ADM3_EN": "City of Pasig",
+        "ADM3_PCODE": "PH1307403",
+        "ADM2_EN": "Metropolitan Manila Second District",
+        "ADM2_PCODE": "PH13074",
+        "ADM1_EN": "National Capital Region (NCR)",
+        "ADM1_PCODE": "PH13",
+        "ADM0_EN": "Philippines (the)",
+        "ADM0_PCODE": "PH",
+        "date": "2022-11-09",
+        "validOn": "2023-11-06",
+        "validTo": null,
+        "Shape_Leng": 0.044005560821,
+        "Shape_Area": 0.000101712097236,
+        "AREA_SQKM": 1.21276907002,
+        "psgc_id": "PH1381200001",
+        "psgc_code": "1381200001",
+        "psgc_name": "Bagong Ilog",
+        "psgc_status": "fuzzy",
+        "match_confidence": 1.0,
+        "psgc_type": "barangay",
+        "match_method": "fuzzy",
+        "sga_member": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              121.06825722600001,
+              14.574393316000055
+            ],
+            [
+              121.07438880400002,
+              14.570194898000068
+            ],
+            [
+              121.06913359600003,
+              14.558092158000022
+            ],
+            [
+              121.06473726200011,
+              14.560914872000069
+            ],
+            [
+              121.06825722600001,
+              14.574393316000055
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ADM4_EN": "Bagong Katipunan",
+        "ADM4_PCODE": "PH1307403002",
+        "ADM4_REF": null,
+        "ADM3_EN": "City of Pasig",
+        "ADM3_PCODE": "PH1307403",
+        "ADM2_EN": "Metropolitan Manila Second District",
+        "ADM2_PCODE": "PH13074",
+        "ADM1_EN": "National Capital Region (NCR)",
+        "ADM1_PCODE": "PH13",
+        "ADM0_EN": "Philippines (the)",
+        "ADM0_PCODE": "PH",
+        "date": "2022-11-09",
+        "validOn": "2023-11-06",
+        "validTo": null,
+        "Shape_Leng": 0.00817773991074,
+        "Shape_Area": 0.00000187064687343,
+        "AREA_SQKM": 0.0223054543247,
+        "psgc_id": "PH1381200002",
+        "psgc_code": "1381200002",
+        "psgc_name": "Bagong Katipunan",
+        "psgc_status": "fuzzy",
+        "match_confidence": 1.0,
+        "psgc_type": "barangay",
+        "match_method": "fuzzy",
+        "sga_member": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              121.07354253000005,
+              14.55914791300006
+            ],
+            [
+              121.0757558030001,
+              14.55921371200003
+            ],
+            [
+              121.07526059200006,
+              14.557344663000038
+            ],
+            [
+              121.07354253000005,
+              14.55914791300006
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ADM4_EN": "Bambang",
+        "ADM4_PCODE": "PH1307403003",
+        "ADM4_REF": null,
+        "ADM3_EN": "City of Pasig",
+        "ADM3_PCODE": "PH1307403",
+        "ADM2_EN": "Metropolitan Manila Second District",
+        "ADM2_PCODE": "PH13074",
+        "ADM1_EN": "National Capital Region (NCR)",
+        "ADM1_PCODE": "PH13",
+        "ADM0_EN": "Philippines (the)",
+        "ADM0_PCODE": "PH",
+        "date": "2022-11-09",
+        "validOn": "2023-11-06",
+        "validTo": null,
+        "Shape_Leng": 0.037444182758,
+        "Shape_Area": 0.0000436962485809,
+        "AREA_SQKM": 0.521038613205,
+        "psgc_id": "PH1381200003",
+        "psgc_code": "1381200003",
+        "psgc_name": "Bambang",
+        "psgc_status": "fuzzy",
+        "match_confidence": 1.0,
+        "psgc_type": "barangay",
+        "match_method": "fuzzy",
+        "sga_member": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              121.07519298500006,
+              14.557364556000039
+            ],
+            [
+              121.08814211800006,
+              14.55284664800007
+            ],
+            [
+              121.07367600400005,
+              14.554970050000065
+            ],
+            [
+              121.07519298500006,
+              14.557364556000039
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ADM4_EN": "Buting",
+        "ADM4_PCODE": "PH1307403004",
+        "ADM4_REF": null,
+        "ADM3_EN": "City of Pasig",
+        "ADM3_PCODE": "PH1307403",
+        "ADM2_EN": "Metropolitan Manila Second District",
+        "ADM2_PCODE": "PH13074",
+        "ADM1_EN": "National Capital Region (NCR)",
+        "ADM1_PCODE": "PH13",
+        "ADM0_EN": "Philippines (the)",
+        "ADM0_PCODE": "PH",
+        "date": "2022-11-09",
+        "validOn": "2023-11-06",
+        "validTo": null,
+        "Shape_Leng": 0.0259035551073,
+        "Shape_Area": 0.0000292253564985,
+        "AREA_SQKM": 0.348487422711,
+        "psgc_id": "PH1381200004",
+        "psgc_code": "1381200004",
+        "psgc_name": "Buting",
+        "psgc_status": "fuzzy",
+        "match_confidence": 1.0,
+        "psgc_type": "barangay",
+        "match_method": "fuzzy",
+        "sga_member": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              121.06431954100003,
+              14.551917179000043
+            ],
+            [
+              121.07230926700004,
+              14.55547430300004
+            ],
+            [
+              121.07293907500002,
+              14.553801730000032
+            ],
+            [
+              121.06431954100003,
+              14.551917179000043
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ADM4_EN": "Caniogan",
+        "ADM4_PCODE": "PH1307403005",
+        "ADM4_REF": null,
+        "ADM3_EN": "City of Pasig",
+        "ADM3_PCODE": "PH1307403",
+        "ADM2_EN": "Metropolitan Manila Second District",
+        "ADM2_PCODE": "PH13074",
+        "ADM1_EN": "National Capital Region (NCR)",
+        "ADM1_PCODE": "PH13",
+        "ADM0_EN": "Philippines (the)",
+        "ADM0_PCODE": "PH",
+        "date": "2022-11-09",
+        "validOn": "2023-11-06",
+        "validTo": null,
+        "Shape_Leng": 0.0480176085835,
+        "Shape_Area": 0.0000875567701197,
+        "AREA_SQKM": 1.04396471356,
+        "psgc_id": "PH1381200005",
+        "psgc_code": "1381200005",
+        "psgc_name": "Caniogan",
+        "psgc_status": "fuzzy",
+        "match_confidence": 1.0,
+        "psgc_type": "barangay",
+        "match_method": "fuzzy",
+        "sga_member": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              121.0752475700001,
+              14.572922414000061
+            ],
+            [
+              121.08822441500001,
+              14.572623326000041
+            ],
+            [
+              121.07335002800005,
+              14.564845819000027
+            ],
+            [
+              121.0752475700001,
+              14.572922414000061
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ADM4_EN": "Dela Paz",
+        "ADM4_PCODE": "PH1307403006",
+        "ADM4_REF": null,
+        "ADM3_EN": "City of Pasig",
+        "ADM3_PCODE": "PH1307403",
+        "ADM2_EN": "Metropolitan Manila Second District",
+        "ADM2_PCODE": "PH13074",
+        "ADM1_EN": "National Capital Region (NCR)",
+        "ADM1_PCODE": "PH13",
+        "ADM0_EN": "Philippines (the)",
+        "ADM0_PCODE": "PH",
+        "date": "2022-11-09",
+        "validOn": "2023-11-06",
+        "validTo": null,
+        "Shape_Leng": 0.0609028589422,
+        "Shape_Area": 0.000110203973175,
+        "AREA_SQKM": 1.31373758339,
+        "psgc_id": "PH1381200006",
+        "psgc_code": "1381200006",
+        "psgc_name": "Dela Paz",
+        "psgc_status": "fuzzy",
+        "match_confidence": 1.0,
+        "psgc_type": "barangay",
+        "match_method": "fuzzy",
+        "sga_member": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              121.09323587300003,
+              14.621323511000071
+            ],
+            [
+              121.10187866500007,
+              14.620657343000062
+            ],
+            [
+              121.10415858800002,
+              14.608365045000028
+            ],
+            [
+              121.09198556100012,
+              14.609203143000059
+            ],
+            [
+              121.09323587300003,
+              14.621323511000071
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ADM4_EN": "Kalawaan",
+        "ADM4_PCODE": "PH1307403007",
+        "ADM4_REF": null,
+        "ADM3_EN": "City of Pasig",
+        "ADM3_PCODE": "PH1307403",
+        "ADM2_EN": "Metropolitan Manila Second District",
+        "ADM2_PCODE": "PH13074",
+        "ADM1_EN": "National Capital Region (NCR)",
+        "ADM1_PCODE": "PH13",
+        "ADM0_EN": "Philippines (the)",
+        "ADM0_PCODE": "PH",
+        "date": "2022-11-09",
+        "validOn": "2023-11-06",
+        "validTo": null,
+        "Shape_Leng": 0.0430510115038,
+        "Shape_Area": 0.0000845065085835,
+        "AREA_SQKM": 1.00768849822,
+        "psgc_id": "PH1381200007",
+        "psgc_code": "1381200007",
+        "psgc_name": "Kalawaan",
+        "psgc_status": "fuzzy",
+        "match_confidence": 1.0,
+        "psgc_type": "barangay",
+        "match_method": "fuzzy",
+        "sga_member": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              121.08088592700005,
+              14.553772451000043
+            ],
+            [
+              121.09226892700008,
+              14.552824451000049
+            ],
+            [
+              121.09436799700006,
+              14.546736230000022
+            ],
+            [
+              121.08109244600007,
+              14.547432314000048
+            ],
+            [
+              121.08088592700005,
+              14.553772451000043
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ADM4_EN": "Kapasigan",
+        "ADM4_PCODE": "PH1307403008",
+        "ADM4_REF": null,
+        "ADM3_EN": "City of Pasig",
+        "ADM3_PCODE": "PH1307403",
+        "ADM2_EN": "Metropolitan Manila Second District",
+        "ADM2_PCODE": "PH13074",
+        "ADM1_EN": "National Capital Region (NCR)",
+        "ADM1_PCODE": "PH13",
+        "ADM0_EN": "Philippines (the)",
+        "ADM0_PCODE": "PH",
+        "date": "2022-11-09",
+        "validOn": "2023-11-06",
+        "validTo": null,
+        "Shape_Leng": 0.0154992726604,
+        "Shape_Area": 0.0000131326779775,
+        "AREA_SQKM": 0.156590009391,
+        "psgc_id": "PH1381200008",
+        "psgc_code": "1381200008",
+        "psgc_name": "Kapasigan",
+        "psgc_status": "fuzzy",
+        "match_confidence": 1.0,
+        "psgc_type": "barangay",
+        "match_method": "fuzzy",
+        "sga_member": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              121.07335002800005,
+              14.564845819000027
+            ],
+            [
+              121.07731302400009,
+              14.561341474000074
+            ],
+            [
+              121.07297027600009,
+              14.561779300000069
+            ],
+            [
+              121.07335002800005,
+              14.564845819000027
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ADM4_EN": "Kapitolyo",
+        "ADM4_PCODE": "PH1307403009",
+        "ADM4_REF": null,
+        "ADM3_EN": "City of Pasig",
+        "ADM3_PCODE": "PH1307403",
+        "ADM2_EN": "Metropolitan Manila Second District",
+        "ADM2_PCODE": "PH13074",
+        "ADM1_EN": "National Capital Region (NCR)",
+        "ADM1_PCODE": "PH13",
+        "ADM0_EN": "Philippines (the)",
+        "ADM0_PCODE": "PH",
+        "date": "2022-11-09",
+        "validOn": "2023-11-06",
+        "validTo": null,
+        "Shape_Leng": 0.0422864473256,
+        "Shape_Area": 0.0000853130321469,
+        "AREA_SQKM": 1.01720988099,
+        "psgc_id": "PH1381200009",
+        "psgc_code": "1381200009",
+        "psgc_name": "Kapitolyo",
+        "psgc_status": "fuzzy",
+        "match_confidence": 1.0,
+        "psgc_type": "barangay",
+        "match_method": "fuzzy",
+        "sga_member": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              121.05816440000001,
+              14.577301557000055
+            ],
+            [
+              121.0664963260001,
+              14.570197396000026
+            ],
+            [
+              121.06603796700006,
+              14.567436069000053
+            ],
+            [
+              121.05524282700003,
+              14.567005092000045
+            ],
+            [
+              121.05816440000001,
+              14.577301557000055
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ADM4_EN": "Malinao",
+        "ADM4_PCODE": "PH1307403010",
+        "ADM4_REF": null,
+        "ADM3_EN": "City of Pasig",
+        "ADM3_PCODE": "PH1307403",
+        "ADM2_EN": "Metropolitan Manila Second District",
+        "ADM2_PCODE": "PH13074",
+        "ADM1_EN": "National Capital Region (NCR)",
+        "ADM1_PCODE": "PH13",
+        "ADM0_EN": "Philippines (the)",
+        "ADM0_PCODE": "PH",
+        "date": "2022-11-09",
+        "validOn": "2023-11-06",
+        "validTo": null,
+        "Shape_Leng": 0.0268734758028,
+        "Shape_Area": 0.0000202432028052,
+        "AREA_SQKM": 0.241378536915,
+        "psgc_id": "PH1381200010",
+        "psgc_code": "1381200010",
+        "psgc_name": "Malinao",
+        "psgc_status": "fuzzy",
+        "match_confidence": 1.0,
+        "psgc_type": "barangay",
+        "match_method": "fuzzy",
+        "sga_member": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              121.07657426800006,
+              14.560762054000065
+            ],
+            [
+              121.08428635300004,
+              14.556901891000052
+            ],
+            [
+              121.07526059200006,
+              14.557344663000038
+            ],
+            [
+              121.07657426800006,
+              14.560762054000065
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ADM4_EN": "Manggahan",
+        "ADM4_PCODE": "PH1307403011",
+        "ADM4_REF": null,
+        "ADM3_EN": "City of Pasig",
+        "ADM3_PCODE": "PH1307403",
+        "ADM2_EN": "Metropolitan Manila Second District",
+        "ADM2_PCODE": "PH13074",
+        "ADM1_EN": "National Capital Region (NCR)",
+        "ADM1_PCODE": "PH13",
+        "ADM0_EN": "Philippines (the)",
+        "ADM0_PCODE": "PH",
+        "date": "2022-11-09",
+        "validOn": "2023-11-06",
+        "validTo": null,
+        "Shape_Leng": 0.1162272768,
+        "Shape_Area": 0.000298478916257,
+        "AREA_SQKM": 3.55837035941,
+        "psgc_id": "PH1381200011",
+        "psgc_code": "1381200011",
+        "psgc_name": "Manggahan",
+        "psgc_status": "fuzzy",
+        "match_confidence": 1.0,
+        "psgc_type": "barangay",
+        "match_method": "fuzzy",
+        "sga_member": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              121.10075192300008,
+              14.612831706000065
+            ],
+            [
+              121.10944086300003,
+              14.59725558100007
+            ],
+            [
+              121.08246126800009,
+              14.592588593000073
+            ],
+            [
+              121.08280987,
+              14.603097099000024
+            ],
+            [
+              121.089989005,
+              14.599246040000025
+            ],
+            [
+              121.08721370600006,
+              14.606908353000051
+            ],
+            [
+              121.10075192300008,
+              14.612831706000065
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ADM4_EN": "Maybunga",
+        "ADM4_PCODE": "PH1307403012",
+        "ADM4_REF": null,
+        "ADM3_EN": "City of Pasig",
+        "ADM3_PCODE": "PH1307403",
+        "ADM2_EN": "Metropolitan Manila Second District",
+        "ADM2_PCODE": "PH13074",
+        "ADM1_EN": "National Capital Region (NCR)",
+        "ADM1_PCODE": "PH13",
+        "ADM0_EN": "Philippines (the)",
+        "ADM0_PCODE": "PH",
+        "date": "2022-11-09",
+        "validOn": "2023-11-06",
+        "validTo": null,
+        "Shape_Leng": 0.0654044977028,
+        "Shape_Area": 0.000183377100229,
+        "AREA_SQKM": 2.18640470052,
+        "psgc_id": "PH1381200012",
+        "psgc_code": "1381200012",
+        "psgc_name": "Maybunga",
+        "psgc_status": "fuzzy",
+        "match_confidence": 1.0,
+        "psgc_type": "barangay",
+        "match_method": "fuzzy",
+        "sga_member": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              121.07857321600011,
+              14.576363689000061
+            ],
+            [
+              121.09584299900007,
+              14.581904328000064
+            ],
+            [
+              121.10176341700003,
+              14.57373194400003
+            ],
+            [
+              121.0846504210001,
+              14.572380194000061
+            ],
+            [
+              121.07857321600011,
+              14.576363689000061
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ADM4_EN": "Oranbo",
+        "ADM4_PCODE": "PH1307403013",
+        "ADM4_REF": null,
+        "ADM3_EN": "City of Pasig",
+        "ADM3_PCODE": "PH1307403",
+        "ADM2_EN": "Metropolitan Manila Second District",
+        "ADM2_PCODE": "PH13074",
+        "ADM1_EN": "National Capital Region (NCR)",
+        "ADM1_PCODE": "PH13",
+        "ADM0_EN": "Philippines (the)",
+        "ADM0_PCODE": "PH",
+        "date": "2022-11-09",
+        "validOn": "2023-11-06",
+        "validTo": null,
+        "Shape_Leng": 0.0303607340238,
+        "Shape_Area": 0.0000437129460009,
+        "AREA_SQKM": 0.521190080082,
+        "psgc_id": "PH1381200013",
+        "psgc_code": "1381200013",
+        "psgc_name": "Oranbo",
+        "psgc_status": "fuzzy",
+        "match_confidence": 1.0,
+        "psgc_type": "barangay",
+        "match_method": "fuzzy",
+        "sga_member": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              121.0683809630001,
+              14.579853986000046
+            ],
+            [
+              121.06822922700007,
+              14.57441431500007
+            ],
+            [
+              121.0664963260001,
+              14.570197396000026
+            ],
+            [
+              121.06098354100004,
+              14.574919736000027
+            ],
+            [
+              121.0683809630001,
+              14.579853986000046
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ADM4_EN": "Palatiw",
+        "ADM4_PCODE": "PH1307403014",
+        "ADM4_REF": null,
+        "ADM3_EN": "City of Pasig",
+        "ADM3_PCODE": "PH1307403",
+        "ADM2_EN": "Metropolitan Manila Second District",
+        "ADM2_PCODE": "PH13074",
+        "ADM1_EN": "National Capital Region (NCR)",
+        "ADM1_PCODE": "PH13",
+        "ADM0_EN": "Philippines (the)",
+        "ADM0_PCODE": "PH",
+        "date": "2022-11-09",
+        "validOn": "2023-11-06",
+        "validTo": null,
+        "Shape_Leng": 0.0288397757246,
+        "Shape_Area": 0.0000254804179628,
+        "AREA_SQKM": 0.30382056878,
+        "psgc_id": "PH1381200014",
+        "psgc_code": "1381200014",
+        "psgc_name": "Palatiw",
+        "psgc_status": "fuzzy",
+        "match_confidence": 1.0,
+        "psgc_type": "barangay",
+        "match_method": "fuzzy",
+        "sga_member": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              121.08412738400011,
+              14.559449225000037
+            ],
+            [
+              121.08460566500003,
+              14.564112382000076
+            ],
+            [
+              121.09064676800006,
+              14.562825701000065
+            ],
+            [
+              121.08412738400011,
+              14.559449225000037
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ADM4_EN": "Pinagbuhatan",
+        "ADM4_PCODE": "PH1307403015",
+        "ADM4_REF": null,
+        "ADM3_EN": "City of Pasig",
+        "ADM3_PCODE": "PH1307403",
+        "ADM2_EN": "Metropolitan Manila Second District",
+        "ADM2_PCODE": "PH13074",
+        "ADM1_EN": "National Capital Region (NCR)",
+        "ADM1_PCODE": "PH13",
+        "ADM0_EN": "Philippines (the)",
+        "ADM0_PCODE": "PH",
+        "date": "2022-11-09",
+        "validOn": "2023-11-06",
+        "validTo": null,
+        "Shape_Leng": 0.0992408277935,
+        "Shape_Area": 0.000297350187934,
+        "AREA_SQKM": 3.54572076441,
+        "psgc_id": "PH1381200015",
+        "psgc_code": "1381200015",
+        "psgc_name": "Pinagbuhatan",
+        "psgc_status": "fuzzy",
+        "match_confidence": 1.0,
+        "psgc_type": "barangay",
+        "match_method": "fuzzy",
+        "sga_member": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              121.08729891700011,
+              14.562671786000067
+            ],
+            [
+              121.09808476800004,
+              14.562368499000058
+            ],
+            [
+              121.10972207600003,
+              14.546624930000064
+            ],
+            [
+              121.1033378410001,
+              14.531997657000034
+            ],
+            [
+              121.08729891700011,
+              14.562671786000067
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ADM4_EN": "Pineda",
+        "ADM4_PCODE": "PH1307403016",
+        "ADM4_REF": null,
+        "ADM3_EN": "City of Pasig",
+        "ADM3_PCODE": "PH1307403",
+        "ADM2_EN": "Metropolitan Manila Second District",
+        "ADM2_PCODE": "PH13074",
+        "ADM1_EN": "National Capital Region (NCR)",
+        "ADM1_PCODE": "PH13",
+        "ADM0_EN": "Philippines (the)",
+        "ADM0_PCODE": "PH",
+        "date": "2022-11-09",
+        "validOn": "2023-11-06",
+        "validTo": null,
+        "Shape_Leng": 0.0420838298262,
+        "Shape_Area": 0.0000487682208265,
+        "AREA_SQKM": 0.581490678499,
+        "psgc_id": "PH1381200016",
+        "psgc_code": "1381200016",
+        "psgc_name": "Pineda",
+        "psgc_status": "fuzzy",
+        "match_confidence": 1.0,
+        "psgc_type": "barangay",
+        "match_method": "fuzzy",
+        "sga_member": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              121.05139764300009,
+              14.567941174000055
+            ],
+            [
+              121.06603796700006,
+              14.567436069000053
+            ],
+            [
+              121.06473726200011,
+              14.560914872000069
+            ],
+            [
+              121.05139764300009,
+              14.567941174000055
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ADM4_EN": "Rosario",
+        "ADM4_PCODE": "PH1307403017",
+        "ADM4_REF": null,
+        "ADM3_EN": "City of Pasig",
+        "ADM3_PCODE": "PH1307403",
+        "ADM2_EN": "Metropolitan Manila Second District",
+        "ADM2_PCODE": "PH13074",
+        "ADM1_EN": "National Capital Region (NCR)",
+        "ADM1_PCODE": "PH13",
+        "ADM0_EN": "Philippines (the)",
+        "ADM0_PCODE": "PH",
+        "date": "2022-11-09",
+        "validOn": "2023-11-06",
+        "validTo": null,
+        "Shape_Leng": 0.103017624746,
+        "Shape_Area": 0.000217588704427,
+        "AREA_SQKM": 2.5941545243,
+        "psgc_id": "PH1381200017",
+        "psgc_code": "1381200017",
+        "psgc_name": "Rosario",
+        "psgc_status": "fuzzy",
+        "match_confidence": 1.0,
+        "psgc_type": "barangay",
+        "match_method": "fuzzy",
+        "sga_member": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              121.08246126800009,
+              14.592588593000073
+            ],
+            [
+              121.10944086300003,
+              14.59725558100007
+            ],
+            [
+              121.11044978200005,
+              14.592235448000054
+            ],
+            [
+              121.09281007800007,
+              14.59006290700006
+            ],
+            [
+              121.09430721000001,
+              14.580801088000044
+            ],
+            [
+              121.08257974300011,
+              14.582637011000031
+            ],
+            [
+              121.08246126800009,
+              14.592588593000073
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ADM4_EN": "Sagad",
+        "ADM4_PCODE": "PH1307403018",
+        "ADM4_REF": null,
+        "ADM3_EN": "City of Pasig",
+        "ADM3_PCODE": "PH1307403",
+        "ADM2_EN": "Metropolitan Manila Second District",
+        "ADM2_PCODE": "PH13074",
+        "ADM1_EN": "National Capital Region (NCR)",
+        "ADM1_PCODE": "PH13",
+        "ADM0_EN": "Philippines (the)",
+        "ADM0_PCODE": "PH",
+        "date": "2022-11-09",
+        "validOn": "2023-11-06",
+        "validTo": null,
+        "Shape_Leng": 0.0184028724176,
+        "Shape_Area": 0.00000919470149453,
+        "AREA_SQKM": 0.109633577934,
+        "psgc_id": "PH1381200018",
+        "psgc_code": "1381200018",
+        "psgc_name": "Sagad",
+        "psgc_status": "fuzzy",
+        "match_confidence": 1.0,
+        "psgc_type": "barangay",
+        "match_method": "fuzzy",
+        "sga_member": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              121.07593627800009,
+              14.565176222000048
+            ],
+            [
+              121.0809881670001,
+              14.565260867000063
+            ],
+            [
+              121.07653724600004,
+              14.563828621000027
+            ],
+            [
+              121.07593627800009,
+              14.565176222000048
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ADM4_EN": "San Antonio",
+        "ADM4_PCODE": "PH1307403019",
+        "ADM4_REF": null,
+        "ADM3_EN": "City of Pasig",
+        "ADM3_PCODE": "PH1307403",
+        "ADM2_EN": "Metropolitan Manila Second District",
+        "ADM2_PCODE": "PH13074",
+        "ADM1_EN": "National Capital Region (NCR)",
+        "ADM1_PCODE": "PH13",
+        "ADM0_EN": "Philippines (the)",
+        "ADM0_PCODE": "PH",
+        "date": "2022-11-09",
+        "validOn": "2023-11-06",
+        "validTo": null,
+        "Shape_Leng": 0.0380476768969,
+        "Shape_Area": 0.0000618659920682,
+        "AREA_SQKM": 0.737607299689,
+        "psgc_id": "PH1381200019",
+        "psgc_code": "1381200019",
+        "psgc_name": "San Antonio",
+        "psgc_status": "fuzzy",
+        "match_confidence": 1.0,
+        "psgc_type": "barangay",
+        "match_method": "fuzzy",
+        "sga_member": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              121.06163874900005,
+              14.590629007000075
+            ],
+            [
+              121.06366758000001,
+              14.578311044000031
+            ],
+            [
+              121.06098354100004,
+              14.574919736000027
+            ],
+            [
+              121.0571248330001,
+              14.578129807000039
+            ],
+            [
+              121.06163874900005,
+              14.590629007000075
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ADM4_EN": "San Joaquin",
+        "ADM4_PCODE": "PH1307403020",
+        "ADM4_REF": null,
+        "ADM3_EN": "City of Pasig",
+        "ADM3_PCODE": "PH1307403",
+        "ADM2_EN": "Metropolitan Manila Second District",
+        "ADM2_PCODE": "PH13074",
+        "ADM1_EN": "National Capital Region (NCR)",
+        "ADM1_PCODE": "PH13",
+        "ADM0_EN": "Philippines (the)",
+        "ADM0_PCODE": "PH",
+        "date": "2022-11-09",
+        "validOn": "2023-11-06",
+        "validTo": null,
+        "Shape_Leng": 0.0385185720868,
+        "Shape_Area": 0.0000496550438136,
+        "AREA_SQKM": 0.592103181243,
+        "psgc_id": "PH1381200020",
+        "psgc_code": "1381200020",
+        "psgc_name": "San Joaquin",
+        "psgc_status": "fuzzy",
+        "match_confidence": 1.0,
+        "psgc_type": "barangay",
+        "match_method": "fuzzy",
+        "sga_member": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              121.07006109200006,
+              14.552018898000028
+            ],
+            [
+              121.08029010300004,
+              14.552468622000049
+            ],
+            [
+              121.08078441200007,
+              14.546905540000068
+            ],
+            [
+              121.07006109200006,
+              14.552018898000028
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ADM4_EN": "San Jose",
+        "ADM4_PCODE": "PH1307403021",
+        "ADM4_REF": null,
+        "ADM3_EN": "City of Pasig",
+        "ADM3_PCODE": "PH1307403",
+        "ADM2_EN": "Metropolitan Manila Second District",
+        "ADM2_PCODE": "PH13074",
+        "ADM1_EN": "National Capital Region (NCR)",
+        "ADM1_PCODE": "PH13",
+        "ADM0_EN": "Philippines (the)",
+        "ADM0_PCODE": "PH",
+        "date": "2022-11-09",
+        "validOn": "2023-11-06",
+        "validTo": null,
+        "Shape_Leng": 0.0131726854638,
+        "Shape_Area": 0.00000779985545932,
+        "AREA_SQKM": 0.0930041488178,
+        "psgc_id": "PH1381200021",
+        "psgc_code": "1381200021",
+        "psgc_name": "San Jose",
+        "psgc_status": "fuzzy",
+        "match_confidence": 1.0,
+        "psgc_type": "barangay",
+        "match_method": "fuzzy",
+        "sga_member": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              121.07363093900005,
+              14.559233034000044
+            ],
+            [
+              121.07656158500004,
+              14.561339070000031
+            ],
+            [
+              121.07648636500005,
+              14.560183254000037
+            ],
+            [
+              121.07363093900005,
+              14.559233034000044
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ADM4_EN": "San Miguel",
+        "ADM4_PCODE": "PH1307403022",
+        "ADM4_REF": null,
+        "ADM3_EN": "City of Pasig",
+        "ADM3_PCODE": "PH1307403",
+        "ADM2_EN": "Metropolitan Manila Second District",
+        "ADM2_PCODE": "PH13074",
+        "ADM1_EN": "National Capital Region (NCR)",
+        "ADM1_PCODE": "PH13",
+        "ADM0_EN": "Philippines (the)",
+        "ADM0_PCODE": "PH",
+        "date": "2022-11-09",
+        "validOn": "2023-11-06",
+        "validTo": null,
+        "Shape_Leng": 0.057708445023,
+        "Shape_Area": 0.000102637810201,
+        "AREA_SQKM": 1.22380087265,
+        "psgc_id": "PH1381200022",
+        "psgc_code": "1381200022",
+        "psgc_name": "San Miguel",
+        "psgc_status": "fuzzy",
+        "match_confidence": 1.0,
+        "psgc_type": "barangay",
+        "match_method": "fuzzy",
+        "sga_member": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              121.0809881670001,
+              14.565260867000063
+            ],
+            [
+              121.0968965510001,
+              14.569254547000071
+            ],
+            [
+              121.09808476800004,
+              14.562368499000058
+            ],
+            [
+              121.0809881670001,
+              14.565260867000063
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ADM4_EN": "San Nicolas (Pob.)",
+        "ADM4_PCODE": "PH1307403023",
+        "ADM4_REF": null,
+        "ADM3_EN": "City of Pasig",
+        "ADM3_PCODE": "PH1307403",
+        "ADM2_EN": "Metropolitan Manila Second District",
+        "ADM2_PCODE": "PH13074",
+        "ADM1_EN": "National Capital Region (NCR)",
+        "ADM1_PCODE": "PH13",
+        "ADM0_EN": "Philippines (the)",
+        "ADM0_PCODE": "PH",
+        "date": "2022-11-09",
+        "validOn": "2023-11-06",
+        "validTo": null,
+        "Shape_Leng": 0.0300161369919,
+        "Shape_Area": 0.0000192548081933,
+        "AREA_SQKM": 0.229590980893,
+        "psgc_id": "PH1381200023",
+        "psgc_code": "1381200023",
+        "psgc_name": "San Nicolas",
+        "psgc_status": "fuzzy",
+        "match_confidence": 1.0,
+        "psgc_type": "barangay",
+        "match_method": "fuzzy",
+        "sga_member": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              121.07657426800006,
+              14.560762054000065
+            ],
+            [
+              121.08522875900007,
+              14.559030564000068
+            ],
+            [
+              121.08463465800003,
+              14.557485839000037
+            ],
+            [
+              121.07657426800006,
+              14.560762054000065
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ADM4_EN": "Santa Cruz",
+        "ADM4_PCODE": "PH1307403024",
+        "ADM4_REF": null,
+        "ADM3_EN": "City of Pasig",
+        "ADM3_PCODE": "PH1307403",
+        "ADM2_EN": "Metropolitan Manila Second District",
+        "ADM2_PCODE": "PH13074",
+        "ADM1_EN": "National Capital Region (NCR)",
+        "ADM1_PCODE": "PH13",
+        "ADM0_EN": "Philippines (the)",
+        "ADM0_PCODE": "PH",
+        "date": "2022-11-09",
+        "validOn": "2023-11-06",
+        "validTo": null,
+        "Shape_Leng": 0.0100667196782,
+        "Shape_Area": 0.00000393913734618,
+        "AREA_SQKM": 0.0469690337819,
+        "psgc_id": "PH1381200024",
+        "psgc_code": "1381200024",
+        "psgc_name": "Santa Cruz",
+        "psgc_status": "fuzzy",
+        "match_confidence": 1.0,
+        "psgc_type": "barangay",
+        "match_method": "fuzzy",
+        "sga_member": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              121.07828274500002,
+              14.563926404000028
+            ],
+            [
+              121.08087738400002,
+              14.56188261400007
+            ],
+            [
+              121.0780741000001,
+              14.562896907000038
+            ],
+            [
+              121.07828274500002,
+              14.563926404000028
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ADM4_EN": "Santa Rosa",
+        "ADM4_PCODE": "PH1307403025",
+        "ADM4_REF": null,
+        "ADM3_EN": "City of Pasig",
+        "ADM3_PCODE": "PH1307403",
+        "ADM2_EN": "Metropolitan Manila Second District",
+        "ADM2_PCODE": "PH13074",
+        "ADM1_EN": "National Capital Region (NCR)",
+        "ADM1_PCODE": "PH13",
+        "ADM0_EN": "Philippines (the)",
+        "ADM0_PCODE": "PH",
+        "date": "2022-11-09",
+        "validOn": "2023-11-06",
+        "validTo": null,
+        "Shape_Leng": 0.0176552763416,
+        "Shape_Area": 0.0000126016984159,
+        "AREA_SQKM": 0.150262260731,
+        "psgc_id": "PH1381200025",
+        "psgc_code": "1381200025",
+        "psgc_name": "Santa Rosa",
+        "psgc_status": "fuzzy",
+        "match_confidence": 1.0,
+        "psgc_type": "barangay",
+        "match_method": "fuzzy",
+        "sga_member": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              121.06702392700004,
+              14.558661451000035
+            ],
+            [
+              121.07132935800007,
+              14.555824655000038
+            ],
+            [
+              121.06687386100009,
+              14.55773060000007
+            ],
+            [
+              121.06702392700004,
+              14.558661451000035
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ADM4_EN": "Santo Tomas",
+        "ADM4_PCODE": "PH1307403026",
+        "ADM4_REF": null,
+        "ADM3_EN": "City of Pasig",
+        "ADM3_PCODE": "PH1307403",
+        "ADM2_EN": "Metropolitan Manila Second District",
+        "ADM2_PCODE": "PH13074",
+        "ADM1_EN": "National Capital Region (NCR)",
+        "ADM1_PCODE": "PH13",
+        "ADM0_EN": "Philippines (the)",
+        "ADM0_PCODE": "PH",
+        "date": "2022-11-09",
+        "validOn": "2023-11-06",
+        "validTo": null,
+        "Shape_Leng": 0.0211314860928,
+        "Shape_Area": 0.0000115813081605,
+        "AREA_SQKM": 0.138092013042,
+        "psgc_id": "PH1381200026",
+        "psgc_code": "1381200026",
+        "psgc_name": "Santo Tomas",
+        "psgc_status": "fuzzy",
+        "match_confidence": 1.0,
+        "psgc_type": "barangay",
+        "match_method": "fuzzy",
+        "sga_member": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              121.07828274500002,
+              14.563926404000028
+            ],
+            [
+              121.08180884700005,
+              14.562996418000068
+            ],
+            [
+              121.08409105900012,
+              14.56010279000003
+            ],
+            [
+              121.07828274500002,
+              14.563926404000028
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ADM4_EN": "Santolan",
+        "ADM4_PCODE": "PH1307403027",
+        "ADM4_REF": null,
+        "ADM3_EN": "City of Pasig",
+        "ADM3_PCODE": "PH1307403",
+        "ADM2_EN": "Metropolitan Manila Second District",
+        "ADM2_PCODE": "PH13074",
+        "ADM1_EN": "National Capital Region (NCR)",
+        "ADM1_PCODE": "PH13",
+        "ADM0_EN": "Philippines (the)",
+        "ADM0_PCODE": "PH",
+        "date": "2022-11-09",
+        "validOn": "2023-11-06",
+        "validTo": null,
+        "Shape_Leng": 0.0565101097623,
+        "Shape_Area": 0.000174413997921,
+        "AREA_SQKM": 2.07917560155,
+        "psgc_id": "PH1381200027",
+        "psgc_code": "1381200027",
+        "psgc_name": "Santolan",
+        "psgc_status": "fuzzy",
+        "match_confidence": 1.0,
+        "psgc_type": "barangay",
+        "match_method": "fuzzy",
+        "sga_member": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              121.08424756200009,
+              14.624098637000031
+            ],
+            [
+              121.092699777,
+              14.621755060000055
+            ],
+            [
+              121.09167848400011,
+              14.60655525900006
+            ],
+            [
+              121.07886987900008,
+              14.613766303000034
+            ],
+            [
+              121.08424756200009,
+              14.624098637000031
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ADM4_EN": "Sumilang",
+        "ADM4_PCODE": "PH1307403028",
+        "ADM4_REF": null,
+        "ADM3_EN": "City of Pasig",
+        "ADM3_PCODE": "PH1307403",
+        "ADM2_EN": "Metropolitan Manila Second District",
+        "ADM2_PCODE": "PH13074",
+        "ADM1_EN": "National Capital Region (NCR)",
+        "ADM1_PCODE": "PH13",
+        "ADM0_EN": "Philippines (the)",
+        "ADM0_PCODE": "PH",
+        "date": "2022-11-09",
+        "validOn": "2023-11-06",
+        "validTo": null,
+        "Shape_Leng": 0.0133619796736,
+        "Shape_Area": 0.000008991798424,
+        "AREA_SQKM": 0.107218341564,
+        "psgc_id": "PH1381200028",
+        "psgc_code": "1381200028",
+        "psgc_name": "Sumilang",
+        "psgc_status": "fuzzy",
+        "match_confidence": 1.0,
+        "psgc_type": "barangay",
+        "match_method": "fuzzy",
+        "sga_member": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              121.07132935800007,
+              14.555824655000038
+            ],
+            [
+              121.07519298500006,
+              14.557364556000039
+            ],
+            [
+              121.07367600400005,
+              14.554970050000065
+            ],
+            [
+              121.07132935800007,
+              14.555824655000038
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ADM4_EN": "Ugong",
+        "ADM4_PCODE": "PH1307403029",
+        "ADM4_REF": null,
+        "ADM3_EN": "City of Pasig",
+        "ADM3_PCODE": "PH1307403",
+        "ADM2_EN": "Metropolitan Manila Second District",
+        "ADM2_PCODE": "PH13074",
+        "ADM1_EN": "National Capital Region (NCR)",
+        "ADM1_PCODE": "PH13",
+        "ADM0_EN": "Philippines (the)",
+        "ADM0_PCODE": "PH",
+        "date": "2022-11-09",
+        "validOn": "2023-11-06",
+        "validTo": null,
+        "Shape_Leng": 0.0806753759338,
+        "Shape_Area": 0.00031442202591,
+        "AREA_SQKM": 3.74872847844,
+        "psgc_id": "PH1381200029",
+        "psgc_code": "1381200029",
+        "psgc_name": "Ugong",
+        "psgc_status": "fuzzy",
+        "match_confidence": 1.0,
+        "psgc_type": "barangay",
+        "match_method": "fuzzy",
+        "sga_member": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              121.06178426800011,
+              14.590462054000056
+            ],
+            [
+              121.08351133100007,
+              14.587895976000027
+            ],
+            [
+              121.07438880400002,
+              14.570194898000068
+            ],
+            [
+              121.06178426800011,
+              14.590462054000056
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ADM4_EN": "Santa Lucia",
+        "ADM4_PCODE": "PH1307403030",
+        "ADM4_REF": null,
+        "ADM3_EN": "City of Pasig",
+        "ADM3_PCODE": "PH1307403",
+        "ADM2_EN": "Metropolitan Manila Second District",
+        "ADM2_PCODE": "PH13074",
+        "ADM1_EN": "National Capital Region (NCR)",
+        "ADM1_PCODE": "PH13",
+        "ADM0_EN": "Philippines (the)",
+        "ADM0_PCODE": "PH",
+        "date": "2022-11-09",
+        "validOn": "2023-11-06",
+        "validTo": null,
+        "Shape_Leng": 0.0518443908577,
+        "Shape_Area": 0.000156988899368,
+        "AREA_SQKM": 1.87171739436,
+        "psgc_id": "PH1381200030",
+        "psgc_code": "1381200030",
+        "psgc_name": "Santa Lucia",
+        "psgc_status": "fuzzy",
+        "match_confidence": 1.0,
+        "psgc_type": "barangay",
+        "match_method": "fuzzy",
+        "sga_member": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              121.0932642680001,
+              14.590032054000062
+            ],
+            [
+              121.10864271800006,
+              14.587715427000035
+            ],
+            [
+              121.10835392400008,
+              14.579272341000035
+            ],
+            [
+              121.1009745340001,
+              14.574820267000064
+            ],
+            [
+              121.0932642680001,
+              14.590032054000062
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}
