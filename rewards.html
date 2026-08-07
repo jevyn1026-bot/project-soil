@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ProjectSUN Rewards Center</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f4f7f6;
+}
+
+header{
+    background:#2e7d32;
+    color:white;
+    text-align:center;
+    padding:30px;
+}
+
+.container{
+    width:95%;
+    max-width:1100px;
+    margin:25px auto;
+}
+
+.category{
+    margin-bottom:40px;
+}
+
+.category h2{
+    color:#2e7d32;
+}
+
+.reward-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:20px;
+}
+
+.reward-card{
+    background:white;
+    border-radius:12px;
+    padding:20px;
+    box-shadow:0 3px 10px rgba(0,0,0,.1);
+}
+
+.reward-card h3{
+    margin-top:0;
+}
+
+.reward-card p{
+    color:#666;
+}
+
+.cost{
+    font-size:22px;
+    color:#2e7d32;
+    font-weight:bold;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    background:#2e7d32;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover{
+    opacity:.9;
+}
+</style>
+
+</head>
+<body>
+
+<header>
+
+<h1>🎁 ProjectSUN Rewards Center</h1>
+
+<p>Redeem your EcoPoints for exclusive rewards while helping build a greener Pasig City.</p>
+
+<h2>Your EcoPoints: <span id="points">Loading...</span></h2>
+
+</header>
+
+<div class="container">
+
+<div class="category">
+
+<h2>🎨 Profile Customization</h2>
+
+<div class="reward-grid">
+
+<div class="reward-card">
+<h3>🌲 Forest Theme</h3>
+<p>Unlock a beautiful forest profile theme.</p>
+<div class="cost">200 EcoPoints</div>
+<button onclick="applyThemeReward('Forest Theme')">
+    Redeem
+</button>
+</div>
+
+<div class="reward-card">
+<h3>🌊 Ocean Theme</h3>
+<p>Unlock a refreshing ocean-inspired theme.</p>
+<div class="cost">250 EcoPoints</div>
+<button onclick="applyThemeReward('Ocean Theme')">
+    Redeem
+</button>
+</div>
+
+<div class="reward-card">
+<h3>🌅 Sunset Theme</h3>
+<p>Decorate your profile with warm sunset colors.</p>
+<div class="cost">300 EcoPoints</div>
+<button onclick="applyThemeReward('Sunset Theme')">
+    Redeem
+</button>
+</div>
+
+<div class="reward-card">
+<h3>🟢 Emerald Profile Frame</h3>
+<p>Exclusive emerald border for your profile.</p>
+<div class="cost">400 EcoPoints</div>
+<button>Redeem</button>
+</div>
+
+<div class="reward-card">
+<h3>👑 Golden Profile Frame</h3>
+<p>Premium golden frame for top contributors.</p>
+<div class="cost">600 EcoPoints</div>
+<button>Redeem</button>
+</div>
+
+</div>
+
+</div>
+
+<div class="category">
+
+<h2>🌍 Community Impact</h2>
+
+<div class="reward-grid">
+
+<div class="reward-card">
+<h3>🌳 Plant a Tree</h3>
+<p>Use EcoPoints to sponsor a tree-planting activity.</p>
+<div class="cost">500 EcoPoints</div>
+<button>Redeem</button>
+</div>
+
+<div class="reward-card">
+<h3>♻️ Community Clean-up</h3>
+<p>Support local clean-up drives.</p>
+<div class="cost">800 EcoPoints</div>
+<button>Redeem</button>
+</div>
+
+<div class="reward-card">
+<h3>🌼 Adopt a Park</h3>
+<p>Contribute to improving local parks.</p>
+<div class="cost">1200 EcoPoints</div>
+<button>Redeem</button>
+</div>
+
+<div class="reward-card">
+<h3>🌊 River Rehabilitation</h3>
+<p>Support Pasig River restoration projects.</p>
+<div class="cost">1500 EcoPoints</div>
+<button>Redeem</button>
+</div>
+
+</div>
+
+</div>
+
+<div class="category">
+
+<h2>🎁 Personal Rewards</h2>
+
+<div class="reward-grid">
+
+<div class="reward-card">
+<h3>☕ Coffee Voucher</h3>
+<p>Redeem partner café discounts.</p>
+<div class="cost">700 EcoPoints</div>
+<button>Redeem</button>
+</div>
+
+<div class="reward-card">
+<h3>🎟 Museum Pass</h3>
+<p>Free environmental museum admission.</p>
+<div class="cost">900 EcoPoints</div>
+<button>Redeem</button>
+</div>
+
+<div class="reward-card">
+<h3>🚲 Bike Rental</h3>
+<p>Redeem free eco-friendly transportation.</p>
+<div class="cost">1000 EcoPoints</div>
+<button>Redeem</button>
+</div>
+
+</div>
+
+</div>
+
+<div class="category">
+
+<h2>🔥 Gamification Rewards</h2>
+
+<div class="reward-grid">
+
+<div class="reward-card">
+<h3>📅 7-Day Streak Boost</h3>
+<p>Celebrate seven consecutive active days.</p>
+<div class="cost">100 EcoPoints</div>
+<button>Redeem</button>
+</div>
+
+<div class="reward-card">
+<h3>⭐ Featured Citizen</h3>
+<p>Appear on the community spotlight.</p>
+<div class="cost">1500 EcoPoints</div>
+<button>Redeem</button>
+</div>
+
+<div class="reward-card">
+<h3>🎖 Exclusive Profile Banner</h3>
+<p>Unlock an exclusive ProjectSUN banner.</p>
+<div class="cost">800 EcoPoints</div>
+<button>Redeem</button>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+const user = JSON.parse(localStorage.getItem("user"));
+const token = localStorage.getItem("token");
+
+if (user) {
+    document.getElementById("points").textContent = user.points;
+}
+
+async function applyThemeReward(theme){
+
+    if(!token){
+        alert("Please log in first.");
+        return;
+    }
+
+    const response = await fetch("/rewards/theme",{
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json",
+            Authorization:`Bearer ${token}`
+        },
+        body:JSON.stringify({
+            theme
+        })
+    });
+
+    const data = await response.json();
+
+    if(data.success){
+        alert("✅ Theme unlocked and applied!");
+        location.reload();
+    }else{
+        alert(data.error || "Unable to redeem theme.");
+    }
+
+}
+</script>
+
+</body>
+</html>

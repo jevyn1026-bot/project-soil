@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ProjectSUN - Soil Reporting</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<link rel="stylesheet"
+href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+
+.custom-navbar{
+    background:#2e7d32;
+    padding:15px 20px;
+}
+
+.custom-nav-container{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:relative;
+}
+
+.custom-logo{
+    color:white;
+    text-decoration:none;
+    font-size:28px;
+    font-weight:bold;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.custom-logo i{
+    color:#7CFC00;
+}
+
+.custom-nav-menu{
+    display:flex;
+    gap:20px;
+}
+
+.custom-nav-menu a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.menu-toggle{
+    display:none;
+    background:none;
+    border:none;
+    color:white;
+    font-size:28px;
+    cursor:pointer;
+}
+
+@media (max-width:768px){
+
+.menu-toggle{
+    display:block;
+}
+
+.custom-nav-menu{
+    display:none;
+    flex-direction:column;
+    position:absolute;
+    top:60px;
+    left:0;
+    width:100%;
+    background:#2e7d32;
+    padding:15px;
+}
+
+.custom-nav-menu.show{
+    display:flex;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header class="custom-navbar">
+  <div class="custom-nav-container">
+
+    <a href="Soil.html" class="custom-logo">
+      <i class="fa-solid fa-leaf"></i>
+      <span>ProjectSUN</span>
+    </a>
+
+    <button id="menu-toggle" class="menu-toggle">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <nav class="custom-nav-menu">
+      <a href="Soil.html">Home</a>
+      <a href="map.html">Map Dashboard</a>
+      <a href="report.html">Report</a>
+      <a href="citizen-dashboard.html">My Profile</a>
+    </nav>
+
+  </div>
+</header>
+
+<div class="container">
+
+<h2>Soil Pollution Report</h2>
+<form id="pollution-report-form">
+
+<label>Pollution Type</label>
+
+<select id="type" name="type" required>
+    <option value="">Select Pollution Type</option>
+
+    <option value="Illegal Waste Dumping">
+        Illegal Waste Dumping
+    </option>
+
+    <option value="Plastic Waste">
+        Plastic Waste
+    </option>
+
+    <option value="Chemical Pollution">
+        Chemical Pollution
+    </option>
+
+    <option value="Oil and Fuel Spill">
+        Oil and Fuel Spill
+    </option>
+
+    <option value="Construction Debris">
+        Construction Debris
+    </option>
+
+    <option value="Agricultural Waste">
+        Agricultural Waste
+    </option>
+
+    <option value="Electronic Waste (E-Waste)">
+        Electronic Waste (E-Waste)
+    </option>
+
+    <option value="Industrial Waste">
+        Industrial Waste
+    </option>
+
+    <option value="Hazardous Waste">
+        Hazardous Waste
+    </option>
+
+    <option value="Other Environmental Concerns">
+        Other Environmental Concerns
+    </option>
+
+</select>
+
+<label>Barangay</label>
+
+<input
+    type="text"
+    id="report-barangay"
+    placeholder="Detecting barangay..."
+    readonly
+>
+
+<label>Description</label>
+
+<textarea
+id="report-desc"
+placeholder="Describe the pollution..."
+required></textarea>
+
+<label><strong>Photo Evidence *</strong></label>
+
+<div class="photo-buttons">
+
+    <label class="photo-btn">
+        📸 Take Photo
+        <input
+            type="file"
+            id="cameraInput"
+            accept="image/*"
+            capture="environment"
+            hidden>
+    </label>
+
+    <label class="photo-btn">
+        🖼 Upload From Gallery
+        <input
+            type="file"
+            id="galleryInput"
+            accept="image/*"
+            hidden>
+    </label>
+
+</div>
+
+<div class="preview-container">
+
+    <img
+        id="previewImage"
+        src=""
+        style="display:none;max-width:100%;border-radius:10px;">
+<p id="photoStatus">
+        No photo selected.
+    </p>
+
+</div>
+
+<label>GPS Location</label>
+
+<button
+type="button"
+id="trigger-gps-btn">
+
+📍 Refresh My GPS Location
+
+</button>
+
+<div id="gps-status">
+        Initializing GPS...
+
+</div>
+
+<div id="report-mini-map"></div>
+
+<div class="location-row">
+
+<div>
+
+<label>Latitude</label>
+
+<input
+type="text"
+id="report-lat"
+readonly>
+
+</div>
+
+<div>
+
+<label>Longitude</label>
+
+<input
+type="text"
+id="report-lng"
+readonly>
+
+</div>
+
+</div>
+
+<button
+type="submit"
+id="submit-btn">
+
+Submit Report
+
+</button>
+
+<div id="status-message"></div>
+
+</form>
+
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+let imageData = "";
+
+const miniMap = L.map("report-mini-map").setView([14.5764,121.0851],13);
+
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{
+    attribution:"© OpenStreetMap contributors"
+}).addTo(miniMap);
+
+let gpsMarker = null;
+
+function acquireLiveLocation(){
+
+    const gpsStatus =
+        document.getElementById("gps-status");
+
+    gpsStatus.textContent =
+        "📡 Getting GPS location...";
+
+    gpsStatus.style.color = "#e67e22";
+
+    if(!navigator.geolocation){
+
+        gpsStatus.textContent =
+            "❌ Geolocation is not supported.";
+
+        gpsStatus.style.color = "red";
+
+        return;
+
+    }
+
+    navigator.geolocation.getCurrentPosition(
+
+        function(position){
+
+const lat = position.coords.latitude;
+const lng = position.coords.longitude;
+
+document.getElementById("report-barangay").value =
+    "Detecting...";
+
+detectBarangay(lat, lng);
+
+            document.getElementById("report-lat").value =
+                lat.toFixed(6);
+
+            document.getElementById("report-lng").value =
+                lng.toFixed(6);
+
+            miniMap.setView([lat,lng],17);
+
+            if(gpsMarker){
+
+                gpsMarker.setLatLng([lat,lng]);
+
+            }else{
+
+                gpsMarker =
+                    L.marker([lat,lng]).addTo(miniMap);
+
+            }
+
+            gpsStatus.textContent =
+                "✅ GPS Location Acquired";
+
+            gpsStatus.style.color = "green";
+
+        },
+
+        function(error){
+
+            switch(error.code){
+
+                case error.PERMISSION_DENIED:
+                    gpsStatus.textContent =
+                        "❌ Permission denied.";
+                    break;
+
+                case error.POSITION_UNAVAILABLE:
+                    gpsStatus.textContent =
+                        "❌ Position unavailable.";
+                    break;
+
+                case error.TIMEOUT:
+                    gpsStatus.textContent =
+                        "❌ GPS request timed out.";
+                    break;
+
+                default:
+                    gpsStatus.textContent =
+                        "❌ Unknown GPS error.";
+
+            }
+
+            gpsStatus.style.color = "red";
+
+        },
+
+        {
+            enableHighAccuracy:true,
+            timeout:15000,
+            maximumAge:0
+        }
+
+    );
+
+}
+
+document
+.getElementById("trigger-gps-btn")
+.addEventListener("click", acquireLiveLocation);
+
+function loadPhoto(file){
+
+    if(!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = function(e){
+
+        imageData = e.target.result;
+
+        document.getElementById("previewImage").src =
+            imageData;
+
+        document.getElementById("previewImage").style.display =
+            "block";
+
+        document.getElementById("photoStatus").textContent =
+            "✅ Photo selected";
+
+    };
+
+    reader.readAsDataURL(file);
+
+}
+
+document.getElementById("cameraInput")
+.addEventListener("change", function(){
+
+    loadPhoto(this.files[0]);
+
+});
+
+document.getElementById("galleryInput")
+.addEventListener("change", function(){
+
+    loadPhoto(this.files[0]);
+
+});
+
+document
+.getElementById("pollution-report-form")
+.addEventListener("submit", async function(e){
+
+    e.preventDefault();
+
+const barangay =
+    document.getElementById("report-barangay").value;
+
+if (
+    barangay === "Detecting..." ||
+    barangay === "Unknown" ||
+    barangay === ""
+) {
+
+    alert("Please wait until your barangay has been detected before submitting.");
+
+    return;
+}
+
+    const submitBtn =
+        document.getElementById("submit-btn");
+
+    const status =
+        document.getElementById("status-message");
+
+    submitBtn.disabled = true;
+    submitBtn.innerText = "Submitting...";
+
+if(imageData === ""){
+
+    status.style.display = "block";
+    status.className = "error-box";
+
+    status.textContent =
+        "⚠️ Please take or upload a photo first.";
+
+    submitBtn.disabled = false;
+    submitBtn.innerText = "Submit Report";
+
+    return;
+
+}
+
+    const submissionTime = new Date();
+
+    const report = {
+
+        type: document.getElementById("type").value,
+
+        barangay: barangay,
+
+        description: document.getElementById("report-desc").value,
+
+        latitude: parseFloat(
+            document.getElementById("report-lat").value
+        ),
+
+        longitude: parseFloat(
+            document.getElementById("report-lng").value
+        ),
+
+        photo: imageData,
+
+        status: "Pending",
+
+        timestamp: submissionTime
+
+    };
+
+    try{
+
+        const response = await fetch("/reports",{
+method:"POST",
+
+            headers:{
+                "Content-Type":"application/json"
+            },
+
+            body:JSON.stringify(report)
+
+        });
+
+        const result = await response.json();
+
+const detectedBarangay = result.report.barangay;
+
+        if (response.ok) {
+
+const hours = String(submissionTime.getHours()).padStart(2, "0");
+const minutes = String(submissionTime.getMinutes()).padStart(2, "0");
+const seconds = String(submissionTime.getSeconds()).padStart(2, "0");
+const milliseconds = String(submissionTime.getMilliseconds()).padStart(3, "0");
+
+// Two extra decimal digits (00-99)
+const decimal = String(Math.floor(Math.random() * 100)).padStart(2, "0");
+
+const formattedTime =
+    `${hours}:${minutes}:${seconds}.${milliseconds}.${decimal}`;            
+            const formattedDate = submissionTime.toLocaleDateString();
+
+            status.style.display = "block";
+            status.className = "success-box";
+            
+status.innerHTML = `
+🎉 <strong>You successfully reported!</strong><br><br>
+📅 <strong>Date:</strong> ${formattedDate}<br>
+📍 <strong>Location:</strong> Brgy. ${detectedBarangay} (${report.latitude}, ${report.longitude})<br>
+⏰ <strong>Timestamp:</strong> ${formattedTime}
+`;
+            document
+            .getElementById("pollution-report-form")
+            .reset();
+
+            document.getElementById("report-lat").value = "";
+            document.getElementById("report-lng").value = "";
+
+            imageData = "";
+
+            document.getElementById("previewImage").style.display = "none";
+            document.getElementById("previewImage").src = "";
+            document.getElementById("photoStatus").textContent =
+                "No photo selected.";
+
+            if(gpsMarker){
+
+                miniMap.removeLayer(gpsMarker);
+
+                gpsMarker = null;
+
+            }
+
+            acquireLiveLocation();
+
+        }else{
+
+            status.style.display = "block";
+            status.className = "error-box";
+
+            status.textContent =
+                "❌ Failed to submit report.";
+
+        }
+
+    }catch(err){
+
+        console.error(err);
+
+        status.style.display = "block";
+        status.className = "error-box";
+
+        status.textContent =
+            "❌ Cannot connect to the server.";
+
+    }
+
+    submitBtn.disabled = false;
+
+    submitBtn.innerText = "Submit Report";
+
+});
+
+});
+
+async function detectBarangay(lat, lng) {
+
+    try {
+
+        const response = await fetch(
+            `/api/barangay?lat=${lat}&lng=${lng}`
+        );
+
+        const data = await response.json();
+
+        console.log("Detected barangay:", data.barangay);
+
+        document.getElementById("report-barangay").value =
+            data.barangay || "Unknown";
+
+    } catch (err) {
+
+        console.error("Barangay detection failed:", err);
+
+        document.getElementById("report-barangay").value =
+            "Unknown";
+
+    }
+
+}
+
+</script>
+
+<script>
+const token = localStorage.getItem("token");
+
+if (!token) {
+    alert("Please log in first before submitting a report.");
+    window.location.href = "login.html";
+}
+</script>
+
+...
+<script src="js/main.js"></script>
+
+<script>
+const menuToggle = document.getElementById("menu-toggle");
+const navMenu = document.querySelector(".custom-nav-menu");
+
+if (menuToggle && navMenu) {
+    menuToggle.addEventListener("click", () => {
+        navMenu.classList.toggle("show");
+    });
+}
+</script>
+
+</body>
+
+</html>
+
+

@@ -67,16 +67,23 @@ try {
 
     if (!response.ok) throw new Error("Failed to fetch reports");                
                 const reports = await response.json();
+const activeReports = reports.filter(
+    report => report.status !== "Resolved"
+);
 
                 // 3. Loop through reports and plot markers
-                reports.forEach(report => {
+activeReports.forEach(report => {
                     if (!report.latitude || !report.longitude) return; // Skip invalid entries
 
                     // Setup custom dynamic popup contents
                     let popupHTML = `
                         <div class="popup-container">
                             <div class="popup-title"><i class="fa-solid fa-triangle-exclamation"></i> ${report.type}</div>
-                            <div class="popup-date">Reported: ${report.date || 'Unknown Date'}</div>
+<div class="popup-date">
+    Reported: ${report.timestamp 
+        ? new Date(report.timestamp).toLocaleString() 
+        : 'Unknown Date'}
+</div>
                             <div class="popup-desc">${report.description}</div>
                     `;
 

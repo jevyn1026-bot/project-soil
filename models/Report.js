@@ -1,6 +1,11 @@
 const { mongoose } = require("../database");
 
 const ReportSchema = new mongoose.Schema({
+userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    default: null
+},
     barangay: String,
     type: String,
     description: String,
@@ -27,6 +32,7 @@ const ReportSchema = new mongoose.Schema({
         type: Number,
         default: null
     }
+
 });
 
 module.exports = mongoose.model("Report", ReportSchema);

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ProjectSUN Citizen Dashboard</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="public/css/dashboard.css">
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="nav-container">
+
+        <a href="Soil.html" class="logo">
+            <i class="fa-solid fa-leaf"></i>
+            <span>ProjectSUN</span>
+        </a>
+
+        <button class="menu-toggle" id="menu-toggle">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <nav class="nav-menu">
+            <a href="Soil.html" class="nav-link">Home</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="report.html" class="nav-link">Report Pollution</a>
+            <a href="map.html" class="nav-link">Interactive Map</a>
+            <a href="rewards.html" class="nav-link">Rewards</a>
+            <a href="citizen-dashboard.html" class="nav-link active">My Profile</a>
+        </nav>
+
+    </div>
+</header>
+
+<div class="container">
+
+    <div class="profile-card">
+
+        <h2 id="userName">Loading...</h2>
+
+        <p id="userEmail"></p>
+
+        <hr>
+
+        <p>
+            <strong>🌱 Eco-Points:</strong>
+            <span id="userPoints">0</span>
+        </p>
+
+        <p>
+            <strong>⭐ Level:</strong>
+            <span id="userLevel">1</span>
+        </p>
+
+        <p>
+            <strong>🏅 Badges:</strong>
+            <span id="userBadges">No badges yet</span>
+        </p>
+
+        <button id="logoutBtn">Log Out</button>
+
+<div>
+
+<hr>
+
+<h3>📋 My Reports</h3>
+
+<div id="myReports">
+    <p>Loading your reports...</p>
+</div>
+
+</div>
+
+<script src="js/main.js"></script>
+<script src="public/js/citizen-dashboard.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const menuToggle = document.getElementById("menu-toggle");
+    const navMenu = document.querySelector(".nav-menu");
+
+    menuToggle.addEventListener("click", function () {
+        navMenu.classList.toggle("active");
+    });
+});
+</script>
+
+</body>
+</html>

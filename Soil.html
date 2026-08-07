@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pasig City Soil Pollution Monitoring System</title>
+<title>Project Sun | Pasig City Environmental Monitoring & Citizen Reporting System</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+<link rel="stylesheet" href="css/style.css">    
+
     <style>
-        :root {
-            --primary-green: #2e7d32;
-            --dark-neutral: #2c3e50;
-            --light-bg: #f4f7f6;
-            --white: #ffffff;
-        }
+
+:root{
+    --primary-green:#2e7d32;
+    --dark-neutral:#2c3e50;
+    --light-bg:#f4f7f6;
+    --white:#ffffff;
+}
         
         * {
             box-sizing: border-box;
@@ -272,6 +274,15 @@
             color: #7f8c8d;
         }
 
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: #2e7d32;
+    cursor: pointer;
+}
+
         /* Media Query Adjustment for Large Screen Displays */
         @media (min-width: 768px) {
             .hero-container {
@@ -288,20 +299,120 @@
                 max-height: 400px;
             }
         }
+
+.custom-logo small {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: #666;
+    margin-top: 2px;
+}
+
+.hero-features {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    font-weight: 600;
+    color: #2e7d32;
+}
+
+.hero-features span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ==========================
+   Mobile Responsive Design
+========================== */
+
+@media (max-width:768px){
+
+    .menu-toggle{
+        display:block;
+    }
+
+    .custom-nav-container{
+        position:relative;
+    }
+
+    .custom-nav-menu{
+        display:none;
+        position:absolute;
+        top:100%;
+        left:0;
+        width:100%;
+        background:#fff;
+        flex-direction:column;
+        z-index:9999;
+        box-shadow:0 8px 20px rgba(0,0,0,.15);
+        padding:10px 0;
+    }
+
+    .custom-nav-menu.show{
+        display:flex;
+    }
+
+    .custom-nav-menu a{
+        margin:0;
+        padding:15px 20px;
+        width:100%;
+        border-bottom:1px solid #eee;
+    }
+
+    .custom-nav-menu .btn{
+        margin:15px;
+        width:calc(100% - 30px);
+        justify-content:center;
+    }
+}
     </style>
 </head>
 <body>
 
-    <header class="custom-navbar">
-        <div class="custom-nav-container">
-            <a href="Soil.html" class="custom-logo"><i class="fa-solid fa-leaf"></i> EcoPasig</a>
-            <nav class="custom-nav-menu">
-                <a href="Soil.html" class="active">Home</a>
-                <a href="map.html">Interactive Map</a>
-                <a href="report.html">Soil Reporting</a>
-            </nav>
-        </div>
-    </header>
+<header class="custom-navbar">
+    <div class="custom-nav-container">
+
+        <a href="Soil.html" class="custom-logo">
+            <i class="fa-solid fa-leaf"></i>
+            <div>
+                <strong>Project Sun</strong><br>
+                <small>Environmental Monitoring</small>
+            </div>
+        </a>
+
+<button class="menu-toggle" id="menu-toggle">
+    <i class="fa-solid fa-bars"></i>
+</button>
+        <nav class="custom-nav-menu">
+            <a href="Soil.html" class="active">
+                <i class="fa-solid fa-house"></i> Home
+            </a>
+
+            <a href="map.html">
+                <i class="fa-solid fa-map-location-dot"></i> Explore Live Map
+            </a>
+
+            <a href="report.html">
+                <i class="fa-solid fa-bullhorn"></i> Report an Issue
+           </a>
+
+<a href="rewards.html">
+    <i class="fa-solid fa-gift"></i> Rewards
+</a>
+
+<a href="leaderboard.html">
+    <i class="fa-solid fa-trophy"></i> Leaderboard
+</a>
+
+<a href="login.html" class="btn btn-primary" id="accountLink">
+    Citizen Log In
+</a>
+        </nav>
+
+    </div>
+</header>   
 
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
@@ -325,8 +436,14 @@
         <section class="hero-section">
             <div class="hero-container">
                 <div class="hero-content">
-                    <h1>Protecting Pasig's Soil, <br><span class="highlight">Securing Our Future</span></h1>
-                    <p>Join fellow Pasigueños in tracking, reporting, and combating soil pollution. Together, we can restore our environment and earn rewards for civic action.</p>
+<h1>
+    Protect Pasig's Environment,
+    <br>
+    <span class="highlight">One Report at a Time</span>
+</h1>
+<p>
+    Project Sun empowers Pasigueños to report soil pollution and environmental hazards using GPS-powered reporting. Every verified report contributes to a cleaner, safer, and more sustainable Pasig City while rewarding active community participation through EcoPoints.
+</p>
                     <div class="hero-actions">
                         <a href="report.html" class="btn btn-primary">
                             <i class="fa-solid fa-bullhorn"></i> Report Pollution
@@ -340,7 +457,14 @@
                     <img src="https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&w=600&q=80" alt="Green community environment">
                 </div>
             </div>
-        </section>
+
+<div class="hero-features">
+    <span><i class="fa-solid fa-location-crosshairs"></i> Automatic GPS Detection</span>
+    <span><i class="fa-solid fa-star"></i> Earn EcoPoints</span>
+    <span><i class="fa-solid fa-shield-halved"></i> Verified Community Reports</span>
+</div> 
+
+       </section>
 
         <section class="stats-section">
             <div class="section-container">
@@ -404,8 +528,10 @@
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-info">
-                <h3><i class="fa-solid fa-leaf"></i> EcoPasig</h3>
-                <p>An official initiative dedicated to maintaining clean, safe, and pollution-free land for the residents of Pasig City.</p>
+                <h3><i class="fa-solid fa-leaf"></i> Project Sun</h3>
+<p>
+Project Sun is a citizen-powered environmental monitoring and reporting platform that helps protect Pasig City through real-time reporting, mapping, and community participation.
+</p>
             </div>
             <div class="footer-links">
                 <h4>Quick Links</h4>
@@ -426,7 +552,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 Soil Pollution Monitoring System - Pasig City. All Rights Reserved.</p>
+&copy; 2026 Project Soil | Pasig City Environmental Monitoring & Citizen Reporting System.
         </div>
     </footer>
 
@@ -450,5 +576,33 @@ async function fetchLiveCounters() {
 }
 
 window.addEventListener('DOMContentLoaded', fetchLiveCounters);    </script>
+
+<script src="js/main.js"></script>
+<script src="public/js/theme.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const menuToggle = document.getElementById("menu-toggle");
+    const navMenu = document.querySelector(".custom-nav-menu");
+
+    if (menuToggle && navMenu) {
+        menuToggle.addEventListener("click", function () {
+            navMenu.classList.toggle("show");
+        });
+    }
+});
+</script>
+
+<script>
+const token = localStorage.getItem("token");
+
+if (token) {
+    document.getElementById("accountLink").innerHTML = "👤 Account";
+    document.getElementById("accountLink").href = "citizen-dashboard.html";
+} else {
+    document.getElementById("accountLink").innerHTML = "Citizen Log In";
+    document.getElementById("accountLink").href = "login.html";
+}
+</script>
+
 </body>
 </html>
