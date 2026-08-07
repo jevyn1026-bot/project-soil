@@ -103,8 +103,7 @@ button:hover{
 <p>Unlock a beautiful forest profile theme.</p>
 <div class="cost">200 EcoPoints</div>
 <button onclick="applyThemeReward('Forest Theme')">
-    Redeem
-</button>
+    Redeem/button>
 </div>
 
 <div class="reward-card">
@@ -248,9 +247,13 @@ button:hover{
 <script>
 const user = JSON.parse(localStorage.getItem("user"));
 const token = localStorage.getItem("token");
+const pointsElement = document.getElementById("points");
 
-if (user) {
-    document.getElementById("points").textContent = user.points;
+if (!token || !user) {
+    pointsElement.innerHTML =
+        "🚫 You do not have an account yet.<br>Create an account or log in to start earning EcoPoints.";
+} else {
+    pointsElement.textContent = user.points;
 }
 
 async function applyThemeReward(theme){
