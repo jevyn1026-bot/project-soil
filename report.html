@@ -1,28 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>ProjectSUN - Soil Reporting</title>
-
-<link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
->
-
-<link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-/>
-
-<style>
-
-/* =========================================================
-   GLOBAL
-========================================================= */
+<!DOCTYPE html><html lang="en">
+<head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>ProjectSUN - Soil Reporting</title><link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><link rel="stylesheet"
+href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"><style>
 
 * {
     margin: 0;
@@ -36,21 +16,13 @@ body {
     min-height: 100vh;
 }
 
-
-/* =========================================================
-   NAVIGATION
-========================================================= */
-
-:root {
-    --primary-green: #2e7d32;
-    --dark-neutral: #2c3e50;
-    --light-bg: #f4f7f6;
-    --white: #ffffff;
-}
+/* =========================
+   NAVBAR
+========================= */
 
 .custom-navbar {
     background: #fff;
-    box-shadow: 0 2px 5px rgba(0,0,0,.05);
+    box-shadow: 0 2px 5px rgba(0,0,0,.08);
     padding: 1rem 2rem;
     position: relative;
     z-index: 1000;
@@ -59,7 +31,6 @@ body {
 .custom-nav-container {
     max-width: 1200px;
     margin: 0 auto;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -69,13 +40,10 @@ body {
     display: flex;
     align-items: center;
     gap: .5rem;
-
     text-decoration: none;
-
     font-size: 1.4rem;
     font-weight: bold;
-
-    color: var(--primary-green);
+    color: #2e7d32;
 }
 
 .custom-nav-menu {
@@ -85,70 +53,48 @@ body {
 
 .custom-nav-menu a {
     margin-left: 1.5rem;
-
     text-decoration: none;
-
-    color: var(--dark-neutral);
-
+    color: #2c3e50;
     font-weight: 500;
-
     padding-bottom: 4px;
 }
 
 .custom-nav-menu a.active {
-    color: var(--primary-green);
-
-    border-bottom: 2px solid var(--primary-green);
+    color: #2e7d32;
+    border-bottom: 2px solid #2e7d32;
 }
 
 .menu-toggle {
     display: none;
-
     background: none;
     border: none;
-
     font-size: 28px;
-
     cursor: pointer;
 }
 
-
-/* =========================================================
-   MAIN CONTAINER
-========================================================= */
+/* =========================
+   CONTAINER
+========================= */
 
 .container {
     width: 95%;
     max-width: 900px;
-
     margin: 30px auto;
-
-    background: white;
-
+    background: #fff;
     padding: 25px;
-
     border-radius: 12px;
-
     box-shadow: 0 5px 15px rgba(0,0,0,.1);
 }
 
 h2 {
-    color: var(--primary-green);
-
+    color: #2e7d32;
     margin-bottom: 20px;
 }
 
-
-/* =========================================================
-   FORM
-========================================================= */
-
 label {
     display: block;
-
     margin-top: 15px;
     margin-bottom: 8px;
-
     font-weight: bold;
 }
 
@@ -156,50 +102,35 @@ input,
 textarea,
 select {
     width: 100%;
-
     padding: 12px;
-
     border: 1px solid #ccc;
-
     border-radius: 8px;
-
     font-size: 16px;
-
     background: #fff;
 }
 
 input[readonly] {
-    background: #f7f7f7;
+    background: #f5f5f5;
 }
 
 textarea {
     resize: vertical;
-
     min-height: 120px;
 }
 
-
-/* =========================================================
+/* =========================
    GPS
-========================================================= */
+========================= */
 
 #trigger-gps-btn {
     margin-top: 15px;
-
     padding: 12px;
-
     width: 100%;
-
     border: none;
-
     background: #1976d2;
-
     color: white;
-
     font-size: 16px;
-
     border-radius: 8px;
-
     cursor: pointer;
 }
 
@@ -208,71 +139,56 @@ textarea {
 }
 
 #trigger-gps-btn:disabled {
-    opacity: .7;
-
+    background: #90a4ae;
     cursor: not-allowed;
 }
 
 #gps-status {
     margin-top: 12px;
-
     font-weight: bold;
-
     line-height: 1.5;
 }
 
+/* =========================
+   MAP
+========================= */
+
 #report-mini-map {
     height: 300px;
-
     margin-top: 15px;
-
     border-radius: 10px;
-
     border: 1px solid #ccc;
-
     overflow: hidden;
 }
 
 .location-row {
     display: flex;
-
     gap: 15px;
-
     margin-top: 15px;
 }
 
-.location-row > div {
+.location-row div {
     flex: 1;
 }
 
-
-/* =========================================================
+/* =========================
    PHOTO
-========================================================= */
+========================= */
 
 .photo-buttons {
     display: flex;
-
     gap: 10px;
-
     margin-top: 10px;
 }
 
 .photo-btn {
     flex: 1;
-
     background: #1976d2;
-
     color: white;
-
     padding: 12px;
-
     border-radius: 8px;
-
     text-align: center;
-
     cursor: pointer;
-
     font-weight: bold;
 }
 
@@ -282,143 +198,102 @@ textarea {
 
 .preview-container {
     margin-top: 15px;
-
     text-align: center;
 }
 
 #previewImage {
     max-width: 100%;
-
     max-height: 400px;
-
     border-radius: 10px;
-
     object-fit: contain;
 }
 
 #photoStatus {
     margin-top: 8px;
-
-    color: #555;
 }
 
-
-/* =========================================================
+/* =========================
    SUBMIT
-========================================================= */
+========================= */
 
 #submit-btn {
     margin-top: 25px;
-
     width: 100%;
-
     padding: 15px;
-
-    background: var(--primary-green);
-
+    background: #2e7d32;
     color: white;
-
     border: none;
-
     border-radius: 8px;
-
     font-size: 18px;
-
     cursor: pointer;
 }
 
 #submit-btn:hover {
-    background: #256b29;
+    background: #256628;
 }
 
 #submit-btn:disabled {
-    opacity: .7;
-
+    background: #9e9e9e;
     cursor: not-allowed;
 }
 
-
-/* =========================================================
+/* =========================
    STATUS
-========================================================= */
+========================= */
 
 #status-message {
     margin-top: 20px;
-
     font-weight: bold;
-
     text-align: left;
-
     line-height: 1.6;
-
     padding: 15px;
-
     border-radius: 8px;
-
     display: none;
+    overflow-wrap: anywhere;
 }
 
 .success-box {
     background: #e8f5e9;
-
     border: 1px solid #a5d6a7;
-
     color: #1b5e20;
 }
 
 .error-box {
     background: #ffebee;
-
     border: 1px solid #ef9a9a;
-
     color: #c62828;
 }
 
 .warning-box {
     background: #fff8e1;
-
     border: 1px solid #ffe082;
-
-    color: #8a6500;
+    color: #8d6e00;
 }
 
-
-/* =========================================================
-   LOGIN MODAL
-========================================================= */
+/* =========================
+   MODAL
+========================= */
 
 .modal {
     display: none;
-
     position: fixed;
-
     inset: 0;
-
     background: rgba(0,0,0,.55);
-
     justify-content: center;
-
     align-items: center;
-
     z-index: 9999;
 }
 
 .modal-content {
     width: 90%;
-
     max-width: 360px;
-
     background: #fff;
-
     border-radius: 15px;
-
     overflow: hidden;
-
     animation: popup .25s ease;
 }
 
 @keyframes popup {
-
     from {
         transform: scale(.85);
         opacity: 0;
@@ -432,27 +307,20 @@ textarea {
 
 .modal-header {
     background: #2e7d32;
-
     color: #fff;
-
     padding: 18px;
-
     text-align: center;
 }
 
 .modal-header i {
     font-size: 34px;
-
     margin-bottom: 10px;
 }
 
 .modal-content p {
     padding: 22px;
-
     text-align: center;
-
     color: #555;
-
     line-height: 1.5;
 }
 
@@ -462,19 +330,14 @@ textarea {
 
 .modal-buttons button {
     flex: 1;
-
     border: none;
-
     padding: 15px;
-
     font-size: 16px;
-
     cursor: pointer;
 }
 
 .login-btn {
     background: #2e7d32;
-
     color: #fff;
 }
 
@@ -482,10 +345,9 @@ textarea {
     background: #f2f2f2;
 }
 
-
-/* =========================================================
+/* =========================
    MOBILE
-========================================================= */
+========================= */
 
 @media (max-width: 768px) {
 
@@ -499,21 +361,13 @@ textarea {
 
     .custom-nav-menu {
         display: none;
-
         flex-direction: column;
-
         position: absolute;
-
         top: 70px;
-
         left: 0;
-
         width: 100%;
-
         background: #fff;
-
         box-shadow: 0 5px 10px rgba(0,0,0,.1);
-
         padding: 1rem;
     }
 
@@ -527,15 +381,12 @@ textarea {
 
     .container {
         width: 94%;
-
         margin: 20px auto;
-
         padding: 18px;
     }
 
     .location-row {
         flex-direction: column;
-
         gap: 0;
     }
 
@@ -544,1241 +395,953 @@ textarea {
     }
 
     #report-mini-map {
-        height: 280px;
+        height: 260px;
     }
 }
 
-</style>
+@media (max-width: 480px) {
 
-</head>
+    h2 {
+        font-size: 22px;
+    }
 
+    input,
+    textarea,
+    select,
+    button {
+        font-size: 16px;
+    }
 
-<body>
+    .container {
+        padding: 15px;
+    }
+}
 
+</style></head><body><header class="custom-navbar"><div class="custom-nav-container">
 
-<!-- ========================================================
-     NAVIGATION
-========================================================= -->
+    <a href="Soil.html" class="custom-logo">
+        <i class="fa-solid fa-leaf"></i>
+        <span>ProjectSUN</span>
+    </a>
 
-<header class="custom-navbar">
+    <button
+        id="menu-toggle"
+        class="menu-toggle"
+        type="button"
+        aria-label="Open menu">
 
-    <div class="custom-nav-container">
+        <i class="fa-solid fa-bars"></i>
 
-        <a href="Soil.html" class="custom-logo">
+    </button>
 
-            <i class="fa-solid fa-leaf"></i>
+    <nav class="custom-nav-menu">
 
-            <span>ProjectSUN</span>
-
+        <a href="Soil.html">
+            Home
         </a>
 
-
-        <button
-            id="menu-toggle"
-            class="menu-toggle"
-            type="button"
-            aria-label="Open navigation menu"
-        >
-
-            <i class="fa-solid fa-bars"></i>
-
-        </button>
-
-
-        <nav class="custom-nav-menu">
-
-            <a href="Soil.html">
-                Home
-            </a>
-
-            <a href="map.html">
-                Map
-            </a>
-
-            <a
-                href="report.html"
-                class="active"
-            >
-                Report
-            </a>
-
-            <a href="dashboard.html">
-                Dashboard
-            </a>
-
-            <a href="citizen-dashboard.html">
-                My Account
-            </a>
-
-        </nav>
-
-    </div>
-
-</header>
-
-
-
-<!-- ========================================================
-     REPORT FORM
-========================================================= -->
-
-<div class="container">
-
-    <h2>
-        Soil Pollution Report
-    </h2>
-
-
-    <form id="pollution-report-form">
-
-
-        <!-- POLLUTION TYPE -->
-
-        <label for="type">
-            Pollution Type
-        </label>
-
-        <select
-            id="type"
-            name="type"
-            required
-        >
-
-            <option value="">
-                Select Pollution Type
-            </option>
-
-            <option value="Illegal Waste Dumping">
-                Illegal Waste Dumping
-            </option>
-
-            <option value="Plastic Waste">
-                Plastic Waste
-            </option>
-
-            <option value="Chemical Pollution">
-                Chemical Pollution
-            </option>
-
-            <option value="Oil and Fuel Spill">
-                Oil and Fuel Spill
-            </option>
-
-            <option value="Construction Debris">
-                Construction Debris
-            </option>
-
-            <option value="Agricultural Waste">
-                Agricultural Waste
-            </option>
-
-            <option value="Electronic Waste (E-Waste)">
-                Electronic Waste (E-Waste)
-            </option>
-
-            <option value="Industrial Waste">
-                Industrial Waste
-            </option>
-
-            <option value="Hazardous Waste">
-                Hazardous Waste
-            </option>
-
-            <option value="Other Environmental Concerns">
-                Other Environmental Concerns
-            </option>
-
-        </select>
-
-
-        <!-- BARANGAY -->
-
-        <label for="report-barangay">
-            Barangay
-        </label>
-
-        <input
-            type="text"
-            id="report-barangay"
-            placeholder="Detecting barangay..."
-            readonly
-        >
-
-
-        <!-- DESCRIPTION -->
-
-        <label for="report-desc">
-            Description
-        </label>
-
-        <textarea
-            id="report-desc"
-            placeholder="Describe the pollution..."
-            required
-        ></textarea>
-
-
-        <!-- PHOTO -->
-
-        <label>
-            <strong>
-                Photo Evidence *
-            </strong>
-        </label>
-
-
-        <div class="photo-buttons">
-
-            <label class="photo-btn">
-
-                📸 Take Photo
-
-                <input
-                    type="file"
-                    id="cameraInput"
-                    accept="image/*"
-                    capture="environment"
-                    hidden
-                >
-
-            </label>
-
-
-            <label class="photo-btn">
-
-                🖼 Upload From Gallery
-
-                <input
-                    type="file"
-                    id="galleryInput"
-                    accept="image/*"
-                    hidden
-                >
-
-            </label>
-
-        </div>
-
-
-        <div class="preview-container">
-
-            <img
-                id="previewImage"
-                src=""
-                alt="Photo preview"
-                style="display:none;"
-            >
-
-            <p id="photoStatus">
-                No photo selected.
-            </p>
-
-        </div>
-
-
-        <!-- GPS -->
-
-        <label>
-            GPS Location
-        </label>
-
-
-        <button
-            type="button"
-            id="trigger-gps-btn"
-        >
-
-            📍 Refresh My GPS Location
-
-        </button>
-
-
-        <div id="gps-status">
-            Initializing GPS...
-        </div>
-
-
-        <!-- MAP -->
-
-        <div id="report-mini-map"></div>
-
-
-        <!-- COORDINATES -->
-
-        <div class="location-row">
-
-            <div>
-
-                <label for="report-lat">
-                    Latitude
-                </label>
-
-                <input
-                    type="text"
-                    id="report-lat"
-                    readonly
-                >
-
-            </div>
-
-
-            <div>
-
-                <label for="report-lng">
-                    Longitude
-                </label>
-
-                <input
-                    type="text"
-                    id="report-lng"
-                    readonly
-                >
-
-            </div>
-
-        </div>
-
-
-        <!-- SUBMIT -->
-
-        <button
-            type="submit"
-            id="submit-btn"
-        >
-
-            Submit Report
-
-        </button>
-
-
-        <div id="status-message"></div>
-
-    </form>
+        <a href="map.html">
+            Map
+        </a>
+
+        <a
+            href="report.html"
+            class="active">
+            Report
+        </a>
+
+        <a href="dashboard.html">
+            Dashboard
+        </a>
+
+        <a href="citizen-dashboard.html">
+            My Account
+        </a>
+
+    </nav>
 
 </div>
 
+</header><div class="container"><h2>
+    Soil Pollution Report
+</h2>
 
 
-<!-- ========================================================
-     LEAFLET
-========================================================= -->
+<form id="pollution-report-form">
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- =========================
+         POLLUTION TYPE
+    ========================== -->
 
+    <label for="type">
+        Pollution Type
+    </label>
 
+    <select
+        id="type"
+        name="type"
+        required>
 
-<script>
+        <option value="">
+            Select Pollution Type
+        </option>
 
-/* =========================================================
-   PROJECTSUN REPORT SYSTEM
-========================================================= */
+        <option value="Illegal Waste Dumping">
+            Illegal Waste Dumping
+        </option>
 
-document.addEventListener("DOMContentLoaded", function () {
+        <option value="Plastic Waste">
+            Plastic Waste
+        </option>
 
+        <option value="Chemical Pollution">
+            Chemical Pollution
+        </option>
 
-    /* =====================================================
-       VARIABLES
-    ===================================================== */
+        <option value="Oil and Fuel Spill">
+            Oil and Fuel Spill
+        </option>
 
-    let imageData = "";
+        <option value="Construction Debris">
+            Construction Debris
+        </option>
 
-    let gpsMarker = null;
+        <option value="Agricultural Waste">
+            Agricultural Waste
+        </option>
 
-    let currentLocation = {
-        latitude: null,
-        longitude: null,
-        barangay: ""
-    };
+        <option value="Electronic Waste (E-Waste)">
+            Electronic Waste (E-Waste)
+        </option>
 
+        <option value="Industrial Waste">
+            Industrial Waste
+        </option>
 
-    /* =====================================================
-       ELEMENTS
-    ===================================================== */
+        <option value="Hazardous Waste">
+            Hazardous Waste
+        </option>
 
-    const form =
-        document.getElementById(
-            "pollution-report-form"
-        );
+        <option value="Other Environmental Concerns">
+            Other Environmental Concerns
+        </option>
 
-    const barangayInput =
-        document.getElementById(
-            "report-barangay"
-        );
-
-    const latitudeInput =
-        document.getElementById(
-            "report-lat"
-        );
-
-    const longitudeInput =
-        document.getElementById(
-            "report-lng"
-        );
-
-    const gpsStatus =
-        document.getElementById(
-            "gps-status"
-        );
-
-    const gpsButton =
-        document.getElementById(
-            "trigger-gps-btn"
-        );
-
-    const submitButton =
-        document.getElementById(
-            "submit-btn"
-        );
-
-    const statusMessage =
-        document.getElementById(
-            "status-message"
-        );
-
-    const previewImage =
-        document.getElementById(
-            "previewImage"
-        );
-
-    const photoStatus =
-        document.getElementById(
-            "photoStatus"
-        );
+    </select>
 
 
-    /* =====================================================
-       MAP
-    ===================================================== */
+    <!-- =========================
+         BARANGAY
+    ========================== -->
 
-    const miniMap =
-        L.map("report-mini-map")
-         .setView(
-             [14.5764, 121.0851],
-             13
-         );
+    <label for="report-barangay">
+        Barangay
+    </label>
 
-
-    L.tileLayer(
-        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-        {
-            attribution:
-                "© OpenStreetMap contributors",
-
-            maxZoom: 19
-        }
-    ).addTo(miniMap);
+    <input
+        type="text"
+        id="report-barangay"
+        placeholder="Detecting barangay..."
+        readonly>
 
 
-    /* =====================================================
-       NORMALIZE BARANGAY
-    ===================================================== */
+    <!-- =========================
+         DESCRIPTION
+    ========================== -->
 
-    function normalizeBarangayName(value) {
+    <label for="report-desc">
+        Description
+    </label>
 
-        if (
-            value === null ||
-            value === undefined
-        ) {
-            return "";
-        }
-
-
-        let name =
-            String(value).trim();
+    <textarea
+        id="report-desc"
+        placeholder="Describe the pollution..."
+        required></textarea>
 
 
-        if (!name) {
-            return "";
-        }
+    <!-- =========================
+         PHOTO
+    ========================== -->
 
+    <label>
+        <strong>
+            Photo Evidence *
+        </strong>
+    </label>
+
+    <div class="photo-buttons">
+
+        <label class="photo-btn">
+
+            📸 Take Photo
+
+            <input
+                type="file"
+                id="cameraInput"
+                accept="image/*"
+                capture="environment"
+                hidden>
+
+        </label>
+
+
+        <label class="photo-btn">
+
+            🖼 Upload From Gallery
+
+            <input
+                type="file"
+                id="galleryInput"
+                accept="image/*"
+                hidden>
+
+        </label>
+
+    </div>
+
+
+    <div class="preview-container">
+
+        <img
+            id="previewImage"
+            src=""
+            alt="Photo preview"
+            style="display:none;">
+
+        <p id="photoStatus">
+            No photo selected.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         GPS
+    ========================== -->
+
+    <label>
+        GPS Location
+    </label>
+
+    <button
+        type="button"
+        id="trigger-gps-btn">
+
+        📍 Refresh My GPS Location
+
+    </button>
+
+
+    <div id="gps-status">
+        Waiting for GPS...
+    </div>
+
+
+    <div id="report-mini-map"></div>
+
+
+    <!-- =========================
+         COORDINATES
+    ========================== -->
+
+    <div class="location-row">
+
+        <div>
+
+            <label for="report-lat">
+                Latitude
+            </label>
+
+            <input
+                type="text"
+                id="report-lat"
+                readonly>
+
+        </div>
+
+
+        <div>
+
+            <label for="report-lng">
+                Longitude
+            </label>
+
+            <input
+                type="text"
+                id="report-lng"
+                readonly>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         SUBMIT
+    ========================== -->
+
+    <button
+        type="submit"
+        id="submit-btn">
+
+        Submit Report
+
+    </button>
+
+
+    <div id="status-message"></div>
+
+</form>
+
+</div><!-- LOGIN MODAL --><div
+    id="loginModal"
+    class="modal"><div class="modal-content">
+
+    <div class="modal-header">
+
+        <i class="fa-solid fa-lock"></i>
+
+        <h2>
+            Login Required
+        </h2>
+
+    </div>
+
+
+    <p>
+        You need to sign in before submitting
+        a soil pollution report.
+    </p>
+
+
+    <div class="modal-buttons">
+
+        <button
+            id="loginNowBtn"
+            class="login-btn"
+            type="button">
+
+            Log In
+
+        </button>
+
+
+        <button
+            id="cancelBtn"
+            class="cancel-btn"
+            type="button">
+
+            Cancel
+
+        </button>
+
+    </div>
+
+</div>
+
+</div><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><script src="js/main.js"></script><script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
 
         /*
-         * Remove repeated spaces.
+         * ====================================================
+         * PROJECTSUN REPORT SYSTEM
+         * ====================================================
+         *
+         * GPS coordinates are always saved.
+         *
+         * Barangay is detected by:
+         *
+         *     /api/barangay
+         *
+         * The browser does NOT contain a hard-coded list
+         * of barangays.
+         *
+         * This makes the frontend compatible with different
+         * devices and different barangays.
          */
 
-        name =
-            name.replace(
-                /\s+/g,
-                " "
+
+        let imageData = "";
+
+        let gpsMarker = null;
+
+        let currentCoordinates = {
+            latitude: null,
+            longitude: null
+        };
+
+
+        /* ====================================================
+           ELEMENTS
+        ==================================================== */
+
+        const form =
+            document.getElementById(
+                "pollution-report-form"
+            );
+
+        const barangayInput =
+            document.getElementById(
+                "report-barangay"
+            );
+
+        const latitudeInput =
+            document.getElementById(
+                "report-lat"
+            );
+
+        const longitudeInput =
+            document.getElementById(
+                "report-lng"
+            );
+
+        const gpsStatus =
+            document.getElementById(
+                "gps-status"
+            );
+
+        const gpsButton =
+            document.getElementById(
+                "trigger-gps-btn"
+            );
+
+        const submitButton =
+            document.getElementById(
+                "submit-btn"
+            );
+
+        const statusMessage =
+            document.getElementById(
+                "status-message"
+            );
+
+        const previewImage =
+            document.getElementById(
+                "previewImage"
+            );
+
+        const photoStatus =
+            document.getElementById(
+                "photoStatus"
             );
 
 
-        /*
-         * Remove common prefixes.
-         *
-         * Example:
-         *
-         * Brgy. Rosario
-         * Barangay Rosario
-         *
-         * becomes:
-         *
-         * Rosario
-         */
+        /* ====================================================
+           MAP
+        ==================================================== */
 
-        name =
-            name.replace(
-                /^(barangay|brgy\.?|bgy\.?)\s+/i,
-                ""
+        const miniMap =
+            L.map(
+                "report-mini-map"
+            ).setView(
+                [14.5764, 121.0851],
+                13
             );
 
 
-        /*
-         * Consistent capitalization.
-         */
-
-        name =
-            name
-            .toLowerCase()
-            .split(" ")
-            .map(function (word) {
-
-                if (!word) {
-                    return word;
-                }
-
-                return (
-                    word.charAt(0).toUpperCase() +
-                    word.slice(1)
-                );
-
-            })
-            .join(" ");
-
-
-        return name;
-    }
-
-
-    /* =====================================================
-       SET BARANGAY
-    ===================================================== */
-
-    function setBarangay(value) {
-
-        const normalized =
-            normalizeBarangayName(
-                value
-            );
-
-
-        if (!normalized) {
-            return false;
-        }
-
-
-        barangayInput.value =
-            normalized;
-
-
-        currentLocation.barangay =
-            normalized;
-
-
-        return true;
-    }
-
-
-    /* =====================================================
-       EXTRACT BARANGAY FROM API RESPONSE
-    ===================================================== */
-
-    function extractBarangay(data) {
-
-        if (!data) {
-            return "";
-        }
-
-
-        /*
-         * Support multiple response formats.
-         *
-         * This allows your backend to return:
-         *
-         * { barangay: "Rosario" }
-         *
-         * or:
-         *
-         * { name: "Rosario" }
-         *
-         * or:
-         *
-         * { address: { barangay: "Rosario" } }
-         */
-
-        const possibleValues = [
-
-            data.barangay,
-
-            data.name,
-
-            data.address?.barangay,
-
-            data.address?.village,
-
-            data.address?.suburb,
-
-            data.result?.barangay,
-
-            data.result?.name,
-
-            data.location?.barangay
-
-        ];
-
-
-        for (
-            const value of possibleValues
-        ) {
-
-            if (
-                value !== null &&
-                value !== undefined &&
-                String(value).trim() !== ""
-            ) {
-
-                return value;
-            }
-        }
-
-
-        return "";
-    }
-
-
-    /* =====================================================
-       DETECT BARANGAY
-    ===================================================== */
-
-    async function detectBarangay(
-        latitude,
-        longitude
-    ) {
-
-        barangayInput.value =
-            "Detecting...";
-
-
-        try {
-
-            const controller =
-                new AbortController();
-
-
-            const timeout =
-                setTimeout(
-                    function () {
-
-                        controller.abort();
-
-                    },
-                    10000
-                );
-
-
-            const response =
-                await fetch(
-                    `/api/barangay?lat=${encodeURIComponent(latitude)}&lng=${encodeURIComponent(longitude)}`,
-                    {
-                        method: "GET",
-
-                        headers: {
-                            "Accept":
-                                "application/json"
-                        },
-
-                        signal:
-                            controller.signal,
-
-                        cache:
-                            "no-store"
-                    }
-                );
-
-
-            clearTimeout(timeout);
-
-
-            if (!response.ok) {
-
-                throw new Error(
-                    "Barangay API returned HTTP " +
-                    response.status
-                );
-            }
-
-
-            const data =
-                await response.json();
-
-
-            console.log(
-                "Barangay API response:",
-                data
-            );
-
-
-            const detected =
-                extractBarangay(data);
-
-
-            if (
-                setBarangay(detected)
-            ) {
-
-                gpsStatus.textContent =
-                    "✅ GPS location and barangay detected.";
-
-                gpsStatus.style.color =
-                    "green";
-
-
-                return currentLocation.barangay;
-            }
-
-
-            /*
-             * Do not put "Unknown" here.
-             *
-             * The coordinates are still valid.
-             */
-
-            barangayInput.value = "";
-
-
-            gpsStatus.textContent =
-                "✅ GPS acquired. Barangay will be resolved from the coordinates.";
-
-            gpsStatus.style.color =
-                "#e67e22";
-
-
-            return "";
-
-        }
-        catch (error) {
-
-            console.error(
-                "Barangay detection failed:",
-                error
-            );
-
-
-            /*
-             * Never replace a valid location
-             * with the word "Unknown".
-             */
-
-            barangayInput.value = "";
-
-
-            gpsStatus.textContent =
-                "✅ GPS acquired. Barangay lookup temporarily unavailable.";
-
-            gpsStatus.style.color =
-                "#e67e22";
-
-
-            return "";
-        }
-    }
-
-
-    /* =====================================================
-       GPS
-    ===================================================== */
-
-    function acquireLiveLocation() {
-
-        gpsStatus.textContent =
-            "📡 Getting GPS location...";
-
-        gpsStatus.style.color =
-            "#e67e22";
-
-
-        gpsButton.disabled =
-            true;
-
-
-        if (
-            !navigator.geolocation
-        ) {
-
-            gpsStatus.textContent =
-                "❌ Geolocation is not supported by this device.";
-
-            gpsStatus.style.color =
-                "red";
-
-            gpsButton.disabled =
-                false;
-
-            return;
-        }
-
-
-        navigator.geolocation.getCurrentPosition(
-
-            async function (position) {
-
-                const latitude =
-                    position.coords.latitude;
-
-                const longitude =
-                    position.coords.longitude;
-
-
-                /*
-                 * Save coordinates.
-                 */
-
-                currentLocation.latitude =
-                    latitude;
-
-                currentLocation.longitude =
-                    longitude;
-
-
-                latitudeInput.value =
-                    latitude.toFixed(6);
-
-                longitudeInput.value =
-                    longitude.toFixed(6);
-
-
-                /*
-                 * Update map.
-                 */
-
-                miniMap.setView(
-                    [
-                        latitude,
-                        longitude
-                    ],
-                    17
-                );
-
-
-                if (gpsMarker) {
-
-                    gpsMarker.setLatLng(
-                        [
-                            latitude,
-                            longitude
-                        ]
-                    );
-
-                }
-                else {
-
-                    gpsMarker =
-                        L.marker(
-                            [
-                                latitude,
-                                longitude
-                            ]
-                        )
-                        .addTo(miniMap);
-
-                }
-
-
-                gpsStatus.textContent =
-                    "📡 GPS acquired. Detecting barangay...";
-
-
-                /*
-                 * Detect barangay.
-                 */
-
-                await detectBarangay(
-                    latitude,
-                    longitude
-                );
-
-
-                gpsButton.disabled =
-                    false;
-
-            },
-
-
-            function (error) {
-
-                console.error(
-                    "GPS error:",
-                    error
-                );
-
-
-                switch (
-                    error.code
-                ) {
-
-                    case error.PERMISSION_DENIED:
-
-                        gpsStatus.textContent =
-                            "❌ Location permission denied.";
-
-                        break;
-
-
-                    case error.POSITION_UNAVAILABLE:
-
-                        gpsStatus.textContent =
-                            "❌ GPS position unavailable.";
-
-                        break;
-
-
-                    case error.TIMEOUT:
-
-                        gpsStatus.textContent =
-                            "❌ GPS request timed out.";
-
-                        break;
-
-
-                    default:
-
-                        gpsStatus.textContent =
-                            "❌ Unable to obtain GPS location.";
-                }
-
-
-                gpsStatus.style.color =
-                    "red";
-
-
-                gpsButton.disabled =
-                    false;
-            },
-
-
+        L.tileLayer(
+            "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
             {
-                enableHighAccuracy: true,
-
-                timeout: 20000,
-
-                maximumAge: 0
+                attribution:
+                    "© OpenStreetMap contributors"
             }
-        );
-    }
+        ).addTo(miniMap);
 
 
-    gpsButton.addEventListener(
-        "click",
-        acquireLiveLocation
-    );
+        /* ====================================================
+           STATUS HELPER
+        ==================================================== */
 
-
-    /* =====================================================
-       PHOTO
-    ===================================================== */
-
-    function loadPhoto(file) {
-
-        if (!file) {
-            return;
-        }
-
-
-        /*
-         * Only allow image files.
-         */
-
-        if (
-            !file.type.startsWith("image/")
+        function showStatus(
+            message,
+            type
         ) {
 
-            alert(
-                "Please select an image file."
-            );
+            statusMessage.style.display =
+                "block";
 
-            return;
+            statusMessage.className =
+                type === "success"
+                    ? "success-box"
+                    : type === "warning"
+                    ? "warning-box"
+                    : "error-box";
+
+            statusMessage.textContent =
+                message;
         }
 
 
-        const reader =
-            new FileReader();
+        /* ====================================================
+           BARANGAY NORMALIZATION
+        ==================================================== */
 
-
-        reader.onload =
-            function (event) {
-
-                imageData =
-                    event.target.result;
-
-
-                previewImage.src =
-                    imageData;
-
-
-                previewImage.style.display =
-                    "block";
-
-
-                photoStatus.textContent =
-                    "✅ Photo selected.";
-            };
-
-
-        reader.onerror =
-            function () {
-
-                imageData = "";
-
-                photoStatus.textContent =
-                    "❌ Unable to read the photo.";
-            };
-
-
-        reader.readAsDataURL(file);
-    }
-
-
-    document
-        .getElementById("cameraInput")
-        .addEventListener(
-            "change",
-            function () {
-
-                loadPhoto(
-                    this.files[0]
-                );
-
-            }
-        );
-
-
-    document
-        .getElementById("galleryInput")
-        .addEventListener(
-            "change",
-            function () {
-
-                loadPhoto(
-                    this.files[0]
-                );
-
-            }
-        );
-
-
-    /* =====================================================
-       FORM SUBMISSION
-    ===================================================== */
-
-    form.addEventListener(
-        "submit",
-        async function (event) {
-
-            event.preventDefault();
-
-
-            /*
-             * Get login token.
-             */
-
-            const token =
-                localStorage.getItem(
-                    "token"
-                );
-
-
-            if (!token) {
-
-                showStatus(
-                    "🔒 Please log in before submitting a report.",
-                    "error"
-                );
-
-                return;
-            }
-
-
-            /*
-             * Get coordinates.
-             */
-
-            const latitude =
-                parseFloat(
-                    latitudeInput.value
-                );
-
-            const longitude =
-                parseFloat(
-                    longitudeInput.value
-                );
-
-
-            /*
-             * GPS must exist.
-             */
+        function normalizeBarangayName(
+            value
+        ) {
 
             if (
-                !Number.isFinite(latitude) ||
-                !Number.isFinite(longitude)
+                value === null ||
+                value === undefined
             ) {
-
-                showStatus(
-                    "📍 Please wait until your GPS location has been acquired.",
-                    "error"
-                );
-
-                return;
+                return "";
             }
 
+            let name =
+                String(value).trim();
 
-            /*
-             * Photo required.
-             */
-
-            if (!imageData) {
-
-                showStatus(
-                    "⚠️ Please take or upload a photo first.",
-                    "error"
-                );
-
-                return;
+            if (!name) {
+                return "";
             }
 
-
-            /*
-             * Barangay may temporarily be empty.
-             *
-             * Coordinates remain the authoritative
-             * location.
-             */
-
-            const barangay =
-                normalizeBarangayName(
-                    barangayInput.value
+            name =
+                name.replace(
+                    /\s+/g,
+                    " "
                 );
 
+            name =
+                name.replace(
+                    /^(barangay|brgy\.?|bgy\.?)\s+/i,
+                    ""
+                );
 
-            /*
-             * Disable submit button.
-             */
-
-            submitButton.disabled =
-                true;
-
-            submitButton.innerText =
-                "Submitting...";
+            return name;
+        }
 
 
-            const submissionTime =
-                new Date();
+        /* ====================================================
+           BARANGAY DETECTION
+        ==================================================== */
 
+        async function detectBarangay(
+            latitude,
+            longitude
+        ) {
 
-            /*
-             * Create report.
-             */
-
-            const report = {
-
-                type:
-                    document.getElementById(
-                        "type"
-                    ).value,
-
-                barangay:
-                    barangay || null,
-
-                description:
-                    document.getElementById(
-                        "report-desc"
-                    ).value.trim(),
-
-                latitude:
-                    latitude,
-
-                longitude:
-                    longitude,
-
-                photo:
-                    imageData,
-
-                status:
-                    "Pending",
-
-                timestamp:
-                    submissionTime.toISOString()
-            };
+            barangayInput.value =
+                "Detecting...";
 
 
             try {
 
                 const response =
                     await fetch(
-                        "/reports",
+                        `/api/barangay?lat=${encodeURIComponent(latitude)}&lng=${encodeURIComponent(longitude)}`,
                         {
-                            method: "POST",
-
+                            method: "GET",
                             headers: {
-
-                                "Content-Type":
-                                    "application/json",
-
-                                "Authorization":
-                                    `Bearer ${token}`
+                                "Accept":
+                                    "application/json"
                             },
-
-                            body:
-                                JSON.stringify(
-                                    report
-                                )
+                            cache: "no-store"
                         }
                     );
 
 
-                /*
-                 * Read server response.
-                 */
+                if (!response.ok) {
 
-                const text =
-                    await response.text();
-
-
-                console.log(
-                    "Server response:",
-                    text
-                );
-
-
-                let result = {};
-
-
-                try {
-
-                    result =
-                        JSON.parse(
-                            text
-                        );
-
-                }
-                catch (parseError) {
-
-                    console.error(
-                        "Server did not return JSON:",
-                        parseError
+                    throw new Error(
+                        `Barangay API returned ${response.status}`
                     );
                 }
 
 
+                const data =
+                    await response.json();
+
+
+                console.log(
+                    "Barangay API response:",
+                    data
+                );
+
+
+                const detected =
+                    normalizeBarangayName(
+                        data?.barangay
+                    );
+
+
+                if (detected) {
+
+                    barangayInput.value =
+                        detected;
+
+                    gpsStatus.textContent =
+                        `✅ GPS location acquired — Barangay ${detected}`;
+
+                    gpsStatus.style.color =
+                        "green";
+
+                    return detected;
+                }
+
+
                 /*
-                 * Unauthorized.
+                 * Do NOT write "Unknown".
+                 *
+                 * The GPS coordinates remain valid.
                  */
 
-                if (
-                    response.status === 401
-                ) {
+                barangayInput.value =
+                    "";
+
+                gpsStatus.textContent =
+                    "✅ GPS acquired. Barangay could not be resolved.";
+
+                gpsStatus.style.color =
+                    "#e67e22";
+
+                return "";
+
+            } catch (error) {
+
+                console.error(
+                    "Barangay detection error:",
+                    error
+                );
+
+
+                /*
+                 * Do not destroy valid GPS data.
+                 */
+
+                barangayInput.value =
+                    "";
+
+                gpsStatus.textContent =
+                    "✅ GPS acquired. Barangay lookup temporarily unavailable.";
+
+                gpsStatus.style.color =
+                    "#e67e22";
+
+                return "";
+            }
+        }
+
+
+        /* ====================================================
+           GPS ACQUISITION
+        ==================================================== */
+
+        async function acquireLiveLocation() {
+
+            if (
+                !navigator.geolocation
+            ) {
+
+                gpsStatus.textContent =
+                    "❌ This device does not support GPS location.";
+
+                gpsStatus.style.color =
+                    "red";
+
+                return;
+            }
+
+
+            gpsButton.disabled =
+                true;
+
+            gpsStatus.textContent =
+                "📡 Getting your GPS location...";
+
+            gpsStatus.style.color =
+                "#e67e22";
+
+
+            navigator.geolocation.getCurrentPosition(
+
+                async function (position) {
+
+                    const latitude =
+                        position.coords.latitude;
+
+                    const longitude =
+                        position.coords.longitude;
+
+
+                    /*
+                     * Save the REAL coordinates.
+                     */
+
+                    currentCoordinates =
+                    {
+                        latitude,
+                        longitude
+                    };
+
+
+                    latitudeInput.value =
+                        latitude.toFixed(6);
+
+                    longitudeInput.value =
+                        longitude.toFixed(6);
+
+
+                    /*
+                     * Move map.
+                     */
+
+                    miniMap.setView(
+                        [
+                            latitude,
+                            longitude
+                        ],
+                        17
+                    );
+
+
+                    /*
+                     * Update marker.
+                     */
+
+                    if (gpsMarker) {
+
+                        gpsMarker.setLatLng(
+                            [
+                                latitude,
+                                longitude
+                            ]
+                        );
+
+                    } else {
+
+                        gpsMarker =
+                            L.marker(
+                                [
+                                    latitude,
+                                    longitude
+                                ]
+                            ).addTo(
+                                miniMap
+                            );
+                    }
+
+
+                    /*
+                     * Detect barangay.
+                     *
+                     * A failure here does NOT erase GPS.
+                     */
+
+                    await detectBarangay(
+                        latitude,
+                        longitude
+                    );
+
+
+                    gpsButton.disabled =
+                        false;
+
+                },
+
+                function (error) {
+
+                    gpsButton.disabled =
+                        false;
+
+
+                    switch (
+                        error.code
+                    ) {
+
+                        case error.PERMISSION_DENIED:
+
+                            gpsStatus.textContent =
+                                "❌ Location permission denied. Please allow location access.";
+
+                            break;
+
+
+                        case error.POSITION_UNAVAILABLE:
+
+                            gpsStatus.textContent =
+                                "❌ GPS position is unavailable.";
+
+                            break;
+
+
+                        case error.TIMEOUT:
+
+                            gpsStatus.textContent =
+                                "❌ GPS request timed out. Please try again.";
+
+                            break;
+
+
+                        default:
+
+                            gpsStatus.textContent =
+                                "❌ Unable to obtain GPS location.";
+
+                    }
+
+
+                    gpsStatus.style.color =
+                        "red";
+                },
+
+                {
+                    enableHighAccuracy: true,
+                    timeout: 20000,
+                    maximumAge: 0
+                }
+            );
+        }
+
+
+        /* ====================================================
+           GPS BUTTON
+        ==================================================== */
+
+        gpsButton.addEventListener(
+            "click",
+            acquireLiveLocation
+        );
+
+
+        /* ====================================================
+           PHOTO
+        ==================================================== */
+
+        function loadPhoto(
+            file
+        ) {
+
+            if (!file) {
+                return;
+            }
+
+
+            if (
+                !file.type.startsWith(
+                    "image/"
+                )
+            ) {
+
+                photoStatus.textContent =
+                    "❌ Please select an image.";
+
+                return;
+            }
+
+
+            const reader =
+                new FileReader();
+
+
+            reader.onload =
+                function (event) {
+
+                    imageData =
+                        event.target.result;
+
+
+                    previewImage.src =
+                        imageData;
+
+                    previewImage.style.display =
+                        "block";
+
+                    photoStatus.textContent =
+                        "✅ Photo selected";
+
+                };
+
+
+            reader.onerror =
+                function () {
+
+                    photoStatus.textContent =
+                        "❌ Could not read the photo.";
+
+                };
+
+
+            reader.readAsDataURL(
+                file
+            );
+        }
+
+
+        document
+            .getElementById(
+                "cameraInput"
+            )
+            .addEventListener(
+                "change",
+                function () {
+
+                    loadPhoto(
+                        this.files[0]
+                    );
+
+                }
+            );
+
+
+        document
+            .getElementById(
+                "galleryInput"
+            )
+            .addEventListener(
+                "change",
+                function () {
+
+                    loadPhoto(
+                        this.files[0]
+                    );
+
+                }
+            );
+
+
+        /* ====================================================
+           SUBMIT REPORT
+        ==================================================== */
+
+        form.addEventListener(
+            "submit",
+            async function (event) {
+
+                event.preventDefault();
+
+
+                /*
+                 * LOGIN CHECK
+                 */
+
+                const token =
+                    localStorage.getItem(
+                        "token"
+                    );
+
+
+                if (!token) {
+
+                    document
+                        .getElementById(
+                            "loginModal"
+                        )
+                        .style.display =
+                        "flex";
+
+                    return;
+                }
+
+
+                /*
+                 * PHOTO CHECK
+                 */
+
+                if (!imageData) {
 
                     showStatus(
-                        "🔒 Your session has expired. Please log in again.",
+                        "⚠️ Please take or upload a photo first.",
                         "error"
                     );
 
@@ -1787,390 +1350,360 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                 /*
-                 * Server error.
+                 * GPS CHECK
                  */
 
-                if (!response.ok) {
-
-                    throw new Error(
-                        result.error ||
-                        "Unable to submit report."
+                const latitude =
+                    Number(
+                        latitudeInput.value
                     );
+
+                const longitude =
+                    Number(
+                        longitudeInput.value
+                    );
+
+
+                if (
+                    !Number.isFinite(
+                        latitude
+                    ) ||
+                    !Number.isFinite(
+                        longitude
+                    )
+                ) {
+
+                    showStatus(
+                        "⚠️ Please acquire your GPS location before submitting.",
+                        "error"
+                    );
+
+                    return;
                 }
 
 
                 /*
-                 * Get final barangay.
+                 * Barangay can be empty.
                  *
-                 * Prefer backend result because the server
-                 * should be the final authority.
+                 * The backend still receives the coordinates.
                  */
 
-                const finalBarangay =
+                const barangay =
                     normalizeBarangayName(
-                        result?.report?.barangay
-                    ) ||
-                    normalizeBarangayName(
-                        barangay
+                        barangayInput.value
                     );
 
 
-                /*
-                 * Format date/time.
-                 */
-
-                const formattedDate =
-                    submissionTime.toLocaleDateString(
-                        "en-PH",
-                        {
-                            year: "numeric",
-                            month: "long",
-                            day: "numeric"
-                        }
-                    );
+                const submissionTime =
+                    new Date();
 
 
-                const formattedTime =
-                    submissionTime.toLocaleTimeString(
-                        "en-PH",
-                        {
-                            hour: "2-digit",
-                            minute: "2-digit",
-                            second: "2-digit",
-                            hour12: true
-                        }
-                    );
+                const report = {
 
-
-                /*
-                 * Success.
-                 */
-
-                statusMessage.style.display =
-                    "block";
-
-                statusMessage.className =
-                    "success-box";
-
-
-                statusMessage.innerHTML = `
-
-                    🎉 <strong>
-                        Your report was successfully submitted!
-                    </strong>
-
-                    <br><br>
-
-                    📅 <strong>Date:</strong>
-                    ${escapeHtml(formattedDate)}
-
-                    <br>
-
-                    📍 <strong>Location:</strong>
-                    ${
-                        finalBarangay
-                            ? "Brgy. " +
-                              escapeHtml(finalBarangay)
-                            : "GPS coordinates recorded"
-                    }
-
-                    <br>
-
-                    🧭 <strong>Coordinates:</strong>
-                    ${latitude.toFixed(6)},
-                    ${longitude.toFixed(6)}
-
-                    <br>
-
-                    ⏰ <strong>Time:</strong>
-                    ${escapeHtml(formattedTime)}
-
-                `;
-
-
-                /*
-                 * Reset form.
-                 */
-
-                form.reset();
-
-
-                latitudeInput.value =
-                    "";
-
-                longitudeInput.value =
-                    "";
-
-
-                barangayInput.value =
-                    "";
-
-
-                imageData =
-                    "";
-
-
-                previewImage.src =
-                    "";
-
-                previewImage.style.display =
-                    "none";
-
-
-                photoStatus.textContent =
-                    "No photo selected.";
-
-
-                currentLocation = {
-
-                    latitude:
-                        null,
-
-                    longitude:
-                        null,
+                    type:
+                        document.getElementById(
+                            "type"
+                        ).value,
 
                     barangay:
-                        ""
+                        barangay || null,
+
+                    description:
+                        document.getElementById(
+                            "report-desc"
+                        ).value.trim(),
+
+                    latitude:
+                        latitude,
+
+                    longitude:
+                        longitude,
+
+                    photo:
+                        imageData,
+
+                    status:
+                        "Pending",
+
+                    timestamp:
+                        submissionTime.toISOString()
                 };
 
 
-                /*
-                 * Remove marker.
-                 */
-
-                if (gpsMarker) {
-
-                    miniMap.removeLayer(
-                        gpsMarker
-                    );
-
-                    gpsMarker =
-                        null;
-                }
-
-
-                /*
-                 * Get fresh GPS after reset.
-                 */
-
-                setTimeout(
-                    function () {
-
-                        acquireLiveLocation();
-
-                    },
-                    500
-                );
-
-
-            }
-            catch (error) {
-
-                console.error(
-                    "Report submission error:",
-                    error
-                );
-
-
-                showStatus(
-                    "❌ " +
-                    (
-                        error.message ||
-                        "Unable to submit report."
-                    ),
-                    "error"
-                );
-            }
-            finally {
-
                 submitButton.disabled =
-                    false;
+                    true;
 
                 submitButton.innerText =
-                    "Submit Report";
+                    "Submitting...";
+
+
+                statusMessage.style.display =
+                    "none";
+
+
+                try {
+
+                    const response =
+                        await fetch(
+                            "/reports",
+                            {
+                                method: "POST",
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/json",
+
+                                    "Authorization":
+                                        `Bearer ${token}`
+                                },
+
+                                body:
+                                    JSON.stringify(
+                                        report
+                                    )
+                            }
+                        );
+
+
+                    /*
+                     * Authentication failure
+                     */
+
+                    if (
+                        response.status === 401
+                    ) {
+
+                        showStatus(
+                            "🔒 Your session has expired. Please log in again.",
+                            "error"
+                        );
+
+                        submitButton.disabled =
+                            false;
+
+                        submitButton.innerText =
+                            "Submit Report";
+
+                        return;
+                    }
+
+
+                    const responseText =
+                        await response.text();
+
+
+                    let result = {};
+
+                    try {
+
+                        result =
+                            JSON.parse(
+                                responseText
+                            );
+
+                    } catch (parseError) {
+
+                        console.error(
+                            "Server returned non-JSON:",
+                            responseText
+                        );
+                    }
+
+
+                    if (
+                        !response.ok
+                    ) {
+
+                        throw new Error(
+                            result.error ||
+                            "The server could not process the report."
+                        );
+                    }
+
+
+                    /*
+                     * Use server result if available.
+                     */
+
+                    const detectedBarangay =
+                        normalizeBarangayName(
+                            result?.report?.barangay
+                        ) ||
+                        barangay;
+
+
+                    const finalBarangay =
+                        detectedBarangay ||
+                        "GPS coordinates recorded";
+
+
+                    const formattedDate =
+                        submissionTime.toLocaleDateString(
+                            undefined,
+                            {
+                                year: "numeric",
+                                month: "long",
+                                day: "numeric"
+                            }
+                        );
+
+
+                    const formattedTime =
+                        submissionTime.toLocaleTimeString(
+                            undefined,
+                            {
+                                hour: "2-digit",
+                                minute: "2-digit",
+                                second: "2-digit"
+                            }
+                        );
+
+
+                    statusMessage.style.display =
+                        "block";
+
+                    statusMessage.className =
+                        "success-box";
+
+
+                    statusMessage.innerHTML = `
+                        🎉 <strong>Report successfully submitted!</strong><br><br>
+
+                        📅 <strong>Date:</strong>
+                        ${formattedDate}<br>
+
+                        📍 <strong>Barangay:</strong>
+                        ${finalBarangay}<br>
+
+                        🌐 <strong>GPS:</strong>
+                        ${latitude.toFixed(6)},
+                        ${longitude.toFixed(6)}<br>
+
+                        ⏰ <strong>Time:</strong>
+                        ${formattedTime}
+                    `;
+
+
+                    /*
+                     * Reset form.
+                     */
+
+                    form.reset();
+
+
+                    latitudeInput.value =
+                        "";
+
+                    longitudeInput.value =
+                        "";
+
+                    barangayInput.value =
+                        "";
+
+                    imageData =
+                        "";
+
+                    currentCoordinates =
+                    {
+                        latitude: null,
+                        longitude: null
+                    };
+
+
+                    previewImage.src =
+                        "";
+
+                    previewImage.style.display =
+                        "none";
+
+                    photoStatus.textContent =
+                        "No photo selected.";
+
+
+                    if (gpsMarker) {
+
+                        miniMap.removeLayer(
+                            gpsMarker
+                        );
+
+                        gpsMarker =
+                            null;
+                    }
+
+
+                    gpsStatus.textContent =
+                        "Report submitted successfully.";
+
+                    gpsStatus.style.color =
+                        "green";
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Report submission error:",
+                        error
+                    );
+
+
+                    showStatus(
+                        "❌ " +
+                        (
+                            error.message ||
+                            "Could not submit the report."
+                        ),
+                        "error"
+                    );
+
+                } finally {
+
+                    submitButton.disabled =
+                        false;
+
+                    submitButton.innerText =
+                        "Submit Report";
+                }
+
             }
-        }
-    );
+        );
 
 
-    /* =====================================================
-       STATUS MESSAGE
-    ===================================================== */
+        /* ====================================================
+           MOBILE NAVIGATION
+        ==================================================== */
 
-    function showStatus(
-        message,
-        type
-    ) {
+        const menuToggle =
+            document.getElementById(
+                "menu-toggle"
+            );
 
-        statusMessage.style.display =
-            "block";
+        const navMenu =
+            document.querySelector(
+                ".custom-nav-menu"
+            );
 
 
-        if (type === "success") {
-
-            statusMessage.className =
-                "success-box";
-
-        }
-        else if (
-            type === "warning"
+        if (
+            menuToggle &&
+            navMenu
         ) {
 
-            statusMessage.className =
-                "warning-box";
+            menuToggle.addEventListener(
+                "click",
+                function () {
 
-        }
-        else {
+                    navMenu.classList.toggle(
+                        "show"
+                    );
 
-            statusMessage.className =
-                "error-box";
-        }
-
-
-        statusMessage.textContent =
-            message;
-    }
-
-
-    /* =====================================================
-       SAFE HTML OUTPUT
-    ===================================================== */
-
-    function escapeHtml(value) {
-
-        return String(value)
-            .replace(
-                /&/g,
-                "&amp;"
-            )
-            .replace(
-                /</g,
-                "&lt;"
-            )
-            .replace(
-                />/g,
-                "&gt;"
-            )
-            .replace(
-                /"/g,
-                "&quot;"
-            )
-            .replace(
-                /'/g,
-                "&#039;"
+                }
             );
-    }
+        }
 
 
-    /* =====================================================
-       MOBILE NAVIGATION
-    ===================================================== */
-
-    const menuToggle =
-        document.getElementById(
-            "menu-toggle"
-        );
-
-    const navMenu =
-        document.querySelector(
-            ".custom-nav-menu"
-        );
-
-
-    if (
-        menuToggle &&
-        navMenu
-    ) {
-
-        menuToggle.addEventListener(
-            "click",
-            function () {
-
-                navMenu.classList.toggle(
-                    "show"
-                );
-
-            }
-        );
-    }
-
-
-    /* =====================================================
-       INITIAL GPS
-    ===================================================== */
-
-    acquireLiveLocation();
-
-});
-
-</script>
-
-
-
-<!-- ========================================================
-     LOGIN MODAL
-========================================================= -->
-
-<div
-    id="loginModal"
-    class="modal"
->
-
-    <div class="modal-content">
-
-        <div class="modal-header">
-
-            <i class="fa-solid fa-lock"></i>
-
-            <h2>
-                Login Required
-            </h2>
-
-        </div>
-
-
-        <p>
-            You need to sign in before submitting
-            a soil pollution report.
-        </p>
-
-
-        <div class="modal-buttons">
-
-            <button
-                id="loginNowBtn"
-                class="login-btn"
-                type="button"
-            >
-                Log In
-            </button>
-
-
-            <button
-                id="cancelBtn"
-                class="cancel-btn"
-                type="button"
-            >
-                Cancel
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-
-<!-- ========================================================
-     LOGIN CHECK
-========================================================= -->
-
-<script>
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function () {
+        /* ====================================================
+           LOGIN MODAL
+        ==================================================== */
 
         const token =
             localStorage.getItem(
@@ -2178,57 +1711,71 @@ document.addEventListener(
             );
 
 
-        const modal =
+        const loginModal =
             document.getElementById(
                 "loginModal"
             );
 
 
-        const loginButton =
-            document.getElementById(
-                "loginNowBtn"
-            );
-
-
-        const cancelButton =
-            document.getElementById(
-                "cancelBtn"
-            );
-
-
         if (!token) {
 
-            modal.style.display =
+            loginModal.style.display =
                 "flex";
+        }
 
 
-            loginButton.onclick =
+        document
+            .getElementById(
+                "loginNowBtn"
+            )
+            .addEventListener(
+                "click",
                 function () {
 
                     window.location.href =
                         "login.html";
-                };
+                }
+            );
 
 
-            cancelButton.onclick =
+        document
+            .getElementById(
+                "cancelBtn"
+            )
+            .addEventListener(
+                "click",
                 function () {
 
-                    modal.style.display =
+                    loginModal.style.display =
                         "none";
 
                     window.location.href =
                         "Soil.html";
-                };
-        }
+                }
+            );
+
+
+        /*
+         * ====================================================
+         * INITIAL GPS REQUEST
+         * ====================================================
+         *
+         * We don't automatically request GPS immediately on
+         * every device because browsers may block or restrict
+         * automatic location requests.
+         *
+         * The user can press the GPS button.
+         */
+
+        gpsStatus.textContent =
+            "📍 Press 'Refresh My GPS Location' to detect your location.";
+
+        gpsStatus.style.color =
+            "#555";
 
     }
 );
 
-</script>
-
-
-<script src="js/main.js"></script>
-
-</body>
-
+</script></body>
 </html>
+
