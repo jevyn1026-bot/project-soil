@@ -12,7 +12,6 @@ if (!response.ok) {
 
         document.getElementById("totalReports").textContent = stats.totalReports;
         document.getElementById("pollutionReports").textContent = stats.pollutionReports;
-        document.getElementById("hazardReports").textContent = stats.hazardReports;
         document.getElementById("resolvedReports").textContent = stats.resolvedReports;
         document.getElementById("pendingReports").textContent = stats.pendingReports;
 
@@ -26,7 +25,6 @@ if (!response.ok) {
 
                 labels: [
                     "Pollution",
-                    "Hazard",
                     "Resolved",
                     "Pending"
                 ],
@@ -38,7 +36,6 @@ if (!response.ok) {
                     data: [
 
                         stats.pollutionReports,
-                        stats.hazardReports,
                         stats.resolvedReports,
                         stats.pendingReports
 
